@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AI SDLC Transformation — EPAM × FirstTech</title>
+<title>SDLC Improvement Plan — EPAM × FirstTech</title>
 <style>
 :root{
   --bg:#F7F5F0;--mid:#EFECE6;--card:#FFFFFF;
@@ -49,9 +49,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav);height
 .kpi-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
   border-radius:10px;padding:16px 20px;min-width:130px;text-align:center}
 .kpi-n{font-size:2rem;font-weight:900;line-height:1;margin-bottom:4px}
-.kpi-n.red{color:#ff8080}.kpi-n.green{color:#34D399}.kpi-n.white{color:#fff}.kpi-n.tbd{color:#94A3B8;font-size:1.4rem}
+.kpi-n.green{color:#34D399}.kpi-n.white{color:#fff}
 .kpi-l{font-size:0.68rem;color:#94A3B8;letter-spacing:.3px}
-.kpi-arr{font-size:1.4rem;color:rgba(255,255,255,0.2);align-self:center}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 .btn-red{padding:12px 26px;border-radius:6px;background:var(--red);color:#fff;font-weight:700;
   font-size:0.88rem;text-decoration:none;display:inline-block;transition:.2s;border:none;cursor:pointer}
@@ -117,30 +116,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav);height
 .acc-body ul li::before{content:'›';color:var(--red);font-weight:700;flex-shrink:0}
 .acc-body p{font-size:0.83rem;color:var(--muted);line-height:1.7}
 
-/* ── BAR CHART ── */
-.chart-wrap{background:var(--card);border:1px solid var(--card-border);border-radius:12px;
-  padding:28px 24px;box-shadow:var(--shadow-sm)}
-.chart-title{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;
-  color:var(--muted);margin-bottom:20px}
-.bar-chart{display:flex;flex-direction:column;gap:10px}
-.bar-row{display:flex;align-items:center;gap:12px}
-.bar-label{font-size:0.75rem;color:var(--muted);width:62px;flex-shrink:0;text-align:right;font-weight:500}
-.bar-label.tbd-label{color:var(--faint)}
-.bar-outer{flex:1;height:28px;background:#F0EDE8;border-radius:5px;overflow:hidden}
-.bar-fill{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:10px;
-  font-size:0.76rem;font-weight:700;color:#fff;transition:width 1s ease}
-.bf-crit{background:linear-gradient(90deg,#922b21,var(--red-l))}
-.bf-high{background:linear-gradient(90deg,#c0392b,#e74c3c)}
-.bf-med{background:linear-gradient(90deg,#c47f17,var(--gold))}
-.bf-good{background:linear-gradient(90deg,#047857,var(--green-l))}
-.bf-tbd{background:transparent;border:2px dashed #CBD5E1;color:var(--faint)}
-.bf-fore{background:linear-gradient(90deg,#065f46,#10B981);opacity:.8}
-.bar-val{font-size:0.76rem;font-weight:700;width:38px;flex-shrink:0}
-.val-crit{color:var(--red)}.val-med{color:var(--gold)}.val-good{color:var(--green)}.val-tbd{color:var(--faint)}
-.chart-legend{display:flex;gap:16px;margin-top:16px;flex-wrap:wrap}
-.leg{display:flex;align-items:center;gap:5px;font-size:0.7rem;color:var(--muted)}
-.leg-dot{width:8px;height:8px;border-radius:50%}
-
 /* ── TABLE ── */
 .tbl{width:100%;border-collapse:collapse;font-size:0.83rem}
 .tbl th{padding:10px 14px;text-align:left;font-size:0.68rem;text-transform:uppercase;
@@ -151,19 +126,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav);height
 .tag.r{background:var(--red-bg);color:var(--red)}
 .tag.g{background:var(--green-bg);color:var(--green)}
 .tag.o{background:var(--gold-bg);color:var(--gold)}
-
-/* ── PHASES ── */
-.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
-  border:1px solid var(--card-border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-sm)}
-@media(max-width:900px){.phases{grid-template-columns:repeat(2,1fr)}}
-.phase{padding:24px 20px;border-right:1px solid var(--border);background:var(--card)}
-.phase:last-child{border-right:none}
-.phase-num{font-size:2.4rem;font-weight:900;color:rgba(192,57,43,0.1);line-height:1;margin-bottom:6px}
-.phase-dur{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
-.phase h3{font-size:0.88rem;font-weight:700;margin-bottom:8px;color:var(--text)}
-.phase p{font-size:0.78rem;color:var(--muted);line-height:1.55;margin-bottom:10px}
-.phase-tags{display:flex;flex-direction:column;gap:4px}
-.ptag{font-size:0.7rem;color:var(--muted);padding:3px 8px;background:var(--mid);border-radius:4px;border:1px solid var(--border)}
 
 /* ── OUTCOMES ── */
 .out-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
@@ -192,22 +154,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav);height
 .ptb{background:var(--green-bg);border:1px solid rgba(5,150,105,0.3);color:var(--green)}
 .prop-h{font-size:1.3rem;font-weight:800;margin-bottom:8px;color:var(--text)}
 .prop-p{font-size:0.83rem;color:var(--muted);line-height:1.7;margin-bottom:20px}
-.prop-list{list-style:none;margin-bottom:20px}
-.prop-list li{padding:6px 0;font-size:0.82rem;display:flex;gap:8px;
-  border-bottom:1px solid var(--border);color:var(--text)}
-.prop-a .prop-list li::before{content:'✓';color:var(--red);font-weight:900;flex-shrink:0}
-.prop-b .prop-list li::before{content:'✓';color:var(--green);font-weight:900;flex-shrink:0}
 .prop-timing{font-size:0.72rem;font-weight:700;letter-spacing:.5px;color:var(--gold)}
-
-/* ── REQUIREMENTS LIST ── */
-.req-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
-.req-item{display:flex;gap:12px;padding:14px;border:1px solid var(--card-border);
-  border-radius:8px;background:var(--card)}
-.req-icon{width:28px;height:28px;border-radius:5px;background:var(--red-bg);
-  border:1px solid rgba(192,57,43,0.2);display:flex;align-items:center;justify-content:center;
-  font-size:0.85rem;flex-shrink:0}
-.req-item h4{font-size:0.8rem;font-weight:700;margin-bottom:2px;color:var(--text)}
-.req-item p{font-size:0.74rem;color:var(--muted)}
 
 /* ── CTA ── */
 #cta{background:linear-gradient(135deg,#1C1C2E,#2D2D44);text-align:center;padding:90px 8%}
@@ -225,12 +172,11 @@ footer p{font-size:0.7rem;color:#64748B}
 .rv{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
 .rv.show{opacity:1;transform:none}
 
-/* ── ROLE ROW (for AI Playbook one-line) ── */
+/* ── AI PLAYBOOK TAGS ── */
 .ai-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:0.65rem;font-weight:800;
   letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px}
 .ai-ba{background:#EFF6FF;border:1px solid rgba(30,64,175,0.25);color:var(--blue)}
 .ai-be{background:var(--gold-bg);border:1px solid rgba(217,119,6,0.25);color:var(--gold)}
-.ai-fe{background:var(--green-bg);border:1px solid rgba(5,150,105,0.25);color:var(--green)}
 .ai-qa{background:var(--red-bg);border:1px solid rgba(192,57,43,0.25);color:var(--red)}
 
 .link-ref{display:inline-flex;align-items:center;gap:5px;font-size:0.75rem;color:var(--blue);
@@ -243,12 +189,72 @@ footer p{font-size:0.7rem;color:#64748B}
 .qa-stat .n{font-size:1.2rem;font-weight:900;color:var(--green);line-height:1}
 .qa-stat .l{font-size:0.65rem;color:var(--muted);margin-top:2px}
 
+/* ── PROJECT PROGRESS TIMELINE ── */
+.proj-timeline{display:flex;align-items:flex-start;margin:28px 0;position:relative}
+.proj-timeline::before{content:'';position:absolute;top:20px;left:5%;right:5%;height:3px;
+  background:linear-gradient(90deg,var(--green) 0%,var(--green) 55%,var(--gold) 55%,var(--gold) 75%,var(--border) 75%,var(--border) 100%);
+  z-index:0}
+.pt-step{flex:1;padding-top:48px;text-align:center;position:relative}
+.pt-dot{width:40px;height:40px;border-radius:50%;position:absolute;top:0;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;justify-content:center;font-size:0.95rem;font-weight:900;
+  z-index:1;border:3px solid var(--bg)}
+.pt-done{background:var(--green);color:#fff}
+.pt-active{background:var(--gold);color:#fff}
+.pt-future{background:#e8e4dc;color:var(--faint);border:2px dashed var(--border)}
+.pt-label{font-size:0.78rem;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.3;padding:0 8px}
+.pt-sub{font-size:0.68rem;color:var(--muted);line-height:1.4;padding:0 8px}
+.pt-badge{display:inline-block;font-size:0.6rem;font-weight:800;padding:2px 8px;border-radius:10px;
+  margin-top:6px;text-transform:uppercase;letter-spacing:.4px}
+.pt-done-b{background:var(--green-bg);color:var(--green);border:1px solid rgba(5,150,105,0.3)}
+.pt-active-b{background:var(--gold-bg);color:var(--gold);border:1px solid rgba(217,119,6,0.3)}
+.pt-future-b{background:var(--mid);color:var(--faint);border:1px solid var(--border)}
+
+/* ── ROADMAP VISUAL TIMELINE ── */
+.rm-track{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  background:var(--card);border:1px solid var(--card-border);border-radius:12px;
+  overflow:hidden;box-shadow:var(--shadow-sm);margin-bottom:32px;position:relative}
+.rm-track::before{content:'';position:absolute;top:44px;left:12.5%;right:12.5%;height:4px;
+  background:linear-gradient(90deg,var(--blue) 0%,var(--green) 33%,var(--gold) 66%,var(--red) 100%);
+  border-radius:2px;z-index:0}
+.rm-phase{padding:28px 16px 24px;text-align:center;position:relative;
+  border-right:1px solid var(--border)}
+.rm-phase:last-child{border-right:none}
+.rm-dot{width:56px;height:56px;border-radius:50%;margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;
+  position:relative;z-index:1;border:4px solid var(--card);box-shadow:var(--shadow-sm)}
+.rm-p1{background:var(--blue);color:#fff}
+.rm-p2{background:var(--green);color:#fff}
+.rm-p3{background:var(--gold);color:#fff}
+.rm-p4{background:var(--red);color:#fff}
+.rm-timing{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--muted);margin-bottom:6px}
+.rm-name{font-size:0.88rem;font-weight:800;color:var(--text);margin-bottom:8px;line-height:1.3}
+.rm-milestone{font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:12px;
+  display:inline-block;margin-bottom:10px}
+.rm-m1{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(30,64,175,0.2)}
+.rm-m2{background:var(--green-bg);color:var(--green);border:1px solid rgba(5,150,105,0.2)}
+.rm-m3{background:var(--gold-bg);color:var(--gold);border:1px solid rgba(217,119,6,0.2)}
+.rm-m4{background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,0.2)}
+.rm-chips{display:flex;flex-direction:column;gap:4px;align-items:center}
+.rm-chip{font-size:0.65rem;font-weight:600;padding:2px 8px;border-radius:6px;
+  background:rgba(5,150,105,0.06);border:1px solid rgba(5,150,105,0.12);color:var(--green);
+  white-space:nowrap}
+
+@media(max-width:900px){
+  .proj-timeline{flex-direction:column;gap:24px}
+  .proj-timeline::before{display:none}
+  .pt-step{padding-top:0;padding-left:56px;text-align:left}
+  .pt-dot{top:0;left:0;transform:none}
+  .rm-track{grid-template-columns:1fr 1fr}
+  .rm-track::before{display:none}
+  .rm-phase{border-bottom:1px solid var(--border)}
+}
 @media(max-width:768px){
   .ch-top{flex-direction:column;gap:10px}
-  .phases{grid-template-columns:1fr}
   .g4{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
   .out-row{flex-wrap:wrap}.out-val{margin-left:0}
+  .rm-track{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -256,15 +262,12 @@ footer p{font-size:0.7rem;color:#64748B}
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">EPAM <span>× FirstTech AI Transformation</span></div>
+  <div class="nav-brand">EPAM <span>× FirstTech SDLC Improvement Plan</span></div>
   <div class="nav-links">
     <a href="#ch0">Wins</a>
-    <a href="#ch1">Evidence</a>
-    <a href="#ch3">Estimation</a>
+    <a href="#ch4">Blockers</a>
     <a href="#ch2">AI Playbook</a>
-    <a href="#ch4">Challenges</a>
     <a href="#ch5">Roadmap</a>
-    <a href="#ch6">Outcomes</a>
     <a href="#ch7">Options</a>
   </div>
 </nav>
@@ -273,34 +276,8 @@ footer p{font-size:0.7rem;color:#64748B}
 <!-- ══════════════ HERO ══════════════ -->
 <section id="hero">
   <div class="hero-eyebrow">Executive Proposal · Confidential · April 2026</div>
-  <h1 class="hero-h1">AI Doesn't Fix Delivery.<br/><em>Strong Foundations Do.</em></h1>
-  <p class="hero-premise">FirstTech is moving in the right direction. To unlock full AI value across 15 streams, the delivery system must be ready. That's where EPAM comes in.</p>
-
-  <div class="kpi-row">
-    <div class="kpi-card">
-      <div class="kpi-n red">63%</div>
-      <div class="kpi-l">Spillover · Spr 5→6</div>
-    </div>
-    <div class="kpi-arr">→</div>
-    <div class="kpi-card">
-      <div class="kpi-n white">16%</div>
-      <div class="kpi-l">Current · Spr 11→12</div>
-    </div>
-    <div class="kpi-arr">→</div>
-    <div class="kpi-card">
-      <div class="kpi-n tbd">TBD</div>
-      <div class="kpi-l">Spr 13→14 · pending</div>
-    </div>
-    <div style="width:1px;background:rgba(255,255,255,0.12);height:48px;align-self:center;margin:0 6px"></div>
-    <div class="kpi-card">
-      <div class="kpi-n white">68</div>
-      <div class="kpi-l">EPAM engineers</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-n white">15</div>
-      <div class="kpi-l">Active streams</div>
-    </div>
-  </div>
+  <h1 class="hero-h1">SDLC <em>Improvement Plan</em></h1>
+  <p class="hero-premise">FirstTech is investing in AI-driven delivery. To unlock full value across 15 streams, delivery foundations must be built right. EPAM is ready to support that transformation.</p>
 
   <div class="hero-btns">
     <a href="#ch5" class="btn-red">See the Roadmap</a>
@@ -309,639 +286,527 @@ footer p{font-size:0.7rem;color:#64748B}
 </section>
 
 
-<!-- ══════════════ CH01 — WHAT WORKED WELL ══════════════ -->
+<!-- ══════════════ HIGHLIGHTS & WINS ══════════════ -->
 <section class="chapter" id="ch0">
   <div class="ch-top rv">
-    <span class="ch-label">Chapter 01</span>
+    <span class="ch-label">Highlights</span>
     <div class="ch-titles">
       <h2>What <em>Worked Well</em></h2>
-      <p>Before addressing gaps — recognising what already works and makes this partnership strong.</p>
+      <p>Concrete wins delivered — ADP Demo, Test Automation, AI-Assisted Engineering, and Dashboards PoC. Beyond Tajeeri, multiple streams are progressing steadily across the portfolio. A strong foundation to build on.</p>
     </div>
   </div>
 
-  <div class="cards-row rv">
+  <!-- 4 win cards -->
+  <div class="cards-row rv" style="margin-bottom:36px">
     <div class="card">
-      <div class="icon">🤝</div>
-      <h3>Strong Product Ownership</h3>
-      <p>Product ownership actively engaged throughout — FirstTech's involvement kept priorities aligned and reduced blockers at business level.</p>
+      <div class="icon">🏆</div>
+      <div class="tag-pill" style="background:var(--green-bg);color:var(--green);border:1px solid rgba(5,150,105,0.2)">ADP DEMO</div>
+      <h3>ADP Demo Successfully Delivered</h3>
+      <p>Happy Path flow accepted — Government Portal + Car Rental Portal delivered for Abu Dhabi Police including mocked Dashboards.</p>
     </div>
     <div class="card">
-      <div class="icon">🎨</div>
-      <h3>BA & Design Responsiveness</h3>
-      <p>BA and Design consistently responded to team requests and worked to stay ahead of the delivery schedule — the collaborative mindset is in place.</p>
+      <div class="icon">🤖</div>
+      <div class="tag-pill" style="background:var(--blue-bg);color:var(--blue);border:1px solid rgba(30,64,175,0.2)">TEST AUTOMATION</div>
+      <h3>Test Automation Live & Proven</h3>
+      <p>105 test cases running. API 100% · UI &gt;90%. 2.6 days saved/sprint · 65+ days/year. Regression: days → minutes. AI-assisted (Copilot): 20–40% gain.</p>
     </div>
     <div class="card">
-      <div class="icon">📅</div>
-      <h3>Collaborative Timeline Alignment</h3>
-      <p>Timelines defined and agreed jointly with FirstTech — creating shared accountability that the transformation program builds directly on.</p>
+      <div class="icon">⚡</div>
+      <div class="tag-pill" style="background:var(--gold-bg);color:var(--gold);border:1px solid rgba(217,119,6,0.2)">AI BE SDLC</div>
+      <h3>AI-Driven BE Workflow Established</h3>
+      <p>3 custom agents (Architect · Planner · Senior Dev). Structured /architecture → /planner → /code flow. 851 integration tests. Full context system prompt.</p>
     </div>
     <div class="card">
-      <div class="icon">🔧</div>
-      <h3>Adaptive BA Support</h3>
-      <p>When gaps emerged, BA capacity was brought in responsively — demonstrating the organisational readiness to course-correct quickly.</p>
+      <div class="icon">📊</div>
+      <div class="tag-pill" style="background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,0.2)">DASHBOARDS POC</div>
+      <h3>Dashboards PoC Completed — Jan 2026</h3>
+      <p>Power BI vs Custom FE evaluated. Hybrid approach recommended. Shary Dashboards progressing to Production — AI-accelerated.</p>
     </div>
   </div>
 
-  <div class="box green rv" style="margin-top:20px;">
-    <p><strong>Foundation:</strong> High stakeholder engagement + responsive BA + collaborative timelines = the exact platform AI-enabled delivery needs to scale on. FirstTech already has all three.</p>
+  <!-- Portfolio progress note -->
+  <div class="box green rv" style="margin-bottom:28px">
+    <p><strong>Portfolio-wide progress:</strong> Beyond Tajeeri, multiple streams are progressing and stabilising — Yahala (Travel &amp; Entertainment), Health Insurance SME KSA, Health Insurance SME UAE, Health Insurance Individual, and multiple Shory products are all in active delivery at different stages. Each is moving forward with its own pace and challenges — the gaps and improvement areas for these streams are covered in the sections below.</p>
   </div>
-</section>
 
+  <!-- Tajeeri project progress timeline -->
+  <div class="rv" style="margin-bottom:32px">
+    <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:22px">Tajeeri · Project Progress to End of April 2026</p>
 
-<!-- ══════════════ CH02 — EVIDENCE / SPILLOVERS ══════════════ -->
-<section class="chapter alt" id="ch1">
-  <div class="ch-top rv">
-    <span class="ch-label">Chapter 02</span>
-    <div class="ch-titles">
-      <h2>The Evidence:<br/><em>What's Causing Delivery Loss</em></h2>
-      <p>Tajeeri Sprint data reveals a systemic pattern — not isolated incidents. Structured intervention works. AI accelerates the gains.</p>
+    <div class="proj-timeline">
+      <div class="pt-step">
+        <div class="pt-dot pt-done">✓</div>
+        <div class="pt-label">Feature Development</div>
+        <div class="pt-sub">Users · Roles · Units · Companies · Employee Mgmt · Fleet · Contracts</div>
+        <div><span class="pt-badge pt-done-b">95% ready</span></div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-dot pt-done">✓</div>
+        <div class="pt-label">ADP Demo Delivered</div>
+        <div class="pt-sub">Happy Path · Gov Portal + Car Rental Portal · Dashboards (mocked)</div>
+        <div><span class="pt-badge pt-done-b">Delivered</span></div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-dot pt-active">~</div>
+        <div class="pt-label">End of April 2026</div>
+        <div class="pt-sub">70–80% overall · Messaging &amp; Notification in progress · New team handed over</div>
+        <div><span class="pt-badge pt-active-b">In progress</span></div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-dot pt-future">→</div>
+        <div class="pt-label">MVP Target</div>
+        <div class="pt-sub">Financial · Config. Mgmt · Reporting &amp; Dashboards · Full integrations</div>
+        <div><span class="pt-badge pt-future-b">Mid-July 2026</span></div>
+      </div>
+    </div>
+
+    <div class="box green rv" style="margin-top:8px">
+      <p><strong>Handover complete (April 2026):</strong> Full documentation, sprint reports, and final summaries provided to new FirstTech leadership. MVP confirmed: Mid-July 2026. New structure: BE Director (Arun K.) · FE Director (Ramadan M.) · DM (Imad O.) · Team leads in place. EPAM AI/automation knowledge transferred.</p>
     </div>
   </div>
 
-  <!-- Bar chart -->
-  <div class="chart-wrap rv" style="margin-bottom:24px">
-    <div class="chart-title">Tajeeri — Spillover Into Next Sprint (%) · Sprints 5→14 + AI-Enabled Forecast</div>
-    <div class="bar-chart">
-      <div class="bar-row">
-        <div class="bar-label">S5→6</div>
-        <div class="bar-outer"><div class="bar-fill bf-crit" style="width:63%">63%</div></div>
-        <div class="bar-val val-crit">63%</div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">S6→7</div>
-        <div class="bar-outer"><div class="bar-fill bf-med" style="width:24%">24%</div></div>
-        <div class="bar-val val-med">24%</div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">S7→8</div>
-        <div class="bar-outer"><div class="bar-fill bf-good" style="width:16%">16%</div></div>
-        <div class="bar-val val-good">16%</div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">S8→9</div>
-        <div class="bar-outer"><div class="bar-fill bf-good" style="width:16%">16%</div></div>
-        <div class="bar-val val-good">16%</div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">S9→10</div>
-        <div class="bar-outer"><div class="bar-fill bf-good" style="width:19%">19%</div></div>
-        <div class="bar-val val-good">19%</div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">S10→11</div>
-        <div class="bar-outer"><div class="bar-fill bf-med" style="width:21%">21%</div></div>
-        <div class="bar-val val-med">21%</div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">S11→12</div>
-        <div class="bar-outer"><div class="bar-fill bf-good" style="width:17%">17%</div></div>
-        <div class="bar-val val-good">17%</div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label tbd-label">S12→13</div>
-        <div class="bar-outer" style="border:1px dashed #CBD5E1;overflow:visible">
-          <div class="bar-fill bf-tbd" style="width:100%;padding-left:12px;font-size:0.72rem;color:#94A3B8">data pending</div>
+  <!-- Detail accordions -->
+  <div class="rv">
+    <div class="acc-item">
+      <button class="acc-btn" onclick="tog(this)">
+        <span>🤖 Test Automation — Full Metrics & AI Usage Detail</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <div class="qa-stat-row" style="margin-bottom:14px">
+          <div class="qa-stat"><div class="n">105</div><div class="l">Test cases</div></div>
+          <div class="qa-stat"><div class="n">24</div><div class="l">Bugs caught</div></div>
+          <div class="qa-stat"><div class="n">100%</div><div class="l">API pass rate</div></div>
+          <div class="qa-stat"><div class="n">&gt;90%</div><div class="l">UI pass rate</div></div>
+          <div class="qa-stat"><div class="n">2.6</div><div class="l">Days saved/sprint</div></div>
+          <div class="qa-stat"><div class="n">65+</div><div class="l">Days saved/year</div></div>
         </div>
-        <div class="bar-val val-tbd">TBD</div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label tbd-label">S13→14</div>
-        <div class="bar-outer" style="border:1px dashed #CBD5E1;overflow:visible">
-          <div class="bar-fill bf-tbd" style="width:100%;padding-left:12px;font-size:0.72rem;color:#94A3B8">data pending</div>
-        </div>
-        <div class="bar-val val-tbd">TBD</div>
-      </div>
-      <div class="bar-row" style="margin-top:6px;opacity:0.85">
-        <div class="bar-label" style="color:var(--green);font-weight:700;font-size:0.68rem">AI Target</div>
-        <div class="bar-outer" style="border:1px dashed rgba(5,150,105,0.4)">
-          <div class="bar-fill bf-fore" style="width:9%">&lt;10%</div>
-        </div>
-        <div class="bar-val val-good">&lt;10%</div>
+        <ul>
+          <li>Regression runs after every QA deployment (2–3× per week) — critical bugs caught and fixed within 1 hour</li>
+          <li>AI (GitHub Copilot) used for API test generation (+30%), UI Page Object generation (+20%), code refactoring, auto-analysis (+40%)</li>
+          <li>AI auto-analysis in EPAM Report Portal — failure reasons detected automatically, quicker error debugging</li>
+          <li>Test execution: Automated API — 30 sec · UI — 8 min vs Manual — 20h 20min</li>
+          <li>Planned coverage target: ~54% automation (1,100 total test cases by November 2026)</li>
+        </ul>
       </div>
     </div>
-    <div class="chart-legend">
-      <div class="leg"><div class="leg-dot" style="background:var(--red)"></div>Critical (&gt;50%)</div>
-      <div class="leg"><div class="leg-dot" style="background:var(--gold)"></div>Elevated (18–27%)</div>
-      <div class="leg"><div class="leg-dot" style="background:var(--green)"></div>Controlled (&lt;18%)</div>
-      <div class="leg"><div class="leg-dot" style="background:#CBD5E1;border:1px dashed #94A3B8"></div>Pending data</div>
-      <div class="leg"><div class="leg-dot" style="background:var(--green-l);opacity:.7"></div>AI-Enabled Forecast</div>
-    </div>
-  </div>
-
-  <div class="box gold rv">
-    <p><strong>Pattern:</strong> Without a structural fix, spillover oscillates between 17–24% and rebounds after ad-hoc interventions. Only a permanent foundation change — reinforced by AI — breaks the cycle below 10%.</p>
-  </div>
-
-  <div class="rv" style="margin-top:24px">
-    <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:10px">Root Causes — click to expand</p>
 
     <div class="acc-item">
       <button class="acc-btn" onclick="tog(this)">
-        <span>🔗 Dependency Risks Surfaced Too Late <span style="color:var(--muted);font-weight:400;font-size:0.8rem">— S5→6, S6→7 primary driver</span></span>
+        <span>⚡ AI BE SDLC — Agents, Instructions & Integration Tests</span>
         <span class="acc-arrow">▼</span>
       </button>
       <div class="acc-body">
-        <p>FE work blocked by unresolved Ninja UI library dependency — identified after sprint commitment, not before. A similar API dependency pattern recurred in S6→7. Dependency validation must move to pre-sprint planning.</p>
+        <ul>
+          <li>3 custom agents: Tajeeri Architect · Tajeeri Planner · Tajeeri Senior Developer</li>
+          <li>System prompt includes: project structure, coding guidelines, library usage, testing practices — AI produces context-aware output without constant correction</li>
+          <li>Structured SDLC flow: /architecture → /planner → /code — features designed and sliced before coding begins</li>
+          <li>851 BE integration tests + 1,105 total test runs (as of Apr 15, 2026) · 100% pass rate</li>
+          <li>Integration and Unit tests mandatory in every Pull Request before DEV deployment</li>
+          <li>FE adoption in progress — FE Lead reusing same structured approach from BE</li>
+          <li>Planned MCP integrations: SQL Server · Figma · Jira</li>
+          <li>BA Reviewer Agent planned: bulk story review during grooming to find gaps and accelerate refinement</li>
+        </ul>
+        <a class="link-ref" href="https://firsttech.atlassian.net/wiki/spaces/SD1/pages/519864321/Backend+-+LLM+AI+integration" target="_blank">📎 BE AI Instructions (Confluence)</a>
       </div>
     </div>
+
     <div class="acc-item">
       <button class="acc-btn" onclick="tog(this)">
-        <span>📐 Estimation on Incomplete Design <span style="color:var(--muted);font-weight:400;font-size:0.8rem">— S5→6, S10→11</span></span>
+        <span>📊 Operational Dashboards — PoC Results & Current Progress</span>
         <span class="acc-arrow">▼</span>
       </button>
       <div class="acc-body">
-        <p>When full design detail emerged mid-sprint, actual scope exceeded estimates by 30–60%. Estimates were technically correct — the problem was that design readiness was not a commitment gate.</p>
-      </div>
-    </div>
-    <div class="acc-item">
-      <button class="acc-btn" onclick="tog(this)">
-        <span>🐛 Bug Accumulation & Capacity Overload <span style="color:var(--muted);font-weight:400;font-size:0.8rem">— S9→10, S10→11</span></span>
-        <span class="acc-arrow">▼</span>
-      </button>
-      <div class="acc-body">
-        <p>Unbudgeted bug-fix work consumed 20–35% of sprint capacity. Without a dedicated bug buffer, new feature delivery was consistently compressed. A planning discipline issue, not a productivity issue.</p>
-      </div>
-    </div>
-    <div class="acc-item">
-      <button class="acc-btn" onclick="tog(this)">
-        <span>⏰ Late QA Involvement <span style="color:var(--muted);font-weight:400;font-size:0.8rem">— recurring across all sprints</span></span>
-        <span class="acc-arrow">▼</span>
-      </button>
-      <div class="acc-body">
-        <p>QA activities consistently started in the final 40% of the sprint. Defects surfaced too late for same-sprint resolution, forcing carryover. Shift-left QA is the structural fix — now being piloted on Tajeeri.</p>
-      </div>
-    </div>
-    <div class="acc-item">
-      <button class="acc-btn" onclick="tog(this)">
-        <span>📋 Oversized Stories & Weak Refinement <span style="color:var(--muted);font-weight:400;font-size:0.8rem">— S5→6, S6→7</span></span>
-        <span class="acc-arrow">▼</span>
-      </button>
-      <div class="acc-body">
-        <p>Stories averaging 13+ story points entered sprints without decomposition. Acceptance criteria added during development. A Definition of Ready gate with AI-assisted story quality scoring is the structural remedy.</p>
+        <ul>
+          <li><strong>PoC completed January 2026:</strong> Power BI vs Custom Front-End compared — visual UX, analytics depth, performance, security, and cost criteria</li>
+          <li><strong>Hybrid approach recommended and validated:</strong> Custom FE (JS) for public / management displays (Impress &amp; Monitor) · Power BI for internal analysts (Analyze &amp; Explore)</li>
+          <li>FE implementation exceeded design spec — adaptive layouts, skeleton loaders, drill-down behaviour, "worst-to-best" sorting logic, edge case handling all delivered</li>
+          <li>Hybrid gives best of both: pixel-perfect brand identity in FE + self-service BI, drill-down &amp; export, row-level security in Power BI</li>
+          <li><strong>Current status:</strong> Shary Dashboards progressing to Production stage — AI-accelerated development ongoing</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════ CH03 — ESTIMATION ANALYSIS ══════════════ -->
-<section class="chapter" id="ch3">
+<!-- ══════════════ 12 SYSTEMIC BLOCKERS ══════════════ -->
+<section class="chapter alt" id="ch4">
   <div class="ch-top rv">
-    <span class="ch-label">Chapter 03</span>
-    <div class="ch-titles">
-      <h2>Estimation Analysis:<br/><em>Why the Numbers Moved</em></h2>
-      <p>Estimates were accurate for the information available at commitment. Changes in scope, requirements, and BA input after commitment caused variance — not weak estimation discipline.</p>
-    </div>
-  </div>
-
-  <div class="box gold rv">
-    <p><strong>Core principle:</strong> An estimate is only as reliable as the inputs behind it. When requirements change late, estimates move — by design. Fix the discovery process, and estimation accuracy follows.</p>
-  </div>
-
-  <!-- Key variance drivers — client-side -->
-  <div class="rv" style="margin-top:28px;margin-bottom:28px">
-    <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px">Primary Drivers of Estimation Variance</p>
-    <div class="g2" style="gap:12px">
-      <div class="acc-item" style="margin-bottom:0">
-        <button class="acc-btn" onclick="tog(this)">
-          <span>📝 Requirements Changes After Commitment</span><span class="acc-arrow">▼</span>
-        </button>
-        <div class="acc-body">
-          <p>Scope and requirements were modified after sprint planning — introducing new acceptance criteria, design changes, or business rule updates. Each change invalidated part of the original estimate without a formal re-estimation process.</p>
-        </div>
-      </div>
-      <div class="acc-item" style="margin-bottom:0">
-        <button class="acc-btn" onclick="tog(this)">
-          <span>⏳ Poor & Delayed Clarifications from BA</span><span class="acc-arrow">▼</span>
-        </button>
-        <div class="acc-body">
-          <p>Clarification requests to BA took multiple days or remained unresolved during the sprint. Developers proceeded with assumptions that later required rework. Faster BA response cycles are the structural fix.</p>
-        </div>
-      </div>
-      <div class="acc-item" style="margin-bottom:0">
-        <button class="acc-btn" onclick="tog(this)">
-          <span>🎨 Design Delivered After Development Started</span><span class="acc-arrow">▼</span>
-        </button>
-        <div class="acc-body">
-          <p>Final design details were provided after stories entered development, revealing additional scope not covered in the original estimate. Design readiness must be a hard gate before sprint commitment.</p>
-        </div>
-      </div>
-      <div class="acc-item" style="margin-bottom:0">
-        <button class="acc-btn" onclick="tog(this)">
-          <span>🔗 Late Discovery of Technical Dependencies</span><span class="acc-arrow">▼</span>
-        </button>
-        <div class="acc-body">
-          <p>Integration dependencies, API blockers, and third-party library issues were identified during execution rather than planning — adding 3–7 days of unplanned work per occurrence.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Estimation table -->
-  <div style="overflow-x:auto" class="rv">
-    <table class="tbl">
-      <thead>
-        <tr>
-          <th>Stream</th>
-          <th>Estimation Basis</th>
-          <th>Variance Cause</th>
-          <th>Driver</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Tajeeri · S5→6</strong></td>
-          <td>Partial design; Ninja UI dependency assumed resolved</td>
-          <td>Full design added ~35% scope; FE blocked 4 days</td>
-          <td>Requirements & design readiness</td>
-          <td><span class="tag r">Variance</span></td>
-        </tr>
-        <tr>
-          <td><strong>Tajeeri · S6→7</strong></td>
-          <td>Design-complete stories; dependencies pre-validated</td>
-          <td>Minor scope addition — contained</td>
-          <td>Process improved</td>
-          <td><span class="tag g">Controlled</span></td>
-        </tr>
-        <tr>
-          <td><strong>Tajeeri · S9→10, S10→11</strong></td>
-          <td>Partial DoR compliance; QA not fully shifted left</td>
-          <td>Bug load emerged; delayed BA clarifications</td>
-          <td>Backlog & BA discipline</td>
-          <td><span class="tag o">Recurring</span></td>
-        </tr>
-        <tr>
-          <td><strong>Dashboards</strong></td>
-          <td colspan="3">Estimations were correct for a team of <strong>2 engineers</strong> and were validated and confirmed with FirstTech and SlashData. Our team prepared estimates for 2 developers — not for 9 as was later presented by CTO. The reason why estimations were presented for 9 engineers instead of 2 remains without explanation, as we have not received any feedback on this discrepancy.</td>
-          <td><span class="tag g">Validated</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="box red rv" style="margin-top:20px">
-    <p><strong>EPAM commitment:</strong> We flag incomplete inputs <em>before</em> sprint commitment — not after delivery ends. This requires a jointly agreed Definition of Ready with clear design-freeze and BA-readiness gates.</p>
-  </div>
-</section>
-
-
-<!-- ══════════════ CH04 — AI PLAYBOOK BY ROLE ══════════════ -->
-<section class="chapter alt" id="ch2">
-  <div class="ch-top rv">
-    <span class="ch-label">Chapter 04</span>
-    <div class="ch-titles">
-      <h2><em>AI Playbook</em> by Role</h2>
-      <p>The recommended sequence: fix BA &amp; requirements first — then amplify engineers with AI Agents — then scale QA automation. Same tools, 3–5× more value when foundations are solid.</p>
-    </div>
-  </div>
-
-  <div class="box blue rv" style="margin-bottom:28px">
-    <p><strong>The lever is not the AI tool — it's the quality of input feeding it.</strong> Teams using Copilot with weak requirements get partial output. Teams with structured specs, context, and clear AC get production-ready results. Same tool. Different foundation.</p>
-  </div>
-
-  <div class="cards-row rv">
-
-    <!-- BA FIRST -->
-    <div class="card">
-      <div class="ai-tag ai-ba">① BA · Requirements First</div>
-      <h3 style="margin-bottom:6px">Fix the Input Layer</h3>
-      <p style="margin-bottom:10px;font-size:0.78rem;color:var(--muted)">All AI effectiveness depends on requirement quality. Start here.</p>
-      <div class="acc-item">
-        <button class="acc-btn" onclick="tog(this)" style="padding:8px 12px;font-size:0.8rem">
-          AI capabilities (9) <span class="acc-arrow">▼</span>
-        </button>
-        <div class="acc-body">
-          <ul>
-            <li>Requirement structuring & gap detection</li>
-            <li>Acceptance criteria generation</li>
-            <li>Story decomposition into estimable slices</li>
-            <li>Edge case & dependency extraction</li>
-            <li>Change impact analysis before scope shifts</li>
-            <li>Requirement quality scoring pre-estimation</li>
-            <li>Design-to-requirement alignment checks</li>
-            <li>BA Reviewer Agent for bulk story grooming</li>
-            <li>Jira / Figma / Confluence MCP integration</li>
-          </ul>
-        </div>
-      </div>
-      <div class="box blue" style="margin:10px 0 0;padding:10px 12px;font-size:0.78rem">
-        <strong>Impact:</strong> Up to 40% fewer clarification loops during sprint execution
-      </div>
-    </div>
-
-    <!-- BE / FE AGENTS -->
-    <div class="card">
-      <div class="ai-tag ai-be">② BE · FE · AI Agents</div>
-      <h3 style="margin-bottom:6px">Amplify Engineers</h3>
-      <p style="margin-bottom:10px;font-size:0.78rem;color:var(--muted)">Project-specific AI agents with full SDLC context — already piloted on Tajeeri.</p>
-      <div class="acc-item">
-        <button class="acc-btn" onclick="tog(this)" style="padding:8px 12px;font-size:0.8rem">
-          Tajeeri AI SDLC approach <span class="acc-arrow">▼</span>
-        </button>
-        <div class="acc-body">
-          <ul>
-            <li>3 custom agents: Tajeeri Architect · Planner · Senior Developer</li>
-            <li>System prompt with project structure, coding guidelines, testing practices</li>
-            <li>Structured flow: /architecture → /planner → /code</li>
-            <li>Code scaffolding, refactoring, API contract validation</li>
-            <li>851 BE integration tests + 1,105 total runs (as of Apr 15)</li>
-            <li>Tests mandatory in every Pull Request before DEV deployment</li>
-            <li>FE adoption in progress — reusing BE structured approach</li>
-            <li>MCP integrations planned: SQL Server, Figma, Jira</li>
-          </ul>
-        </div>
-      </div>
-      <a class="link-ref" href="https://firsttech.atlassian.net/wiki/spaces/SD1/pages/519864321/Backend+-+LLM+AI+integration" target="_blank">
-        📎 BE AI Instructions (Tajeeri · Confluence)
-      </a>
-      <div class="box gold" style="margin:10px 0 0;padding:10px 12px;font-size:0.78rem">
-        <strong>Impact:</strong> 20–35% faster delivery on well-specified BE tasks
-      </div>
-    </div>
-
-    <!-- QA AUTOMATION -->
-    <div class="card">
-      <div class="ai-tag ai-qa">③ QA · AI Automation</div>
-      <h3 style="margin-bottom:6px">Scale Quality, Reduce Manual Work</h3>
-      <p style="margin-bottom:10px;font-size:0.78rem;color:var(--muted)">Manual QA + AI agents building automation — already delivering on Tajeeri (Sprint 13).</p>
-
-      <div class="qa-stat-row">
-        <div class="qa-stat"><div class="n">105</div><div class="l">Test cases</div></div>
-        <div class="qa-stat"><div class="n">24</div><div class="l">Bugs found</div></div>
-        <div class="qa-stat"><div class="n">100%</div><div class="l">API pass rate</div></div>
-        <div class="qa-stat"><div class="n">&gt;90%</div><div class="l">UI pass rate</div></div>
-        <div class="qa-stat"><div class="n">2.6</div><div class="l">Days saved/sprint</div></div>
-        <div class="qa-stat"><div class="n">65+</div><div class="l">Days saved/year</div></div>
-      </div>
-
-      <div class="acc-item" style="margin-top:10px">
-        <button class="acc-btn" onclick="tog(this)" style="padding:8px 12px;font-size:0.8rem">
-          AI usage in QA <span class="acc-arrow">▼</span>
-        </button>
-        <div class="acc-body">
-          <ul>
-            <li>GitHub Copilot: coding, refactoring, auto-suggestions (IntelliJ)</li>
-            <li>API: auto-generating DTOs, DB entities, test cases — 30% faster</li>
-            <li>UI: Page Object generation, locator suggestions — 20% faster</li>
-            <li>Analysis: AI auto-analysis in Report Portal, quicker error debug — 40% faster</li>
-            <li>Regression cycle: days → minutes</li>
-            <li>Incident validation: ~1 week → 1 day</li>
-            <li>Planned coverage target: ~54% (1,100 total test cases by Nov)</li>
-          </ul>
-        </div>
-      </div>
-      <div class="box red" style="margin:10px 0 0;padding:10px 12px;font-size:0.78rem">
-        <strong>AI Productivity Gain (Tajeeri):</strong> 20–40% on automation engineering tasks
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════ CH05 — 12 BLOCKERS ══════════════ -->
-<section class="chapter" id="ch4">
-  <div class="ch-top rv">
-    <span class="ch-label">Chapter 05</span>
+    <span class="ch-label">Blockers</span>
     <div class="ch-titles">
       <h2><em>12 Systemic Blockers</em><br/>Limiting AI Effectiveness</h2>
-      <p>Portfolio-level SDLC maturity gaps — not stream-specific issues. Each one reduces AI ROI directly.</p>
+      <p>Portfolio-level SDLC maturity gaps — ordered by impact. BA and requirements quality are the highest-priority blockers. QA and automation follow. AI adoption and governance last.</p>
     </div>
   </div>
 
   <div class="g2 rv" style="gap:10px">
-    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>01 · Weak Discovery & Requirements Maturity</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Requirements arrive incomplete. Stories are written reactively. Thin acceptance criteria force engineers to improvise — AI amplifies this gap, not fixes it.</p></div></div>
-    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>02 · Inconsistent Backlog Structure & Traceability</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>No consistent link: business need → story → design → test. AI context tools cannot reason reliably over fragmented backlogs.</p></div></div>
-    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>03 · Frequent Scope Changes Mid-Sprint</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Scope instability invalidates AI-generated tests and code before it is used. Rework cost is high and largely invisible in velocity metrics.</p></div></div>
+    <!-- BA & Requirements — highest priority -->
+    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>01 · Weak BA Practice Across Streams</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>BA capability is inconsistent across the portfolio. Where BA is weak, the requirements bottleneck is structural. AI-assisted BA tooling helps — but cannot replace ownership of the input layer.</p></div></div>
+    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>02 · Weak Discovery &amp; Requirements Maturity</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Requirements arrive incomplete. Stories are written reactively. Thin acceptance criteria force engineers to improvise — AI amplifies this gap, it doesn't fix it.</p></div></div>
+    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>03 · Inconsistent Backlog Structure &amp; Traceability</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>No consistent link: business need → story → design → test. AI context tools cannot reason reliably over fragmented, unstructured backlogs.</p></div></div>
     <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>04 · Insufficient Definition of Ready Discipline</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Stories enter sprints without a readiness threshold. Blockers discovered post-commitment. This is the single highest-leverage process gate to implement.</p></div></div>
-    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>05 · Low Test Automation Coverage</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Each release requires disproportionate manual QA effort. AI-assisted QA tools can't reach potential without an automation foundation. Currently building on Tajeeri — target 54%.</p></div></div>
-    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>06 · Late QA Involvement</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Testing starts in final 40% of the sprint on average. Defects surface too late for same-sprint resolution. Shift-left QA reduces late-sprint spillover by an estimated 30–45%.</p></div></div>
-    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>07 · Dependency Risks Found Too Late</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Technical dependencies — libraries, APIs, external teams — identified during execution, not planning. Each instance adds 3–7 days of unexpected work.</p></div></div>
-    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>08 · Fragmented AI Usage Without Governance</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Copilot and Claude active but without shared prompt practices or output governance. Individual gains not compounding. Estimated value capture: 20–30% of potential.</p></div></div>
-    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>09 · No Reusable Context Layer for AI Tools</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Engineers rebuild project context manually every session. Tajeeri agents solve this — the model needs replication across streams.</p></div></div>
-    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>10 · Uneven AI Adoption Across Streams</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Adoption maturity varies significantly by stream. Without a common framework, best practices don't transfer and portfolio-level AI ROI can't be measured.</p></div></div>
-    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>11 · No Measurement of AI Impact</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Without baseline metrics on spillover, velocity, defect rate and rework, it's impossible to prove AI ROI or justify further investment.</p></div></div>
-    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>12 · Weak BA Practice Across Streams</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>BA capability is inconsistent. Where BA is weak, the requirements bottleneck is structural. AI-assisted BA tooling can help, but cannot replace ownership of the input layer.</p></div></div>
+    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>05 · Frequent Scope Changes Mid-Sprint</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Scope instability invalidates AI-generated tests and code before they are used. Rework cost is high and largely invisible in velocity metrics.</p></div></div>
+    <!-- QA & Automation -->
+    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>06 · Low Test Automation Coverage</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Each release requires disproportionate manual QA effort. AI-assisted QA tools can't reach potential without an automation foundation. Tajeeri (105 cases, target 54%) shows the path — it needs to be replicated.</p></div></div>
+    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>07 · Late QA Involvement</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Testing starts in the final 40% of the sprint on average. Defects surface too late for same-sprint resolution. Shift-left QA reduces late-sprint rework by an estimated 30–45%.</p></div></div>
+    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>08 · Dependency Risks Found Too Late</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Technical dependencies — libraries, APIs, external teams — identified during execution, not planning. Each instance adds 3–7 days of unexpected work.</p></div></div>
+    <!-- AI Adoption & Governance -->
+    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>09 · Fragmented AI Usage Without Governance</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Copilot and Claude active but without shared prompt practices or output governance. Individual gains aren't compounding. Estimated value capture: 20–30% of potential.</p></div></div>
+    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>10 · No Reusable Context Layer for AI Tools</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Engineers rebuild project context manually every session. Tajeeri agent model solves this — the approach needs replication across all active streams.</p></div></div>
+    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>11 · Uneven AI Adoption Across Streams</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Adoption maturity varies significantly by stream. Without a common framework, best practices don't transfer and portfolio-level AI ROI can't be measured or defended.</p></div></div>
+    <div class="acc-item"><button class="acc-btn" onclick="tog(this)"><span>12 · No Measurement of AI Impact</span><span class="acc-arrow">▼</span></button><div class="acc-body"><p>Without baseline metrics — spillover, velocity, defect rate, rework — it's impossible to prove AI ROI or justify further investment. Tracking must be built from day one.</p></div></div>
   </div>
 
   <div class="box red rv" style="margin-top:20px">
-    <p><strong>Bottom line:</strong> More AI tools without fixing these blockers produces the same result as Sprint 10→11 — temporary improvement, then regression. Foundation first.</p>
+    <p><strong>Bottom line:</strong> More AI tools without fixing these blockers produces temporary improvement followed by regression. Foundation first — then AI multiplies every gain.</p>
   </div>
 </section>
 
 
-<!-- ══════════════ CH06 — ROADMAP ══════════════ -->
+<!-- ══════════════ AI PLAYBOOK ══════════════ -->
+<section class="chapter" id="ch2">
+  <div class="ch-top rv">
+    <span class="ch-label">AI Playbook</span>
+    <div class="ch-titles">
+      <h2><em>AI Playbook</em> by Role — Three Priorities</h2>
+      <p>Fix BA requirements first — this is the input layer everything else depends on. Then scale QA automation. Then build shared AI infrastructure for FE and BE together.</p>
+    </div>
+  </div>
+
+  <div class="box blue rv" style="margin-bottom:28px">
+    <p><strong>The lever is not the AI tool — it's the quality of input feeding it.</strong> Teams with structured specs, clear acceptance criteria, and full context get production-ready AI output. Same tools. Different foundation. 3–5× difference in value delivered.</p>
+  </div>
+
+  <!-- Priority 1 — BA -->
+  <div class="acc-item rv" style="margin-bottom:10px">
+    <button class="acc-btn" onclick="tog(this)" style="padding:18px 20px">
+      <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="ai-tag ai-ba" style="margin-bottom:0">Priority 1</span>
+        <strong>BA · Requirements, Backlog, Clarification &amp; Change Management</strong>
+      </span>
+      <span class="acc-arrow">▼</span>
+    </button>
+    <div class="acc-body">
+      <p style="margin-bottom:12px"><strong>Why first:</strong> Weak requirements are the single largest source of rework, rescheduling, and AI output degradation across all streams. Fixing this unlocks value in every other role and discipline.</p>
+      <ul>
+        <li>AI-assisted requirement structuring — gap detection, AC generation, story decomposition into estimable slices</li>
+        <li>Backlog quality scoring before sprint commitment — Definition of Ready enforced automatically</li>
+        <li>Change impact analysis — every scope change assessed before acceptance, not after delivery</li>
+        <li>BA Reviewer Agent for bulk story grooming — review stories in bulk, find gaps, speed up refinement sessions</li>
+        <li>Clarification tracking — every open question logged, owner assigned, resolved before sprint start</li>
+        <li>Design-to-requirement alignment checks before development begins</li>
+        <li>Jira / Figma / Confluence MCP integration — end-to-end traceability across tools</li>
+      </ul>
+      <div class="box blue" style="margin-top:12px;padding:10px 14px;font-size:0.82rem">
+        <strong>Expected impact:</strong> Up to 40% fewer clarification loops during sprints · Estimate accuracy improves within 3 sprints · Rework cost −30–45%
+      </div>
+    </div>
+  </div>
+
+  <!-- Priority 2 — QA -->
+  <div class="acc-item rv" style="margin-bottom:10px">
+    <button class="acc-btn" onclick="tog(this)" style="padding:18px 20px">
+      <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="ai-tag ai-qa" style="margin-bottom:0">Priority 2</span>
+        <strong>QA · From Manual Testing to AI-Assisted Full Automation</strong>
+      </span>
+      <span class="acc-arrow">▼</span>
+    </button>
+    <div class="acc-body">
+      <p style="margin-bottom:12px"><strong>Proven model (Tajeeri):</strong> 105 test cases, 100% API pass rate, 65+ man-days saved annually — built with AI assistance in one stream. This model is fully replicable.</p>
+      <div class="qa-stat-row" style="margin-bottom:14px">
+        <div class="qa-stat"><div class="n">105</div><div class="l">Test cases live</div></div>
+        <div class="qa-stat"><div class="n">24</div><div class="l">Bugs caught</div></div>
+        <div class="qa-stat"><div class="n">100%</div><div class="l">API pass rate</div></div>
+        <div class="qa-stat"><div class="n">&gt;90%</div><div class="l">UI pass rate</div></div>
+        <div class="qa-stat"><div class="n">65+</div><div class="l">Days saved/year</div></div>
+        <div class="qa-stat"><div class="n">20–40%</div><div class="l">AI productivity</div></div>
+      </div>
+      <ul>
+        <li>Shift-left QA — testing starts at story writing, not after development completes</li>
+        <li>AI-assisted test generation: API tests +30% faster · UI Page Objects +20% faster · Analysis +40% faster</li>
+        <li>Regression cycle: days → minutes · Incident validation: ~1 week → 1 day</li>
+        <li>AI auto-analysis in Report Portal — failure reasons detected and classified automatically</li>
+        <li>Target: 54% automation coverage (1,100 test cases) across streams — growing from current 105 on Tajeeri</li>
+        <li>Rollout model: pilot on 1 stream → replicate across 3–5 priority streams</li>
+      </ul>
+      <div class="box red" style="margin-top:12px;padding:10px 14px;font-size:0.82rem">
+        <strong>Expected impact:</strong> 65+ man-days saved per stream annually · Release risk reduced · Manual QA gradually replaced by scalable automation coverage
+      </div>
+    </div>
+  </div>
+
+  <!-- Priority 3 — FE+BE Infrastructure -->
+  <div class="acc-item rv" style="margin-bottom:10px">
+    <button class="acc-btn" onclick="tog(this)" style="padding:18px 20px">
+      <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="ai-tag ai-be" style="margin-bottom:0">Priority 3</span>
+        <strong>FE + BE · Shared AI Infrastructure, SDLC Process &amp; Tracking</strong>
+      </span>
+      <span class="acc-arrow">▼</span>
+    </button>
+    <div class="acc-body">
+      <p style="margin-bottom:12px"><strong>What's needed:</strong> For consistent AI productivity gains across engineering, FE and BE need shared tooling, proper context setup, and measurement to prove the improvement at scale.</p>
+      <ul>
+        <li><strong>Tools:</strong> Copilot + Claude Code configured per stream · MCP integrations (SQL Server, Figma, Jira) · Shared agent library across streams</li>
+        <li><strong>Instructions &amp; context:</strong> System prompts per stream with project structure, coding standards, testing practices — same model proven on Tajeeri BE, extending to FE and other streams</li>
+        <li><strong>BA context layer:</strong> Requirements, backlog, and acceptance criteria fed into AI context — engineers work from structured inputs, not rebuilding context manually each session</li>
+        <li><strong>Tracking (AI vs non-AI):</strong> Measure delivery speed, code quality, defect rate separately for AI-assisted vs manual work — build a defensible business case for further investment</li>
+        <li>Standardised prompt library: /architecture · /planner · /code · /bugfix · /review</li>
+        <li>AI governance: usage policy, output review process, security guardrails for production code</li>
+      </ul>
+      <div class="box gold" style="margin-top:12px;padding:10px 14px;font-size:0.82rem">
+        <strong>Expected impact:</strong> 20–35% faster delivery on well-specified engineering tasks · AI productivity measurable and reportable · Best practices transfer across all streams
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ ROADMAP + OUTCOMES ══════════════ -->
 <section class="chapter alt" id="ch5">
   <div class="ch-top rv">
-    <span class="ch-label">Chapter 06</span>
+    <span class="ch-label">Roadmap</span>
     <div class="ch-titles">
-      <h2>The Roadmap:<br/><em>Assess → Build → Pilot → Scale</em></h2>
-      <p>Four phases. Each delivers standalone value. Phase 1 can start in two weeks. Phase 3 results visible in 10–14 weeks.</p>
+      <h2>The Roadmap &amp;<br/><em>Expected Outcomes</em></h2>
+      <p>Four phases. First measurable results visible at Month 3. Scaling underway by Month 6–8. Each phase delivers standalone value and funds the next.</p>
     </div>
   </div>
 
-  <div class="phases rv">
-    <div class="phase">
-      <div class="phase-num">1</div>
-      <div class="phase-dur">Weeks 1–5</div>
-      <h3>Assess & Baseline</h3>
-      <p>Map AI maturity, requirement quality, and delivery metrics across target streams before prescribing solutions.</p>
-      <div class="phase-tags">
-        <span class="ptag">AI maturity by stream</span>
-        <span class="ptag">Requirement quality audit</span>
-        <span class="ptag">Backlog & DoR review</span>
-        <span class="ptag">Test coverage map</span>
-        <span class="ptag">AI usage audit</span>
-        <span class="ptag">Pilot stream selection</span>
+  <!-- Visual roadmap grid -->
+  <div class="rm-track rv">
+    <div class="rm-phase">
+      <div class="rm-dot rm-p1">1</div>
+      <div class="rm-timing">Month 1–2</div>
+      <div class="rm-name">Assess &amp; Baseline</div>
+      <div class="rm-milestone rm-m1">Foundation</div>
+      <div class="rm-chips">
+        <span class="rm-chip">Maturity map</span>
+        <span class="rm-chip">Gap report</span>
+        <span class="rm-chip">Pilot selected</span>
+        <span class="rm-chip">Metrics baseline</span>
       </div>
     </div>
-    <div class="phase">
-      <div class="phase-num">2</div>
-      <div class="phase-dur">Weeks 5–13</div>
-      <h3>Fix the Foundations</h3>
-      <p>Implement structural changes that AI effectiveness depends on — BA, DoR, shift-left QA, test automation baseline.</p>
-      <div class="phase-tags">
-        <span class="ptag">AI-assisted req. quality gate</span>
-        <span class="ptag">DoR / DoD standards</span>
-        <span class="ptag">BA practice uplift</span>
-        <span class="ptag">Dependency validation</span>
-        <span class="ptag">Shift-left QA</span>
-        <span class="ptag">Test automation foundation</span>
+    <div class="rm-phase">
+      <div class="rm-dot rm-p2">2</div>
+      <div class="rm-timing">Month 2–3</div>
+      <div class="rm-name">Fix the Foundations</div>
+      <div class="rm-milestone rm-m2">First Results →</div>
+      <div class="rm-chips">
+        <span class="rm-chip">DoR gate live</span>
+        <span class="rm-chip">−40% loops</span>
+        <span class="rm-chip">QA shift-left</span>
+        <span class="rm-chip">BA uplift</span>
       </div>
     </div>
-    <div class="phase">
-      <div class="phase-num">3</div>
-      <div class="phase-dur">Weeks 10–20</div>
-      <h3>Pilot AI SDLC</h3>
-      <p>Launch role-based AI workflows on Tajeeri + Health. Embed EPAM AI supervisors. Track spillover, productivity, quality.</p>
-      <div class="phase-tags">
-        <span class="ptag">AI working model: BA/BE/FE/QA</span>
-        <span class="ptag">Prompt & context standards</span>
-        <span class="ptag">Reusable knowledge base</span>
-        <span class="ptag">EPAM AI supervisors</span>
-        <span class="ptag">Spillover target: &lt;10%</span>
-        <span class="ptag">Pilot case study built</span>
+    <div class="rm-phase">
+      <div class="rm-dot rm-p3">3</div>
+      <div class="rm-timing">Month 3–6</div>
+      <div class="rm-name">Pilot AI SDLC</div>
+      <div class="rm-milestone rm-m3">Full Impact →</div>
+      <div class="rm-chips">
+        <span class="rm-chip">+20–35% velocity</span>
+        <span class="rm-chip">&lt;10% rework</span>
+        <span class="rm-chip">65+ days saved</span>
+        <span class="rm-chip">AI ROI tracked</span>
       </div>
     </div>
-    <div class="phase">
-      <div class="phase-num">4</div>
-      <div class="phase-dur">Month 5+</div>
-      <h3>Scale & Operationalize</h3>
-      <p>Scale proven practices across all streams. Build reusable playbooks. Shift from isolated AI tools to portfolio-wide model.</p>
-      <div class="phase-tags">
-        <span class="ptag">Cross-stream rollout</span>
-        <span class="ptag">AI SDLC playbook library</span>
-        <span class="ptag">Portfolio metrics dashboard</span>
-        <span class="ptag">Continuous governance</span>
-        <span class="ptag">Staff-aug → transformation</span>
+    <div class="rm-phase">
+      <div class="rm-dot rm-p4">4</div>
+      <div class="rm-timing">Month 6–8+</div>
+      <div class="rm-name">Scale Across Portfolio</div>
+      <div class="rm-milestone rm-m4">Scaling →</div>
+      <div class="rm-chips">
+        <span class="rm-chip">All streams</span>
+        <span class="rm-chip">AI playbook</span>
+        <span class="rm-chip">Portfolio metrics</span>
+        <span class="rm-chip">Managed model</span>
       </div>
     </div>
   </div>
 
-  <div class="box blue rv" style="margin-top:20px">
-    <p><strong>Phases 2 and 3 overlap intentionally.</strong> Foundation improvements in priority streams begin while assessment of other streams continues. Quick wins visible within 10 weeks of start.</p>
-  </div>
-</section>
-
-
-<!-- ══════════════ CH07 — OUTCOMES ══════════════ -->
-<section class="chapter" id="ch6">
-  <div class="ch-top rv">
-    <span class="ch-label">Chapter 07</span>
-    <div class="ch-titles">
-      <h2>What FirstTech Gets:<br/><em>Quantified Outcomes</em></h2>
-      <p>Grounded in Tajeeri evidence. Numbers are directional — actual results depend on implementation consistency.</p>
+  <!-- Phase detail accordions -->
+  <div class="rv" style="margin-bottom:36px">
+    <div class="acc-item">
+      <button class="acc-btn" onclick="tog(this)">
+        <span>Phase 1 · Assess &amp; Baseline <span style="color:var(--muted);font-weight:400;font-size:0.8rem">— Month 1–2</span></span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <ul>
+          <li>AI maturity assessment per stream — current state, tooling gaps, adoption readiness</li>
+          <li>Requirements and backlog quality audit across priority streams</li>
+          <li>Test automation coverage map — what exists, what's missing per stream</li>
+          <li>AI usage audit — tools in use, prompt quality, governance gaps</li>
+          <li>Pilot stream selection: 2–3 streams with active delivery recommended</li>
+          <li>Baseline metrics established: spillover, velocity, defect density, rework rate</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-btn" onclick="tog(this)">
+        <span>Phase 2 · Fix the Foundations <span style="color:var(--muted);font-weight:400;font-size:0.8rem">— Month 2–3 · First results visible</span></span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <ul>
+          <li>AI-assisted requirements quality gate implemented in pilot streams</li>
+          <li>Definition of Ready / Definition of Done standards defined and enforced</li>
+          <li>BA practice uplift — structured story writing, AC templates, change management process</li>
+          <li>Shift-left QA introduced — testing starts at sprint planning, not after development</li>
+          <li>Test automation baseline established per pilot stream</li>
+          <li>Dependency validation moved to pre-sprint planning gate</li>
+        </ul>
+        <div class="box green" style="margin-top:10px;padding:10px 14px;font-size:0.82rem">
+          <strong>First results visible by Month 3:</strong> Fewer clarification loops · More predictable sprint commitments · Rework starting to decline measurably
+        </div>
+      </div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-btn" onclick="tog(this)">
+        <span>Phase 3 · Pilot AI SDLC <span style="color:var(--muted);font-weight:400;font-size:0.8rem">— Month 3–6 · Full impact visible</span></span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <ul>
+          <li>Role-based AI workflows live: BA (requirements), QA (automation), BE/FE (agents with full context)</li>
+          <li>Reusable knowledge base and prompt library per stream</li>
+          <li>EPAM AI supervisors embedded per pilot stream</li>
+          <li>Tracking live: AI-assisted vs manual delivery speed, quality, defect rate — compared and reported</li>
+          <li>Pilot case study built — evidence base for portfolio rollout</li>
+          <li>Target: rework below 10%, velocity +20–35% in pilot streams</li>
+        </ul>
+        <div class="box gold" style="margin-top:10px;padding:10px 14px;font-size:0.82rem">
+          <strong>Full impact visible by Month 6:</strong> +20–35% engineering velocity · 65+ man-days saved on QA per stream · Delivery predictability substantially improved
+        </div>
+      </div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-btn" onclick="tog(this)">
+        <span>Phase 4 · Scale Across Portfolio <span style="color:var(--muted);font-weight:400;font-size:0.8rem">— Month 6–8+ · Scaling</span></span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <ul>
+          <li>Proven practices rolled out across all active FirstTech streams</li>
+          <li>AI SDLC playbook library — reusable by any new stream or team onboarding</li>
+          <li>Portfolio-level metrics dashboard — delivery health, AI ROI, velocity trends all visible</li>
+          <li>Continuous governance: AI usage standards, output quality, security guardrails</li>
+          <li>Shift from manual staff augmentation → managed AI transformation services model</li>
+        </ul>
+        <div class="box blue" style="margin-top:10px;padding:10px 14px;font-size:0.82rem">
+          <strong>Scaling outcome:</strong> Delivery scales through process and AI — not headcount · New streams onboard faster · AI ROI measurable and defensible to leadership
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="g4 rv" style="margin-bottom:28px">
-    <div class="stat-card">
-      <div class="stat-num" style="color:var(--green)">~60%</div>
-      <div class="stat-lbl">Spillover reduction potential</div>
-      <div class="stat-sub">From ~20% to &lt;10%</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num" style="color:var(--gold)">40%</div>
-      <div class="stat-lbl">Fewer clarification loops</div>
-      <div class="stat-sub">AI-structured requirements</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num" style="color:var(--green)">65+</div>
-      <div class="stat-lbl">Man-days saved annually</div>
-      <div class="stat-sub">QA automation (Tajeeri, current)</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num" style="color:var(--gold)">20–40%</div>
-      <div class="stat-lbl">AI productivity gain</div>
-      <div class="stat-sub">QA automation (evidenced)</div>
-    </div>
-  </div>
-
+  <!-- Quantified outcomes -->
+  <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px" class="rv">What FirstTech Gets — Quantified</p>
   <div class="rv">
     <div class="out-row">
-      <div class="out-icon">📉</div>
-      <div class="out-text"><h4>Sprint Spillover: ~20% → &lt;10%</h4><p>DoR + AI readiness checks. Tajeeri: 63%→17% without AI. Sub-10% target with AI.</p></div>
-      <div class="out-val">High confidence</div>
-    </div>
-    <div class="out-row">
       <div class="out-icon">🎯</div>
-      <div class="out-text"><h4>Sprint Commitment Reliability: +25–40%</h4><p>Frozen design + validated dependencies + refined stories = predictable sprint outcomes.</p></div>
-      <div class="out-val">Measurable in 3 sprints</div>
+      <div class="out-text"><h4>Sprint Commitment Reliability: +25–40%</h4><p>Frozen design + validated dependencies + refined stories = predictable sprint outcomes. Visible within 3 sprints.</p></div>
+      <div class="out-val">Month 3</div>
     </div>
     <div class="out-row">
       <div class="out-icon">🔄</div>
-      <div class="out-text"><h4>Rework Cost: −30–45%</h4><p>AI consistency checks + shift-left QA reduce mid-sprint clarification loops.</p></div>
-      <div class="out-val">Visible in Phase 2</div>
+      <div class="out-text"><h4>Rework &amp; Clarification Cost: −30–45%</h4><p>AI consistency checks + shift-left QA + BA quality gate reduce mid-sprint loops and late defect discovery.</p></div>
+      <div class="out-val">Month 3–4</div>
     </div>
     <div class="out-row">
       <div class="out-icon">⚡</div>
-      <div class="out-text"><h4>Engineering Velocity: +20–35%</h4><p>Copilot / Claude with structured inputs outperform same tools without them by this margin.</p></div>
-      <div class="out-val">Phase 3 benchmark</div>
+      <div class="out-text"><h4>Engineering Velocity: +20–35%</h4><p>Copilot / Claude with structured inputs and full context outperform the same tools without them. Evidenced on Tajeeri BE.</p></div>
+      <div class="out-val">Month 4–6</div>
     </div>
     <div class="out-row">
       <div class="out-icon">🧪</div>
-      <div class="out-text"><h4>Test Automation: current → 54% coverage (Tajeeri by Nov)</h4><p>AI-assisted scripting accelerates ramp-up. 105 test cases active, 24 bugs found, regression cycle days → minutes.</p></div>
-      <div class="out-val">Phase 2–3 target</div>
+      <div class="out-text"><h4>QA Automation: 65+ man-days saved per stream/year</h4><p>Tajeeri model proven: 105 cases, 100% API pass, regression days → minutes. Replicable across all streams.</p></div>
+      <div class="out-val">Month 3–6</div>
     </div>
     <div class="out-row">
       <div class="out-icon">📈</div>
-      <div class="out-text"><h4>Scalable Delivery Without Proportional Headcount Growth</h4><p>Standardised AI SDLC framework: new streams onboard faster, capacity scales through process — not just people.</p></div>
-      <div class="out-val">Phase 4 outcome</div>
+      <div class="out-text"><h4>Scalable Delivery Without Proportional Headcount Growth</h4><p>AI SDLC framework means new streams onboard faster and capacity scales through process — not just people.</p></div>
+      <div class="out-val">Month 6–8</div>
     </div>
-  </div>
-
-  <div class="box gold rv" style="margin-top:20px">
-    <p><strong>Evidence anchor:</strong> Tajeeri 63%→17% improvement was achieved with operational discipline alone — no new AI tools. These outcomes represent what's possible when that discipline is combined with AI-enabled workflows. Automation is already proving the model: 65+ man-days saved annually from 1 automation engineer on 1 stream.</p>
   </div>
 </section>
 
 
-<!-- ══════════════ CH08 — PROPOSAL OPTIONS ══════════════ -->
-<section class="chapter alt" id="ch7">
+<!-- ══════════════ TWO PATHS FORWARD ══════════════ -->
+<section class="chapter" id="ch7">
   <div class="ch-top rv">
-    <span class="ch-label">Chapter 08</span>
+    <span class="ch-label">Options</span>
     <div class="ch-titles">
       <h2>Two Paths Forward.<br/><em>One Destination.</em></h2>
-      <p>Both lead to an AI-ready delivery organisation. EPAM recommends starting with Option B and designing Option A in parallel.</p>
-    </div>
-  </div>
-
-  <!-- What we need -->
-  <div style="margin-bottom:32px" class="rv">
-    <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px">What EPAM Needs to Start — Either Option</p>
-    <div class="req-grid">
-      <div class="req-item"><div class="req-icon">🏛️</div><div><h4>Executive Sponsor</h4><p>Named sponsor who owns the transformation agenda</p></div></div>
-      <div class="req-item"><div class="req-icon">🎯</div><div><h4>2–3 Pilot Streams</h4><p>Recommended: Tajeeri, Health SME, one Dashboards stream</p></div></div>
-      <div class="req-item"><div class="req-icon">📂</div><div><h4>Access to Delivery Artefacts</h4><p>Jira, Confluence, design files, sprint history</p></div></div>
-      <div class="req-item"><div class="req-icon">👥</div><div><h4>Nominated Counterparts</h4><p>BA, Engineering Lead, QA Lead per stream</p></div></div>
-      <div class="req-item"><div class="req-icon">📊</div><div><h4>Historical Metrics</h4><p>Velocity, spillover, defect data, test coverage</p></div></div>
-      <div class="req-item"><div class="req-icon">📏</div><div><h4>Agreement on Pilot KPIs</h4><p>Spillover, velocity, estimate accuracy targets</p></div></div>
+      <p>Both lead to an AI-ready delivery organisation. EPAM recommends starting Option B now and designing Option A in parallel — sequential, not mutually exclusive.</p>
     </div>
   </div>
 
   <div class="g2 rv">
+
+    <!-- Option A -->
     <div class="prop-card prop-a">
       <div class="prop-tag pta">Option A · Strategic</div>
       <div class="prop-h">Full Transformation Program</div>
-      <div class="prop-p">End-to-end AI SDLC transformation across the full FirstTech portfolio. EPAM provides a dedicated transformation team embedded across streams.</div>
-      <ul class="prop-list">
-        <li>Portfolio-wide assessment and common AI maturity baseline</li>
-        <li>Single AI SDLC framework applied across all streams</li>
-        <li>Centralised governance, metrics, and delivery standards</li>
-        <li>Cross-stream knowledge base and reusable context layer</li>
-        <li>Full rollout playbook and change management program</li>
-        <li>EPAM transformation leadership embedded on account</li>
-        <li>Spillover target: &lt;10% portfolio-wide</li>
-      </ul>
-      <div class="box red" style="margin-bottom:14px;padding:10px 14px;font-size:0.78rem">
-        <strong>Best for:</strong> When executive appetite exists for coordinated, high-impact change. Faster portfolio-wide results. Greater strategic shift.
+      <div class="prop-p">End-to-end AI SDLC transformation across the full FirstTech portfolio. Coordinated, high-impact change with EPAM transformation leadership embedded on account.</div>
+
+      <div class="acc-item" style="margin-bottom:16px">
+        <button class="acc-btn" onclick="tog(this)" style="font-size:0.82rem;padding:10px 14px">
+          What's included <span class="acc-arrow">▼</span>
+        </button>
+        <div class="acc-body">
+          <ul>
+            <li>Portfolio-wide assessment and common AI maturity baseline across all streams</li>
+            <li>Single AI SDLC framework applied consistently across teams</li>
+            <li>Centralised governance, delivery metrics, and quality standards</li>
+            <li>Cross-stream knowledge base and reusable context layer</li>
+            <li>Full rollout playbook + change management + enablement program</li>
+            <li>EPAM transformation team embedded across the account</li>
+            <li>Target: delivery predictability and AI productivity gains portfolio-wide</li>
+          </ul>
+        </div>
       </div>
-      <div class="prop-timing">⏱ 4–6 month ramp · 12–18 month full rollout</div>
+
+      <div class="box red" style="margin-bottom:16px;padding:10px 14px;font-size:0.82rem">
+        <strong>Best for:</strong> When executive appetite exists for coordinated, high-impact change across the full portfolio. Faster organisation-wide results.
+      </div>
+      <div class="prop-timing">⏱ 6–8 month transformation program</div>
     </div>
 
+    <!-- Option B -->
     <div class="prop-card prop-b">
       <div class="prop-tag ptb">Option B · Pragmatic</div>
-      <div class="prop-h">Stealth POCs on Selected Streams</div>
-      <div class="prop-p">Focused improvement pilots on 2–3 streams. Prove value quickly, build confidence, create the evidence base for full transformation. Minimal disruption. Fast results.</div>
-      <ul class="prop-list">
-        <li>Stream-level assessment: Tajeeri + Health (3 weeks)</li>
-        <li>Requirements and backlog quality fixes in pilot streams</li>
-        <li>Shift-left QA and test automation baseline in pilots</li>
-        <li>AI-assisted engineering workflow introduction</li>
-        <li>EPAM AI supervisor embedded per pilot stream</li>
-        <li>Measurable KPIs: spillover, velocity, defect density</li>
-        <li>Spillover target in pilots: 10–15% within 3 months</li>
-      </ul>
-      <div class="box green" style="margin-bottom:14px;padding:10px 14px;font-size:0.78rem">
-        <strong>Best for:</strong> When leadership wants proof before portfolio commitment. Demonstrable ROI in 6–10 weeks. Builds trust organically.
+      <div class="prop-h">Focused Pilots, Fast Results</div>
+      <div class="prop-p">Improvement pilots on 2–3 priority streams. Prove value quickly, build confidence, and create the evidence base for full transformation. Minimal disruption.</div>
+
+      <div class="acc-item" style="margin-bottom:16px">
+        <button class="acc-btn" onclick="tog(this)" style="font-size:0.82rem;padding:10px 14px">
+          What's included <span class="acc-arrow">▼</span>
+        </button>
+        <div class="acc-body">
+          <ul>
+            <li>Stream-level assessment: 2–3 priority streams (2–3 weeks to complete)</li>
+            <li>Requirements and backlog quality fixes in pilot streams</li>
+            <li>Shift-left QA and test automation baseline in each pilot</li>
+            <li>AI-assisted engineering workflow: agents, context layer, prompt library</li>
+            <li>EPAM AI supervisor embedded per pilot stream</li>
+            <li>Measurable KPIs tracked: velocity, rework rate, delivery predictability</li>
+            <li>Pilot evidence becomes the business case for Option A</li>
+          </ul>
+        </div>
       </div>
-      <div class="prop-timing">⏱ 2–3 week setup · 6–10 weeks to visible results</div>
+
+      <div class="box green" style="margin-bottom:16px;padding:10px 14px;font-size:0.82rem">
+        <strong>Best for:</strong> When leadership wants proof before portfolio commitment. Demonstrable ROI in 2–10 weeks. Builds confidence organically. PoC results fund and de-risk Option A.
+      </div>
+      <div class="prop-timing">⏱ 2–10 week setup · First results visible within 3 months</div>
     </div>
   </div>
 
   <div class="box blue rv" style="margin-top:20px">
-    <p><strong>EPAM recommendation:</strong> Start Option B now. Design Option A in parallel. The POC evidence from Option B becomes the business case that funds and de-risks Option A. Sequential — not mutually exclusive.</p>
+    <p><strong>EPAM recommendation:</strong> Start Option B now. Design Option A in parallel. The pilot evidence from Option B becomes the business case that funds and de-risks Option A.</p>
   </div>
 </section>
 
@@ -951,7 +816,7 @@ footer p{font-size:0.7rem;color:#64748B}
   <div class="sep" style="margin:0 auto 14px"></div>
   <p style="font-size:0.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--red-l);margin-bottom:18px">Next Step</p>
   <h2 class="cta-h">FirstTech Is Making the Right Bet on AI.<br/>Let's Make Sure It Pays Off.</h2>
-  <p class="cta-p">The tools are in place. The direction is correct. What's needed now is the foundation that makes AI produce full value — across every stream, every sprint.</p>
+  <p class="cta-p">The tools are in place. The direction is correct. What's needed now is the delivery foundation that makes AI produce full value — across every stream, every sprint.</p>
   <div class="hero-btns" style="justify-content:center;margin-bottom:28px">
     <a href="#" class="btn-red">Request a Discovery Workshop</a>
     <a href="#ch7" class="btn-outline">Review Proposal Options</a>
@@ -961,7 +826,7 @@ footer p{font-size:0.7rem;color:#64748B}
 
 <footer>
   <div class="fl">EPAM</div>
-  <p>AI SDLC Transformation Proposal · FirstTech Group CEO · Confidential</p>
+  <p>SDLC Improvement Plan · FirstTech Group CEO · Confidential</p>
   <p>April 2026</p>
 </footer>
 
@@ -976,26 +841,11 @@ function tog(btn){
   if(!isOpen){body.classList.add('open');btn.classList.add('open')}
 }
 
-// Reveal
+// Reveal on scroll
 const rv=new IntersectionObserver(e=>{
   e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show')})
 },{threshold:0.05});
 document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
-
-// Bar animation
-const barObs=new IntersectionObserver(e=>{
-  e.forEach(x=>{
-    if(x.isIntersecting){
-      x.target.querySelectorAll('.bar-fill:not(.bf-tbd)').forEach(b=>{
-        const w=b.style.width;b.style.width='0';
-        setTimeout(()=>{b.style.width=w},80);
-      });
-      barObs.unobserve(x.target);
-    }
-  })
-},{threshold:0.1});
-const cw=document.querySelector('.chart-wrap');
-if(cw)barObs.observe(cw);
 
 // Smooth nav
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
