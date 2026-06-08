@@ -36,126 +36,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-s
 /* ── PAGE ── */
 .page{max-width:1100px;margin:0 auto;padding:22px 40px 60px;}
 .chapter{margin-bottom:44px;padding-bottom:8px;}
-@media print{
-  @page{size:A4 landscape;margin:0;}
-  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
-
-  /* Скрыть nav, footer, детали, exits, wins, AI risk */
-  .nav,.exits-toggle,.exits-body,
-  .stream-detail,.risk-detail,.win-detail,
-  .toggle-icon,.mit-tabs,
-  #risk-ai-positioning,
-  footer{display:none!important;}
-
-  body{background:white;margin:0;padding:0;font-size:11px;}
-
-  /* Header — компактный */
-  .hdr{padding:5px 16px 4px!important;}
-  .hdr h1{font-size:13px!important;}
-  .hdr .sub{font-size:9px;}
-  .hdr-meta{gap:3px!important;margin-top:4px!important;}
-  .meta-tag{font-size:8px!important;padding:1px 5px!important;}
-  .badge{font-size:9px!important;padding:2px 7px!important;}
-  .overall-badge .lbl{font-size:8px!important;}
-
-  /* Slide 1 — team grid 4 колонки, имена мельче */
-  #map .team-grid{grid-template-columns:repeat(4,1fr)!important;gap:3px!important;}
-  #map .tc-hdr{padding:3px 6px!important;}
-  #map .tc-name{font-size:9px!important;}
-  #map .tc-count{font-size:9px!important;}
-  #map .tc-body{padding:3px 6px!important;gap:1px 0!important;}
-  #map .person{font-size:8.5px!important;}
-  #map .rd{width:6px!important;height:6px!important;}
-  #map .team-legend{gap:6px!important;margin-bottom:4px!important;}
-  #map .leg-item{font-size:8px!important;}
-  #map .kpi .val{font-size:15px!important;}
-  #map .kpi{padding:5px 8px!important;min-width:70px!important;}
-  #map .kpi .lbl,#map .kpi .delta{font-size:8px!important;}
-  #map .kpi-row{gap:4px!important;margin-bottom:4px!important;}
-  #map .note{font-size:9px!important;padding:3px 7px!important;margin-top:2px!important;}
-  #map .ch-title{margin-bottom:5px!important;}
-  /* Слайд 1 — header занимает ~52px, уменьшаем высоту чтобы не создавал пустую страницу */
-  #map{justify-content:center!important;padding-top:4px!important;height:calc(100vh - 52px)!important;}
-
-  /* Основной контейнер */
-  .page{max-width:100%;padding:0;margin:0;}
-
-  /* Каждая глава = одна страница, контент по центру */
-  .chapter{
-    page-break-before:always;
-    page-break-inside:avoid;
-    page-break-after:always;
-    break-before:page;
-    break-inside:avoid;
-    break-after:page;
-    overflow:hidden;
-    margin:0;
-    padding:10px 18px;
-    height:100vh;
-    box-sizing:border-box;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-  }
-  .chapter:first-of-type{page-break-before:avoid;break-before:avoid;}
-
-  .ch-title{font-size:12px;padding-bottom:5px;margin-bottom:7px;}
-  .ch-num{width:18px;height:18px;font-size:9px;}
-
-  /* KPI */
-  .kpi-row{gap:5px;margin-bottom:5px;}
-  .kpi{padding:7px 10px;min-width:90px;}
-  .kpi .val{font-size:18px;}
-  .kpi .lbl,.kpi .delta{font-size:9px;}
-
-  /* Team grid (общие) */
-  .team-card{break-inside:avoid;}
-  .leg-item{font-size:9px;}
-
-  /* Notes */
-  .note{font-size:10px;padding:4px 8px;margin-top:3px;}
-
-  /* Wins */
-  .wins-grid{gap:5px;}
-  .win-card{break-inside:avoid;}
-  .win-top{padding:7px 10px 6px;}
-  .win-title{font-size:11px;}
-  .win-sub{font-size:10px;}
-
-  /* Streams */
-  .streams{gap:4px;}
-  .stream-row{break-inside:avoid;}
-  .stream-top{padding:7px 11px;grid-template-columns:2fr 80px 3fr;}
-  .stream-name{font-size:11px;}
-  .stream-sub{font-size:9px;}
-  .stream-hl{font-size:10.5px;}
-
-  /* Risks */
-  .risks-list{gap:4px;}
-  .risk-row{break-inside:avoid;}
-  .risk-top{padding:7px 11px;}
-  .risk-name{font-size:11px;}
-  .risk-area{font-size:9px;}
-  .risk-impact{font-size:10.5px;}
-
-  /* Plans */
-  .mit-panel{display:flex!important;gap:4px;}
-  #pending,#propose{display:none!important;}
-  .mit-item{padding:7px 10px;break-inside:avoid;}
-  .mit-title{font-size:11px;}
-  .mit-desc{font-size:10px;}
-
-  /* TL;DR */
-  .tldr-box{padding:12px 16px;break-inside:avoid;}
-  .tldr-box h3{font-size:10px;margin-bottom:7px;}
-  .tldr-grid{gap:10px;}
-  .tg-section h4{font-size:9px;margin-bottom:4px;}
-  .tg-section li{font-size:10px;margin-bottom:1px;}
-  .discuss-box{padding:8px 12px;margin-top:8px;}
-  .discuss-box h4{font-size:9px;margin-bottom:5px;}
-  .dt{font-size:10px;}
-  .dn{width:15px;height:15px;font-size:9px;}
-}
+@media print{.chapter{page-break-inside:avoid;page-break-after:auto;}}
 .ch-title{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700;color:var(--brand);padding-bottom:7px;border-bottom:2px solid var(--brand);margin-bottom:12px;}
 .ch-num{background:var(--brand);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
 
@@ -344,7 +225,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-s
 <!-- TEAM MAP                                       -->
 <!-- ══════════════════════════════════════════════ -->
 <section class="chapter" id="map">
-  <div class="ch-title"><span class="ch-num">1</span>Team Status &amp; Map — June 2026 · W23</div>
+  <div class="ch-title"><span class="ch-num">0</span>Team Status &amp; Map — June 2026 · W23</div>
   <div class="kpi-row">
     <div class="kpi"><div class="val">55</div><div class="delta d-flat">DC snapshot · Jun 2026</div><div class="lbl">EPAM FTE (DC)</div></div>
     <div class="kpi"><div class="val">11</div><div class="delta d-flat">active streams</div><div class="lbl">Delivery Streams</div></div>
@@ -442,13 +323,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-s
     <div class="team-card">
       <div class="tc-hdr" style="background:#7c3aed;">
         <span class="tc-name">Shary</span>
-        <span class="tc-count">5</span>
+        <span class="tc-count">4</span>
       </div>
       <div class="tc-body">
         <div class="person"><span class="rd rd-be"></span>Davit Kuzanashvili</div>
         <div class="person"><span class="rd rd-be"></span>Javohir Sadirov <span style="font-size:9px;color:var(--blue);margin-left:2px;">TL</span></div>
         <div class="person"><span class="rd rd-fe"></span>Davit Mkheyan</div>
-        <div class="person"><span class="rd rd-fe"></span>Mert Efe</div>
         <div class="person"><span class="rd rd-fe"></span>Ana Ghvinjilia</div>
       </div>
     </div>
@@ -471,12 +351,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-s
     <div class="team-card">
       <div class="tc-hdr" style="background:#4338ca;">
         <span class="tc-name">SlashData</span>
-        <span class="tc-count">3</span>
+        <span class="tc-count">4</span>
       </div>
       <div class="tc-body">
         <div class="person" style="width:100%"><span class="rd rd-be"></span>Ashot Ohanyan</div>
         <div class="person" style="width:100%"><span class="rd rd-be"></span>Artsiom Ramanenia</div>
         <div class="person" style="width:100%"><span class="rd rd-fe"></span>Assylken Taukenov</div>
+        <div class="person" style="width:100%"><span class="rd rd-fe"></span>Mert Efe</div>
       </div>
     </div>
 
@@ -965,24 +846,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-s
       </div></div>
     </div>
 
-    <div class="risk-row r-high" id="risk-ai-positioning">
-      <div class="risk-top" onclick="toggleRisk(this)">
-        <div><div class="risk-name">AI Positioning — EPAM as Partner, Not Cost Line</div><div class="risk-area">Cross-Account · Strategic</div></div>
-        <span class="chip c-red">HIGH</span>
-        <div class="risk-impact">Client citing AI adoption to justify headcount optimization. EPAM must be positioned as AI governance partner — not replaced by efficiency gains.</div>
-        <span class="toggle-icon">▼</span>
-      </div>
-      <div class="risk-detail"><div class="risk-inner">
-        <div class="risk-block"><h5>Signal</h5><p style="font-size:12px;">Zuber Palekar's email (Jun 3–4): "increased AI Adoption and reduced integration needs" = explicit use of AI to justify releases. Pattern also flagged in Shary risk logs. Teams without enterprise Claude licenses most exposed. Account AI maturity at 1.5/3 — the gap is the opportunity.</p></div>
-        <div class="risk-block"><h5>EPAM Counter-Narrative</h5><ul>
-          <li>Tajeeri: 50% fewer devs, same velocity — proof in production</li>
-          <li>eBroker: AI feature live, Claude-certified engineer</li>
-          <li>DAU 70–80% across EPAM engineers</li>
-          <li>Proposal: EPAM as Claude Code governance partner account-wide</li>
-        </ul><span class="ftag">EPAM leads adoption — not replaced by it</span></div>
-      </div></div>
-    </div>
-
     <div class="risk-row r-high">
       <div class="risk-top" onclick="toggleRisk(this)">
         <div><div class="risk-name">Capacity vs. Scope — Multiple Streams</div><div class="risk-area">Tajeeri · Health · Shory</div></div>
@@ -1101,23 +964,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-s
     <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Tajeeri Sprint 16 Resolution + Sprint 17 Planning</div><div class="mit-desc">~20 bugs in resolution. Irina managing QA oversight. Sprint 17 planning running in parallel.</div></div><span class="pill pill-pending">Active</span></div></div>
     <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Health Production Sprint Prep</div><div class="mit-desc">Production sprint ~2 weeks out. Roadmap prioritization underway. Gov't API dependency tracked.</div></div><span class="pill pill-pending">In Progress</span></div></div>
     <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Watheeq Dashboard — Release This Week</div><div class="mit-desc">FE 100% done. Dziyana chasing Karthikeyan for 2 BE endpoints. Rhoon queued after.</div></div><span class="pill pill-pending">Pending BE</span></div></div>
-    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Travel Insurance Capacity Alignment</div><div class="mit-desc">With Shory dropping to ~8 FTE by Jun 19, initiating alignment on scope, start date, team composition this week.</div></div><span class="pill pill-pending">Initiating</span></div></div>
-    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">AI Champions — Measurable &amp; Active</div><div class="mit-desc">Suat (870), Gokhan (250+ workflows), Javohir (daily), Assylken (70–80%). DAU 70–80% account-wide.</div></div><span class="pill pill-ok">Active</span></div></div>
+    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Design System Proposal — Finalize &amp; Push via Konstantin</div><div class="mit-desc">Full EPAM proposal (Andy) ready. Est. 2–3× FE delivery speed account-wide. Need Konstantin's support to reach Vinod directly — multiple direct meeting requests have gone unanswered.</div></div><span class="pill pill-blocked">Needs CSO Push</span></div></div>
   </div>
 
   <div id="pending" class="mit-panel">
     <div class="mit-item"><div class="mit-top"><div><div class="mit-title">AI QA Tools — Tajeeri (Codemie / Elitea)</div><div class="mit-desc">Proposal with Arun &amp; Ramadan. Adoption from Sprint 17 would structurally resolve QA coverage before Abu Dhabi Police MVP.</div></div><span class="pill pill-blocked">Awaiting Arun/Ramadan</span></div></div>
-    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Design System — Vinod Review</div><div class="mit-desc">Full EPAM proposal ready. Est. 2–3× FE speed. Vinod meeting requests unanswered. CSO intro would unblock.</div></div><span class="pill pill-blocked">Awaiting Vinod</span></div></div>
-    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Claude Enterprise Licensing — SlashData</div><div class="mit-desc">Karthik aware. 1 IT decision unblocks all SlashData teams. Personal email workaround active meanwhile.</div></div><span class="pill pill-blocked">Awaiting Karthik/IT</span></div></div>
+    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Claude Enterprise Licensing — SlashData</div><div class="mit-desc">Zuber &amp; Karthik aware. 1 IT decision unblocks all SlashData teams. Personal email workaround active meanwhile.</div></div><span class="pill pill-blocked">Awaiting Zuber/Karthik/IT</span></div></div>
     <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Javohir TL Role Formalization</div><div class="mit-desc">Acting informal TL. Formalization reduces retention risk and clarifies team accountability.</div></div><span class="pill pill-pending">Awaiting FirstTech HR</span></div></div>
-    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">QA Automation PoC — Shory Motor</div><div class="mit-desc">PoC and deck ready for Karthik. Not yet reviewed.</div></div><span class="pill pill-pending">Awaiting Karthik</span></div></div>
+    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">QA Automation PoC — Shory Motor</div><div class="mit-desc">PoC and deck sent to Imran, Maruf &amp; Basir. Proposal sent ~30 days ago — no response received to date.</div></div><span class="pill pill-blocked">No Response · 30 days</span></div></div>
     <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Yahala — Product Direction</div><div class="mit-desc">Molo closed. Yahala future (shutdown vs. maintenance) pending Konstantin direction.</div></div><span class="pill pill-pending">Awaiting Konstantin</span></div></div>
   </div>
 
   <div id="propose" class="mit-panel">
-    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">EPAM as Claude Code Governance Partner — Account-Wide</div><div class="mit-desc">Client already using AI metrics to drive decisions. EPAM's natural position: govern the transition with a structured framework, ROI measurement, and adoption programme across all streams. Tajeeri playbook + eBroker are the proof points.</div></div><span class="pill pill-ok">Strategic</span></div></div>
+    <div style="font-size:11.5px;color:var(--red);font-weight:700;margin-bottom:8px;padding:6px 10px;background:var(--rbg);border-radius:6px;">⚠ 4 open proposals — sent weeks ago — no client decision received</div>
+    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">QA AI Automation + SDLC Improvement Plan</div><div class="mit-desc">Full proposal sent. <b>30 days ago — no response.</b> Covers AI-assisted QA pipeline, test automation, SDLC efficiency across Shory Motor stream.</div></div><span class="pill pill-blocked" style="background:#fef2f2;color:#b91c1c;border-color:#fca5a5;">30d · No Response</span></div></div>
+    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Overall AI SDLC Proposal — Backlog &amp; BA AI Improvement</div><div class="mit-desc">Comprehensive AI SDLC improvement plan including Backlog management and BA augmentation. <b>Sent 21 days ago — no response.</b></div></div><span class="pill pill-blocked" style="background:#fef2f2;color:#b91c1c;border-color:#fca5a5;">21d · No Response</span></div></div>
+    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Design System / UI Libs Transformation Plan</div><div class="mit-desc">Andy's full remediation proposal. Est. 2–3× FE delivery speed account-wide. <b>Pending Vinod response — multiple meeting requests unanswered.</b> Requires Konstantin's introduction to unblock.</div></div><span class="pill pill-blocked">Pending Vinod</span></div></div>
+    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Tajeeri QA Improvement Plan — Codemie &amp; Elitea</div><div class="mit-desc">Proposal sent to Arun &amp; Ramadan. <b>21 days ago — no decision.</b> AI QA adoption from Sprint 17 would structurally resolve QA coverage before Abu Dhabi Police MVP go-live.</div></div><span class="pill pill-blocked" style="background:#fef2f2;color:#b91c1c;border-color:#fca5a5;">21d · No Decision</span></div></div>
     <div class="mit-item"><div class="mit-top"><div><div class="mit-title">BA Coverage — Tajeeri + Health</div><div class="mit-desc">1 dedicated BA per stream. ~18% defects requirements-related. Est. 20–30% spillover reduction. Low cost, high impact.</div></div><span class="pill pill-pending">Proposal Ready</span></div></div>
-    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">Seniority Index Improvement (3.09 AMBER)</div><div class="mit-desc">Targeted senior profile additions during next capacity planning cycle to improve delivery quality signal.</div></div><span class="pill pill-pending">Medium Term</span></div></div>
+    <div class="mit-item"><div class="mit-top"><div><div class="mit-title">EPAM as Claude Code Governance Partner — Account-Wide</div><div class="mit-desc">Client already using AI metrics to drive decisions. EPAM's natural position: govern the transition with a structured framework, ROI measurement, and adoption programme across all streams. Tajeeri playbook + eBroker are the proof points.</div></div><span class="pill pill-ok">Strategic</span></div></div>
   </div>
 </section>
 
