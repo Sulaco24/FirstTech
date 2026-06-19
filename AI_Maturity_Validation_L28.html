@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Maturity Validation — FTAE-ODC · L2.8+ · June 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#EEF2F7;color:#1a2332;line-height:1.6;font-size:15px}
+a{color:#1F4E79;text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#1F4E79;padding:0 2rem;display:flex;gap:1.5rem;overflow-x:auto;white-space:nowrap}
+nav a{color:rgba(255,255,255,0.75);font-size:12px;padding:12px 0;display:inline-block;border-bottom:2px solid transparent;transition:all .2s}
+nav a:hover{color:#fff;text-decoration:none;border-bottom-color:rgba(255,255,255,0.5)}
+
+/* LAYOUT */
+.container{max-width:1000px;margin:0 auto;padding:0 1.5rem}
+section{padding:2.5rem 0}
+section+section{border-top:1px solid #D5DEE8}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#1F4E79 0%,#2E75B6 100%);color:#fff;padding:3rem 0 2.5rem}
+.hero h1{font-size:26px;font-weight:600;margin-bottom:4px}
+.hero p{font-size:14px;opacity:0.8;margin-bottom:2rem}
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.metric{background:rgba(255,255,255,0.12);border-radius:10px;padding:1rem;text-align:center;backdrop-filter:blur(4px)}
+.metric-num{font-size:28px;font-weight:700;line-height:1;margin-bottom:4px}
+.metric-num span{font-size:18px}
+.metric-label{font-size:11px;opacity:0.8;text-transform:uppercase;letter-spacing:.5px}
+.badge-green{background:#1E6F42;color:#9EFFC8;font-size:11px;padding:2px 8px;border-radius:12px;display:inline-block}
+
+/* SECTION HEADERS */
+.sec-header{display:flex;align-items:center;gap:10px;margin-bottom:1.25rem}
+.sec-num{background:#1F4E79;color:#fff;font-size:12px;font-weight:600;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-title{font-size:18px;font-weight:600;color:#1F4E79}
+
+/* CARDS */
+.card{background:#fff;border-radius:12px;padding:1.25rem 1.5rem;border:1px solid #DDE4EC}
+.card-grid{display:grid;gap:12px}
+.card-grid-2{grid-template-columns:1fr 1fr}
+.card-grid-3{grid-template-columns:1fr 1fr 1fr}
+.card-grid-4{grid-template-columns:1fr 1fr 1fr 1fr}
+
+/* STREAM TILES */
+.stream-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.stream-tile{background:#fff;border-radius:8px;padding:.75rem 1rem;border-left:4px solid #217346;border:1px solid #DDE4EC;border-left:4px solid #217346}
+.stream-name{font-size:12px;font-weight:600;color:#1a2332;margin-bottom:2px}
+.stream-meta{font-size:11px;color:#6B7280}
+.green-dot::before{content:"●";color:#217346;margin-right:4px;font-size:10px}
+
+/* RAG TILES */
+.rag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.rag-tile{background:#fff;border-radius:8px;padding:.75rem 1rem;border:1px solid #DDE4EC;text-align:center}
+.rag-label{font-size:11px;color:#6B7280;margin-bottom:4px}
+.rag-score{font-size:16px;font-weight:700;color:#217346}
+.rag-tag{font-size:10px;background:#E8F5EF;color:#217346;border-radius:8px;padding:1px 6px;display:inline-block}
+
+/* CHAMPIONS */
+.champion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.champion-card{background:#fff;border-radius:10px;padding:1rem;border:1px solid #DDE4EC}
+.champion-name{font-size:13px;font-weight:600;color:#1F4E79;margin-bottom:2px}
+.champion-role{font-size:11px;color:#6B7280}
+.champion-stream{font-size:11px;background:#EEF2F7;color:#374151;border-radius:8px;padding:1px 8px;display:inline-block;margin:4px 0}
+.champion-bio{font-size:12px;color:#374151;margin-top:6px;line-height:1.5}
+
+/* KB LINKS */
+.kb-list{display:flex;flex-direction:column;gap:8px}
+.kb-item{background:#fff;border-radius:8px;padding:.75rem 1rem;border:1px solid #DDE4EC;display:flex;gap:10px;align-items:flex-start}
+.kb-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.kb-title{font-size:13px;font-weight:600;color:#1F4E79;margin-bottom:2px}
+.kb-desc{font-size:12px;color:#6B7280}
+
+/* MCP DIAGRAM */
+.mcp-wrap{background:#fff;border-radius:12px;padding:1.5rem;border:1px solid #DDE4EC;text-align:center}
+
+/* WORKFLOW STEPS */
+.workflow-list{display:flex;flex-direction:column;gap:8px}
+.workflow-item{background:#fff;border-radius:8px;padding:.75rem 1rem;border:1px solid #DDE4EC;border-left:3px solid #2E75B6;display:flex;align-items:flex-start;gap:10px}
+.workflow-num{background:#2E75B6;color:#fff;font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.workflow-title{font-size:13px;font-weight:600;color:#1a2332;margin-bottom:2px}
+.workflow-desc{font-size:12px;color:#6B7280}
+
+/* DETAILS/SUMMARY */
+details{margin-top:12px}
+summary{font-size:12px;color:#2E75B6;cursor:pointer;list-style:none;padding:6px 10px;background:#EEF2F7;border-radius:6px;display:inline-flex;align-items:center;gap:4px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▶";font-size:9px;transition:transform .2s}
+details[open] summary::before{transform:rotate(90deg)}
+.details-body{margin-top:10px;padding:1rem;background:#F8FAFC;border-radius:8px;border:1px solid #DDE4EC;font-size:13px;line-height:1.7}
+.details-body ul{padding-left:1.2rem}
+.details-body li{margin-bottom:4px}
+.details-body strong{color:#1F4E79}
+
+/* NOTICE BOX */
+.notice{background:#FFF8E1;border-left:3px solid #F59E0B;border-radius:0 8px 8px 0;padding:.75rem 1rem;font-size:12px;color:#78350F;margin:10px 0}
+.notice-info{background:#EEF2F7;border-left:3px solid #2E75B6;border-radius:0 8px 8px 0;padding:.75rem 1rem;font-size:12px;color:#1F4E79;margin:10px 0}
+
+/* CHART CONTAINER */
+.chart-wrap{position:relative;width:100%;margin:1rem 0}
+
+/* LEGEND */
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#6B7280;margin-bottom:8px}
+.legend-item{display:flex;align-items:center;gap:5px}
+.legend-swatch{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+/* TAGS */
+.tag{font-size:11px;border-radius:8px;padding:2px 8px;display:inline-block;margin:2px}
+.tag-blue{background:#EEF5FB;color:#1F4E79}
+.tag-green{background:#E8F5EF;color:#1E6F42}
+.tag-amber{background:#FFF8E1;color:#78350F}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+
+/* FOOTER */
+footer{background:#1F4E79;color:rgba(255,255,255,.7);text-align:center;padding:1.5rem;font-size:12px}
+
+@media(max-width:700px){
+  .metrics{grid-template-columns:repeat(3,1fr)}
+  .stream-grid,.champion-grid,.rag-grid{grid-template-columns:1fr 1fr}
+  .two-col,.three-col,.card-grid-2,.card-grid-3{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#overview">Overview</a>
+  <a href="#capabilities">AI Capabilities</a>
+  <a href="#dau">DAU</a>
+  <a href="#performance">Performance</a>
+  <a href="#champions">Champions</a>
+  <a href="#reusability">Reusability</a>
+  <a href="#dm-workflow">DM Workflow</a>
+  <a href="#governance">Client Governance</a>
+  <a href="#survey">Survey Evidence</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <h1>AI Maturity Validation — FTAE-ODC</h1>
+    <p>FirstTech / SlashData &nbsp;·&nbsp; L2.8+ Submission &nbsp;·&nbsp; June 2026 &nbsp;·&nbsp; Delivery Manager: Max Vlasov</p>
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-num">55</div>
+        <div class="metric-label">FTE · 11 streams</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">80<span>%+</span></div>
+        <div class="metric-label">Daily active AI usage</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">60<span>%</span></div>
+        <div class="metric-label">AI-assisted effort</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">22<span>%</span></div>
+        <div class="metric-label">Novel AI (weighted)</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">9</div>
+        <div class="metric-label">Named AI Champions</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 0: OVERVIEW -->
+<div style="background:#fff">
+<section id="overview">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">0</div>
+      <div class="sec-title">Project Context</div>
+    </div>
+    <p style="font-size:13px;color:#374151;margin-bottom:1rem">Staff Augmentation · T&M · No delivery KPIs · EPAM engineers in client-managed product teams. AI tooling purchased and managed by client (FirstTech via Innolink Anthropic account). All evidence based on DM 1-1s, surveys, and KB signals — not automated telemetry.</p>
+    <div class="stream-grid">
+      <div class="stream-tile"><div class="stream-name"><span class="green-dot"></span>Health SME (KSA/UAE)</div><div class="stream-meta">20 FTE · GREEN 4.2 · KSA Beta ~25d</div></div>
+      <div class="stream-tile"><div class="stream-name"><span class="green-dot"></span>Shory Platform</div><div class="stream-meta">10 FTE · GREEN 4.0 · Marine delivered</div></div>
+      <div class="stream-tile"><div class="stream-name"><span class="green-dot"></span>Car-Rental / Tajeeri</div><div class="stream-meta">7 FTE · GREEN 4.0 · UAT passed</div></div>
+      <div class="stream-tile"><div class="stream-name"><span class="green-dot"></span>Shary / SuperApp</div><div class="stream-meta">4+4 FTE · GREEN 4.0 · Active dev</div></div>
+      <div class="stream-tile"><div class="stream-name"><span class="green-dot"></span>SlashData / Esterdad</div><div class="stream-meta">4 FTE · GREEN 4.1 · Stable</div></div>
+      <div class="stream-tile"><div class="stream-name"><span class="green-dot"></span>Dashboards (Custom FE)</div><div class="stream-meta">2 FTE · GREEN 4.2 · All PROD</div></div>
+      <div class="stream-tile"><div class="stream-name"><span class="green-dot"></span>Jira Migration</div><div class="stream-meta">1 FTE · GREEN 4.5 · Complete Jun 2026</div></div>
+      <div class="stream-tile"><div class="stream-name"><span class="green-dot"></span>AI Stream + Core Platforms</div><div class="stream-meta">1+1+1 FTE · GREEN 4.0–4.5</div></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- SECTION 1: AI CAPABILITIES -->
+<section id="capabilities">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">1</div>
+      <div class="sec-title">AI Capabilities — SDLC Coverage</div>
+    </div>
+    <div class="two-col" style="align-items:start;gap:1.5rem">
+      <div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-swatch" style="background:#2E75B6"></div>Commodity AI %</div>
+          <div class="legend-item"><div class="legend-swatch" style="background:#1F4E79"></div>Novel AI %</div>
+        </div>
+        <div class="chart-wrap" style="height:240px">
+          <canvas id="sdlcChart" role="img" aria-label="SDLC AI coverage by phase. Development 55% commodity 20% novel. Support/Doc 30% commodity 35% novel.">AI coverage chart by SDLC phase.</canvas>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:10px">
+          <div style="font-size:13px;font-weight:600;color:#1F4E79;margin-bottom:8px">Key numbers</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="text-align:center;background:#EEF2F7;border-radius:8px;padding:.75rem"><div style="font-size:22px;font-weight:700;color:#1F4E79">~60%</div><div style="font-size:11px;color:#6B7280">Total AI-assisted effort</div></div>
+            <div style="text-align:center;background:#EEF2F7;border-radius:8px;padding:.75rem"><div style="font-size:22px;font-weight:700;color:#1F4E79">~22%</div><div style="font-size:11px;color:#6B7280">Novel AI weighted</div></div>
+          </div>
+        </div>
+        <div class="notice">Next milestone: Codemie/Elitea QA pipeline (pending client approval) → Novel AI in QA rises to <strong>50%+</strong></div>
+        <details>
+          <summary>Phase breakdown details</summary>
+          <div class="details-body">
+            <ul>
+              <li><strong>Planning (10% effort):</strong> Claude for user story structuring, acceptance criteria, backlog. 25% commodity + 25% Novel (prompt templates + SDLC schemas)</li>
+              <li><strong>Development (50% effort):</strong> Copilot inline completion (commodity) + Claude for spec-driven dev, PR review, architectural decisions. 55%/20%</li>
+              <li><strong>QA (20% effort):</strong> Claude test case generation, XRay integration. 20%/15%. Codemie proposal pending → 50%+ Novel</li>
+              <li><strong>Deployment (5% effort):</strong> IaC review, runbook generation. Client controls CI/CD — 5%/0%</li>
+              <li><strong>Support/Doc (15% effort):</strong> DM multi-MCP orchestration — most advanced. 30%/35% (includes Novel classification for agentic workflows)</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: DAU -->
+<div style="background:#fff">
+<section id="dau">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">2</div>
+      <div class="sec-title">Daily Active Usage (DAU)</div>
+    </div>
+    <div class="two-col" style="align-items:start;gap:1.5rem">
+      <div>
+        <div style="text-align:center">
+          <div class="chart-wrap" style="height:220px"><canvas id="dauChart" role="img" aria-label="DAU access status: 20 corporate access, 35 via workaround, 0 blocked">DAU chart.</canvas></div>
+          <div class="legend" style="justify-content:center">
+            <div class="legend-item"><div class="legend-swatch" style="background:#217346"></div>Corporate / Innolink (20)</div>
+            <div class="legend-item"><div class="legend-swatch" style="background:#F59E0B"></div>Workaround VPN/personal (35)</div>
+            <div class="legend-item"><div class="legend-swatch" style="background:#D1D5DB"></div>Blocked (0)</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:10px">
+          <div style="font-size:28px;font-weight:700;color:#217346">100%</div>
+          <div style="font-size:13px;color:#374151;margin-bottom:12px">All 55 engineers have some form of AI access as of June 2026</div>
+          <div style="border-top:1px solid #EEF2F7;padding-top:10px">
+            <div style="font-size:13px"><span class="badge-green">DAU 80%+</span> confirmed · June 2026 survey (55/55 engineers)</div>
+          </div>
+        </div>
+        <div class="notice-info">Client (FirstTech) monitors token usage per engineer via Innolink corporate Anthropic account — High Adoption confirmed in Platform Core KB.</div>
+        <details>
+          <summary>DAU evidence sources</summary>
+          <div class="details-body">
+            <ul>
+              <li><strong>Official DC Record:</strong> DAU 80%+ confirmed in Delivery Central, updated June 2026</li>
+              <li><strong>Internal survey:</strong> 55 respondents, June 2026 — all with access confirmed</li>
+              <li><strong>27-engineer KB poll:</strong> 100% using Claude daily, specific use cases with time savings documented</li>
+              <li><strong>Performance Meet+:</strong> 80%+ engineers at or above expectations, AI cited in 1-1s</li>
+              <li><strong>Client monitoring:</strong> FirstTech tracks token usage per engineer — high adoption confirmed</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem">
+      <div style="font-size:13px;font-weight:600;color:#1F4E79;margin-bottom:.75rem">Proposed AI Metrics Framework (submitted to client)</div>
+      <div class="two-col">
+        <div class="card">
+          <div style="font-size:12px;font-weight:600;margin-bottom:4px">AI Adoption metric</div>
+          <div style="font-size:12px;color:#374151">Speed improvement % + AI usage across SDLC vs pre-AI baseline. Per-engineer token usage (Anthropic console) + sprint velocity delta. Jira AI-assist % field — pending client approval for Q3 2026.</div>
+        </div>
+        <div class="card">
+          <div style="font-size:12px;font-weight:600;margin-bottom:4px">AI Effectiveness metric</div>
+          <div style="font-size:12px;color:#374151">Defect rate in AI-generated vs human-only code. Bug resolution time in AI-assisted vs non-AI sprints. Jira bug tracker (client-managed) — defect-origin tagging pending approval.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- SECTION 3: PERFORMANCE -->
+<section id="performance">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">3</div>
+      <div class="sec-title">Performance Tracking</div>
+    </div>
+    <div class="rag-grid" style="margin-bottom:1.25rem">
+      <div class="rag-tile"><div class="rag-label">Overall Health</div><div class="rag-score">4.0</div><div class="rag-tag">GREEN</div></div>
+      <div class="rag-tile"><div class="rag-label">Team Performance</div><div class="rag-score">4.2</div><div class="rag-tag">GREEN</div></div>
+      <div class="rag-tile"><div class="rag-label">Team Retention</div><div class="rag-score">4.2</div><div class="rag-tag">GREEN</div></div>
+      <div class="rag-tile"><div class="rag-label">Staffing</div><div class="rag-score">4.2</div><div class="rag-tag">GREEN</div></div>
+      <div class="rag-tile"><div class="rag-label">Team Dynamics</div><div class="rag-score">4.2</div><div class="rag-tag">GREEN</div></div>
+      <div class="rag-tile"><div class="rag-label">Compliance</div><div class="rag-score">5.0</div><div class="rag-tag">GREEN</div></div>
+      <div class="rag-tile"><div class="rag-label">Regulatory</div><div class="rag-score">5.0</div><div class="rag-tag">GREEN</div></div>
+      <div class="rag-tile" style="border:2px solid #2E75B6"><div class="rag-label">AI Maturity</div><div class="rag-score" style="color:#1F4E79">4.8</div><div class="rag-tag">GREEN</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+      <div class="card" style="border-left:3px solid #217346">
+        <div style="font-size:11px;font-weight:600;color:#6B7280;margin-bottom:4px">FLOW TIME</div>
+        <div style="font-size:12px;color:#374151">Jira MCP live — sprint cycle time monitored daily via FTAE ODC Delivery Dashboard</div>
+      </div>
+      <div class="card" style="border-left:3px solid #217346">
+        <div style="font-size:11px;font-weight:600;color:#6B7280;margin-bottom:4px">THROUGHPUT</div>
+        <div style="font-size:12px;color:#374151">All streams GREEN. Tajeeri S13 all USs delivered. Health KSA Beta confirmed ~25 days</div>
+      </div>
+      <div class="card" style="border-left:3px solid #217346">
+        <div style="font-size:11px;font-weight:600;color:#6B7280;margin-bottom:4px">QUALITY</div>
+        <div style="font-size:12px;color:#374151">Tajeeri UAT passed. Marine ~80% credit to EPAM (Zuber Palekar, Eng Director). Risk Register adopted by client</div>
+      </div>
+      <div class="card" style="border-left:3px solid #1F4E79">
+        <div style="font-size:11px;font-weight:600;color:#6B7280;margin-bottom:4px">AI DAU</div>
+        <div style="font-size:12px;color:#374151">80%+ confirmed. DC AI Maturity 4.8/5.0. 55/55 engineers with access. Client monitoring active</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: CHAMPIONS -->
+<div style="background:#fff">
+<section id="champions">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">4</div>
+      <div class="sec-title">AI Champions</div>
+    </div>
+    <p style="font-size:13px;color:#6B7280;margin-bottom:1rem">9 identified champions based on DM 1-1s, survey data, and KB signals. FirstTech monitors token usage per engineer — strong adopters recognised internally.</p>
+    <div class="champion-grid">
+      <div class="champion-card">
+        <div class="champion-name">Irina Kulaga</div>
+        <div class="champion-role">QA Lead (Account)</div>
+        <div><span class="champion-stream">Tajeeri</span></div>
+        <div style="margin:4px 0"><span class="tag tag-blue">Claude</span><span class="tag tag-blue">Copilot</span><span class="tag tag-blue">XRay</span></div>
+        <div class="champion-bio">Authored Tajeeri Release Readiness Risk Register (17+7 risks). Coordinates AI QA tooling evaluation (Codemie/Elitea proposal). Primary AI governance contact for QA.</div>
+      </div>
+      <div class="champion-card">
+        <div class="champion-name">Valiantsin Boltach</div>
+        <div class="champion-role">QA / Dev</div>
+        <div><span class="champion-stream">Shory Platform & Dashboards</span></div>
+        <div style="margin:4px 0"><span class="tag tag-blue">Claude</span><span class="tag tag-green">Self-built MCP</span></div>
+        <div class="champion-bio">Cross-functional champion. Built custom MCP server for business logic queries. Vatik dashboard deployed to PROD. Full corporate Claude access via Innolink.</div>
+      </div>
+      <div class="champion-card">
+        <div class="champion-name">Mert Efe</div>
+        <div class="champion-role">Developer</div>
+        <div><span class="champion-stream">SlashData</span></div>
+        <div style="margin:4px 0"><span class="tag tag-blue">Claude Code</span><span class="tag tag-green">Custom pipeline</span></div>
+        <div class="champion-bio">Full Jira-to-PR automation: /story-analyze → /story-plan → /story-implement → /story-review. MCP: Jira, Figma, Context7, Chrome DevTools. Personal KB page published.</div>
+      </div>
+      <div class="champion-card">
+        <div class="champion-name">Gokhan Ozdemir</div>
+        <div class="champion-role">Frontend Dev Lead</div>
+        <div><span class="champion-stream">Tajeeri</span></div>
+        <div style="margin:4px 0"><span class="tag tag-blue">Claude</span><span class="tag tag-green">AI Context Harness</span></div>
+        <div class="champion-bio">AI context harness embedded in Tajeeri codebase. Refactors: 80% time saved. New features: 50% time saved. Key contributor Sprint 17.</div>
+      </div>
+      <div class="champion-card">
+        <div class="champion-name">Yuliya Baranouskaya & Ina Fedarenka</div>
+        <div class="champion-role">QA Engineers</div>
+        <div><span class="champion-stream">Health (KSA/UAE)</span></div>
+        <div style="margin:4px 0"><span class="tag tag-blue">Claude</span><span class="tag tag-blue">XRay</span></div>
+        <div class="champion-bio">Leading AI-assisted test case generation for Health streams. Active Claude users with XRay integration. Requesting expanded corporate access.</div>
+      </div>
+      <div class="champion-card">
+        <div class="champion-name">Haykanush Abelyan</div>
+        <div class="champion-role">QA Engineer</div>
+        <div><span class="champion-stream">SuperApp</span></div>
+        <div style="margin:4px 0"><span class="tag tag-blue">Claude</span><span class="tag tag-blue">XRay</span></div>
+        <div class="champion-bio">Most engaged QA AI user per June 2026 survey. Test case planning and QA documentation. Active Claude adopter identified in survey analysis.</div>
+      </div>
+      <div class="champion-card">
+        <div class="champion-name">Ashot Martirosyan</div>
+        <div class="champion-role">Developer</div>
+        <div><span class="champion-stream">SuperApp</span></div>
+        <div style="margin:4px 0"><span class="tag tag-blue">Claude</span><span class="tag tag-blue">Copilot</span></div>
+        <div class="champion-bio">Active AI adopter on SuperApp. Uses both Claude and Copilot for development workflows. Transferred from Yahala — onboarding confirmed.</div>
+      </div>
+      <div class="champion-card">
+        <div class="champion-name">Dmitrii Platonov</div>
+        <div class="champion-role">Developer</div>
+        <div><span class="champion-stream">Shory Platform</span></div>
+        <div style="margin:4px 0"><span class="tag tag-blue">Claude</span><span class="tag tag-green">Shory Blogin</span></div>
+        <div class="champion-bio">PR creation mostly automated (10–30 min/day saved). Published public posts on AI workflow practices. Active in AI Committee meetings.</div>
+      </div>
+      <div class="champion-card">
+        <div class="champion-name">Davut Kara</div>
+        <div class="champion-role">Frontend Dev</div>
+        <div><span class="champion-stream">Dashboards</span></div>
+        <div style="margin:4px 0"><span class="tag tag-blue">Claude</span></div>
+        <div class="champion-bio">FE developer on operational dashboards. Instruction file creation: 8h → 2h (5× faster). Proposed additional dashboard scope to client.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- SECTION 5: REUSABILITY -->
+<section id="reusability">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">5</div>
+      <div class="sec-title">Reusability — Artefacts Shared Across the Project</div>
+    </div>
+    <div class="two-col" style="align-items:start">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#1F4E79;margin-bottom:.75rem">Client-side Confluence KB (FTAEODC)</div>
+        <div class="kb-list">
+          <div class="kb-item">
+            <div class="kb-icon">📋</div>
+            <div><div class="kb-title">Tajeeri Release Readiness Risk Register</div><div class="kb-desc">17 project + 7 QA risks · Claude-assisted · Adopted by client (Ramadan) as own tool · Replicated to Shory stream</div></div>
+          </div>
+          <div class="kb-item">
+            <div class="kb-icon">🔄</div>
+            <div><div class="kb-title">Sprint Ceremonies & SDLC Operating Model</div><div class="kb-desc">Applied across all 11 streams · Tajeeri, Health, Shory, SuperApp, Dashboards</div></div>
+          </div>
+          <div class="kb-item">
+            <div class="kb-icon">📊</div>
+            <div><div class="kb-title">Per-Stream AI Adoption Pages (×11)</div><div class="kb-desc">Identical template · One page per stream · Updated after every 1-1 via Claude MCP</div></div>
+          </div>
+          <div class="kb-item">
+            <div class="kb-icon">📝</div>
+            <div><div class="kb-title">Current Status / Latest Progress Pages</div><div class="kb-desc">11 pages · Claude processes 1-1 transcript → extracts signals → auto-updates Confluence</div></div>
+          </div>
+          <div class="kb-item">
+            <div class="kb-icon">🔗</div>
+            <div><div class="kb-title">QA KB + Backend KB pages</div><div class="kb-desc">Role-specific · Reusable reference for onboarding new team members</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#1F4E79;margin-bottom:.75rem">DM-level — Production Reusable Outputs</div>
+        <div class="kb-list">
+          <div class="kb-item">
+            <div class="kb-icon">📈</div>
+            <div><div class="kb-title">FTAE ODC Delivery Dashboard (HTML)</div><div class="kb-desc">Auto-generated daily via Jira MCP · 9 streams · WIP/bugs/cycle time/throughput · Red flags auto-calculated · Live since June 2026</div></div>
+          </div>
+          <div class="kb-item">
+            <div class="kb-icon">🌐</div>
+            <div><div class="kb-title">Weekly Stakeholder HTML Report</div><div class="kb-desc"><a href="https://sulaco24.github.io/FirstTech/" target="_blank">sulaco24.github.io/FirstTech</a> · Auto-generated · Sent to Konstantin Voronin (VP) weekly · One URL replaces multi-page Word report</div></div>
+          </div>
+          <div class="kb-item">
+            <div class="kb-icon">📑</div>
+            <div><div class="kb-title">Strategic Proposals (AI-assisted)</div><div class="kb-desc">AI SDLC (Group CEO Ayman) · Design System (Vinod) · Codemie/Elitea TA (Imran, Maruf, Basir) · All drafted with Claude + KB context</div></div>
+          </div>
+        </div>
+        <details>
+          <summary>View MCP integration details</summary>
+          <div class="details-body">
+            <ul>
+              <li><strong>Telescope MCP:</strong> Employee data, headcount, onboarding/offboarding</li>
+              <li><strong>Delivery Central MCP:</strong> Health scores, risks, staffing metrics</li>
+              <li><strong>Confluence MCP:</strong> Read/write FTAEODC KB — auto-updated after every 1-1</li>
+              <li><strong>Outlook MCP:</strong> Email scan, calendar, Teams messages</li>
+              <li><strong>Scheduled Tasks MCP:</strong> Daily dashboard refresh 10:00, weekly reports</li>
+              <li><strong>Jira MCP (Rovo):</strong> Live JQL queries · WIP, bugs, stale, throughput, cycle time · 9 streams</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: DM NOVEL AI WORKFLOW -->
+<div style="background:#fff">
+<section id="dm-workflow">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">6</div>
+      <div class="sec-title">DM Novel AI Workflow — Daily Operations</div>
+    </div>
+    <div class="notice-info" style="margin-bottom:1.25rem">DM is non-billable on this engagement. All DM-level AI usage represents EPAM investment in delivery quality and client value — Novel AI at the management/governance layer.</div>
+
+    <div class="two-col" style="align-items:start;gap:1.5rem">
+      <!-- MCP DIAGRAM SVG -->
+      <div class="mcp-wrap">
+        <div style="font-size:12px;font-weight:600;color:#6B7280;margin-bottom:1rem;text-align:center">Multi-MCP orchestration architecture</div>
+        <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:380px">
+          <!-- Center -->
+          <circle cx="200" cy="170" r="44" fill="#1F4E79"/>
+          <text x="200" y="165" text-anchor="middle" fill="#fff" font-size="13" font-weight="600" font-family="system-ui">Claude</text>
+          <text x="200" y="181" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="10" font-family="system-ui">Orchestration Hub</text>
+          <!-- Spoke lines -->
+          <line x1="200" y1="126" x2="200" y2="72" stroke="#2E75B6" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <line x1="163" y1="143" x2="108" y2="106" stroke="#2E75B6" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <line x1="156" y1="170" x2="86" y2="170" stroke="#2E75B6" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <line x1="163" y1="197" x2="108" y2="234" stroke="#2E75B6" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <line x1="200" y1="214" x2="200" y2="268" stroke="#2E75B6" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <line x1="237" y1="197" x2="292" y2="234" stroke="#2E75B6" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <line x1="244" y1="170" x2="314" y2="170" stroke="#2E75B6" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <!-- Nodes -->
+          <rect x="152" y="38" width="96" height="34" rx="8" fill="#EEF5FB" stroke="#2E75B6" stroke-width="1"/>
+          <text x="200" y="57" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="600" font-family="system-ui">Jira MCP (Rovo)</text>
+          <text x="200" y="68" text-anchor="middle" fill="#2E75B6" font-size="9" font-family="system-ui">Live delivery metrics</text>
+
+          <rect x="36" y="80" width="96" height="34" rx="8" fill="#EEF5FB" stroke="#2E75B6" stroke-width="1"/>
+          <text x="84" y="99" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="600" font-family="system-ui">Telescope MCP</text>
+          <text x="84" y="110" text-anchor="middle" fill="#2E75B6" font-size="9" font-family="system-ui">HR / headcount</text>
+
+          <rect x="18" y="153" width="96" height="34" rx="8" fill="#EEF5FB" stroke="#2E75B6" stroke-width="1"/>
+          <text x="66" y="172" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="600" font-family="system-ui">Confluence MCP</text>
+          <text x="66" y="183" text-anchor="middle" fill="#2E75B6" font-size="9" font-family="system-ui">KB read/write</text>
+
+          <rect x="36" y="222" width="96" height="34" rx="8" fill="#EEF5FB" stroke="#2E75B6" stroke-width="1"/>
+          <text x="84" y="241" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="600" font-family="system-ui">Outlook MCP</text>
+          <text x="84" y="252" text-anchor="middle" fill="#2E75B6" font-size="9" font-family="system-ui">Email / calendar</text>
+
+          <rect x="152" y="268" width="96" height="34" rx="8" fill="#EEF5FB" stroke="#2E75B6" stroke-width="1"/>
+          <text x="200" y="287" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="600" font-family="system-ui">Scheduled Tasks</text>
+          <text x="200" y="298" text-anchor="middle" fill="#2E75B6" font-size="9" font-family="system-ui">Automated workflows</text>
+
+          <rect x="268" y="222" width="96" height="34" rx="8" fill="#E8F5EF" stroke="#217346" stroke-width="1"/>
+          <text x="316" y="241" text-anchor="middle" fill="#1E6F42" font-size="11" font-weight="600" font-family="system-ui">DC MCP</text>
+          <text x="316" y="252" text-anchor="middle" fill="#217346" font-size="9" font-family="system-ui">Health / risks</text>
+
+          <rect x="286" y="153" width="96" height="34" rx="8" fill="#EEF5FB" stroke="#2E75B6" stroke-width="1"/>
+          <text x="334" y="172" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="600" font-family="system-ui">→ Output</text>
+          <text x="334" y="183" text-anchor="middle" fill="#2E75B6" font-size="9" font-family="system-ui">HTML / DOCX / KB</text>
+        </svg>
+      </div>
+
+      <div>
+        <div class="workflow-list">
+          <div class="workflow-item">
+            <div class="workflow-num">1</div>
+            <div><div class="workflow-title">Daily intelligence aggregation</div><div class="workflow-desc">Email + Teams scan via Outlook MCP → Claude categorises by stream/urgency → prioritised daily plan. 1-1 transcripts → KB update pushed to Confluence automatically.</div></div>
+          </div>
+          <div class="workflow-item">
+            <div class="workflow-num">2</div>
+            <div><div class="workflow-title">Delivery dashboard monitoring</div><div class="workflow-desc">10:00 daily — Jira MCP queries 9 streams (WIP, bugs, stale, throughput, cycle time). EPAM-filtered. Red flags auto-calculated. Dark-theme HTML dashboard saved to workspace.</div></div>
+          </div>
+          <div class="workflow-item">
+            <div class="workflow-num">3</div>
+            <div><div class="workflow-title">Resource & people tracking</div><div class="workflow-desc">Weekly Telescope headcount sync → delta vs prior week → client notification auto-prepared. Vacation + PH calendar (BY, AM, GE, KZ, UAE). People risk registry from survey signals.</div></div>
+          </div>
+          <div class="workflow-item">
+            <div class="workflow-num">4</div>
+            <div><div class="workflow-title">Stakeholder reporting</div><div class="workflow-desc">Weekly HTML report auto-generated → published at sulaco24.github.io/FirstTech → sent to Konstantin Voronin (VP) weekly. One URL replaces multi-page Word doc.</div></div>
+          </div>
+          <div class="workflow-item">
+            <div class="workflow-num">5</div>
+            <div><div class="workflow-title">Risk & governance documentation</div><div class="workflow-desc">Tajeeri Risk Register: Claude processed QA/Dev inputs → 24-page DOCX (17+7 risks) → adopted by client as own governance tool → replicated to Shory.</div></div>
+          </div>
+          <div class="workflow-item">
+            <div class="workflow-num">6</div>
+            <div><div class="workflow-title">Strategic proposal generation</div><div class="workflow-desc">AI SDLC for Ayman (Group CEO) · Design System proposal (Vinod) · Codemie/Elitea TA (engineering leadership). All drafted with Claude using structured KB context.</div></div>
+          </div>
+        </div>
+        <details>
+          <summary>Novel AI classification justification</summary>
+          <div class="details-body">
+            <ul>
+              <li><strong>Multi-system orchestration:</strong> 5+ live data sources simultaneously — not single-tool AI</li>
+              <li><strong>Structured output schemas:</strong> KB pages, DOCX, HTML — not ad-hoc chat</li>
+              <li><strong>Agentic behaviour:</strong> Scheduled tasks trigger autonomous workflows without manual initiation</li>
+              <li><strong>Feedback loop:</strong> KB update outputs become inputs to stakeholder reports → self-reinforcing intelligence system</li>
+              <li><strong>Client-facing impact:</strong> Risk Register adopted by client · Weekly report consumed by VP-level stakeholder</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- SECTION 7: CLIENT GOVERNANCE -->
+<section id="governance">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">7</div>
+      <div class="sec-title">Client-Side AI Governance & Adoption Programs</div>
+    </div>
+    <div class="three-col" style="margin-bottom:1.25rem">
+      <div class="card">
+        <div style="font-size:12px;font-weight:600;color:#1F4E79;margin-bottom:6px">AI Committee (April 2026)</div>
+        <div style="font-size:12px;color:#374151;margin-bottom:8px">Owns AI strategy, standards, tooling decisions across all IT (150+ developers + QA).</div>
+        <div style="font-size:11px;color:#6B7280">• Quarterly Standards Review<br>• Weekly "AI Adoption for Developers" sync<br>• Thursday AI Showcase (every week since May)</div>
+      </div>
+      <div class="card">
+        <div style="font-size:12px;font-weight:600;color:#1F4E79;margin-bottom:6px">Claude Code — Standard Tool</div>
+        <div style="font-size:12px;color:#374151;margin-bottom:8px">Formally adopted April 2026. Replaces Copilot as primary tool across all engineering teams.</div>
+        <div style="font-size:11px;color:#6B7280">• Claude Code + VS Code extension<br>• Superpowers plugin · MCP: Jira, Figma, DB Hub<br>• CLAUDE.md per codebase (repo context)</div>
+      </div>
+      <div class="card">
+        <div style="font-size:12px;font-weight:600;color:#1F4E79;margin-bottom:6px">Spec-Driven Development (May 2026)</div>
+        <div style="font-size:12px;color:#374151;margin-bottom:8px">L1 Spec-First formally adopted. Repo assessment completed May 6. HARD-GATE enforced.</div>
+        <div style="font-size:11px;color:#6B7280">• Spec before code — always<br>• Superpowers: 4-wave workflow<br>• Graphify trial (71× token reduction)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="font-size:12px;font-weight:600;color:#1F4E79;margin-bottom:8px">E-Broker AI-SDLC — Production End-to-End Workflow (Aliaksandr Paukalas, Shory Platform)</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+        <div style="background:#EEF2F7;border-radius:8px;padding:.75rem;text-align:center">
+          <div style="font-size:11px;font-weight:600;color:#1F4E79;margin-bottom:4px">Foundation</div>
+          <div style="font-size:11px;color:#374151">CLAUDE.md + MCP servers (Jira, ADO, Figma, Playwright, Redis) — full context, no cold-start</div>
+        </div>
+        <div style="background:#EEF2F7;border-radius:8px;padding:.75rem;text-align:center">
+          <div style="font-size:11px;font-weight:600;color:#1F4E79;margin-bottom:4px">Backend lane</div>
+          <div style="font-size:11px;color:#374151">Read Jira story → scope → approved spec → implementation → PR with description</div>
+        </div>
+        <div style="background:#EEF2F7;border-radius:8px;padding:.75rem;text-align:center">
+          <div style="font-size:11px;font-weight:600;color:#1F4E79;margin-bottom:4px">Frontend handoff</div>
+          <div style="font-size:11px;color:#374151">Auto-spawns FE subtask with endpoints, payloads, AC. Slack api-integration auto-notified</div>
+        </div>
+        <div style="background:#EEF2F7;border-radius:8px;padding:.75rem;text-align:center">
+          <div style="font-size:11px;font-weight:600;color:#1F4E79;margin-bottom:4px">QA toolkit</div>
+          <div style="font-size:11px;color:#374151">5 skills: jira-task-manager, story-testing-workflow, jira-test-cases, bug-reporting, sign-off pack</div>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:#6B7280;text-align:center">100% human review gate maintained before merge — AI assists, humans own the decision</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: AI COST -->
+<div style="background:#fff">
+<section id="cost">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">8</div>
+      <div class="sec-title">AI Cost Management</div>
+    </div>
+    <div class="notice" style="margin-bottom:1rem">Structural constraint: AI tool licenses managed by client (FirstTech via Innolink). EPAM does not have access to Anthropic billing consoles — disclosed transparently in Delivery Central.</div>
+    <div class="three-col">
+      <div class="card">
+        <div style="font-size:12px;font-weight:600;color:#1F4E79;margin-bottom:6px">Cost visibility</div>
+        <div style="font-size:12px;color:#374151">Client monitors token usage per engineer. EPAM tracks adoption via seat count + survey. Estimate: ~$39–40/engineer/month (Claude Pro + Copilot). 55 FTE: ~$2,100–2,200/month total.</div>
+      </div>
+      <div class="card">
+        <div style="font-size:12px;font-weight:600;color:#1F4E79;margin-bottom:6px">ROI signals</div>
+        <div style="font-size:12px;color:#374151">Marine Insurance delivered — Zuber Palekar (Eng Director) credited EPAM with ~80% outcome. Health KSA Beta on track. Both attributed in part to AI-assisted engineering.</div>
+      </div>
+      <div class="card">
+        <div style="font-size:12px;font-weight:600;color:#1F4E79;margin-bottom:6px">Cost experiments</div>
+        <div style="font-size:12px;color:#374151">Design System: 2–3× FE speed account-wide (proposal). Codemie/Elitea: 40–50% QA effort reduction (pending). AI SDLC: tooling cost optimisation across all streams.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- SECTION 9: SURVEY EVIDENCE -->
+<section id="survey">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">9</div>
+      <div class="sec-title">Engineer Survey — AI Usage Evidence (27 respondents, June 2026)</div>
+    </div>
+    <div class="two-col" style="align-items:start;gap:1.5rem">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#1F4E79;margin-bottom:.75rem">Time savings by engineer (selected)</div>
+        <div class="legend" style="margin-bottom:8px">
+          <div class="legend-item"><div class="legend-swatch" style="background:#2E75B6"></div>Time saved (%)</div>
+        </div>
+        <div class="chart-wrap" style="height:340px"><canvas id="timeSavingsChart" role="img" aria-label="Time savings reported by engineers in AI adoption survey">Time savings chart.</canvas></div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#1F4E79;margin-bottom:.75rem">Knowledge base links shared in survey</div>
+        <div class="kb-list">
+          <div class="kb-item">
+            <div class="kb-icon">📎</div>
+            <div>
+              <div class="kb-title"><a href="https://firsttech.atlassian.net/wiki/spaces/~712020963fb095071847eda086ec533b679088/pages/596770827/Claude+Code+Setup+Guide+for+Development+Teams" target="_blank">Claude Code Setup Guide for Dev Teams</a></div>
+              <div class="kb-desc">Most-cited in survey (5+ engineers). Covers Claude Code, Superpowers, MCP setup.</div>
+            </div>
+          </div>
+          <div class="kb-item">
+            <div class="kb-icon">📎</div>
+            <div>
+              <div class="kb-title"><a href="https://firsttech.atlassian.net/wiki/spaces/~7120208c15036529c04c23afd4b0f435064c10/pages/703201282/How+I+Use+AI+in+My+Work" target="_blank">Mert Efe — How I Use AI in My Work</a></div>
+              <div class="kb-desc">Full Jira-to-PR pipeline, slash commands, MCP integrations. Personal KB shared openly.</div>
+            </div>
+          </div>
+          <div class="kb-item">
+            <div class="kb-icon">📎</div>
+            <div>
+              <div class="kb-title"><a href="https://firsttech.atlassian.net/wiki/spaces/SD1/pages/519864321/Backend+-+LLM+AI+integration" target="_blank">Backend — LLM/AI Integration (SlashData)</a></div>
+              <div class="kb-desc">Backend AI integration patterns for SlashData platform. SD1 Confluence space.</div>
+            </div>
+          </div>
+          <div class="kb-item">
+            <div class="kb-icon">📎</div>
+            <div>
+              <div class="kb-title"><a href="https://shory.blogin.co/posts/mcp-servers-in-practice-connect-ai-to-your-workflow-313262" target="_blank">Shory Blogin — MCP Servers in Practice</a></div>
+              <div class="kb-desc">Public post by Dmitrii Platonov. Shared via AI Committee channels.</div>
+            </div>
+          </div>
+          <div class="kb-item">
+            <div class="kb-icon">📎</div>
+            <div>
+              <div class="kb-title"><a href="https://firsttech.atlassian.net/wiki/x/CwCSIw" target="_blank">Ana Ghvinjilia — QA AI Usage Page</a></div>
+              <div class="kb-desc">AI-assisted test set and execution generation, XRay integration.</div>
+            </div>
+          </div>
+        </div>
+        <details>
+          <summary>Novel AI patterns from survey</summary>
+          <div class="details-body">
+            <ul>
+              <li><strong>Mert (SlashData):</strong> Full Jira-to-PR automation — multi-step slash command pipeline</li>
+              <li><strong>Gokhan (Tajeeri):</strong> AI context harness embedded in codebase — consistent output for whole team</li>
+              <li><strong>Javohir (Shory):</strong> AI brainstorms → spec → implements Jira item → developer reviews</li>
+              <li><strong>Anhelina (Health):</strong> 100% of QA sub-tasks generated by AI from User Story — 10 min/story</li>
+              <li><strong>Dmitrii (Shory):</strong> Web-to-mobile feature migration "mostly automatic"</li>
+              <li><strong>Valiantsin (Dashboards):</strong> Self-written MCP server for business logic + pricing investigation</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>AI Maturity Validation — FTAE-ODC · FirstTech / SlashData · June 2026</div>
+  <div style="margin-top:4px">Delivery Manager: Max Vlasov &nbsp;|&nbsp; L2.8+ Submission Package</div>
+</footer>
+
+<script>
+Chart.defaults.font.family = "system-ui, -apple-system, sans-serif";
+Chart.defaults.color = "#6B7280";
+
+// SDLC Chart
+new Chart(document.getElementById('sdlcChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Planning', 'Development', 'QA / Testing', 'Deployment', 'Support & Doc'],
+    datasets: [
+      { label: 'Commodity AI %', data: [25, 55, 20, 5, 30], backgroundColor: '#B5D4F4', borderRadius: 4 },
+      { label: 'Novel AI %', data: [25, 20, 15, 0, 35], backgroundColor: '#1F4E79', borderRadius: 4 }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { max: 70, grid: { color: '#F1F5F9' }, ticks: { callback: v => v + '%' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// DAU Donut
+new Chart(document.getElementById('dauChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Corporate / Innolink', 'Workaround VPN/personal', 'No access'],
+    datasets: [{
+      data: [20, 35, 0.5],
+      backgroundColor: ['#217346', '#F59E0B', '#E5E7EB'],
+      borderWidth: 2,
+      borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '68%',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.label === 'No access' ? 'No access: 0' : ctx.label + ': ' + (ctx.dataIndex === 0 ? 20 : 35) + ' engineers' } }
+    }
+  },
+  plugins: [{
+    id: 'centerText',
+    beforeDraw(chart) {
+      const {ctx, chartArea: {width, height, left, top}} = chart;
+      ctx.save();
+      ctx.font = '700 22px system-ui';
+      ctx.fillStyle = '#217346';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('55 / 55', left + width/2, top + height/2 - 10);
+      ctx.font = '400 11px system-ui';
+      ctx.fillStyle = '#6B7280';
+      ctx.fillText('100% access', left + width/2, top + height/2 + 14);
+      ctx.restore();
+    }
+  }]
+});
+
+// Time Savings
+new Chart(document.getElementById('timeSavingsChart'), {
+  type: 'bar',
+  data: {
+    labels: [
+      'Gokhan — refactoring',
+      'Gokhan — new features',
+      'Aleksandr — routine tasks',
+      'Javohir — feature delivery',
+      'Iryna — new features',
+      'Davit K — test writing',
+      'Mert — PR creation',
+      'Davit Kara — instructions',
+      'Anhelina — QA subtasks',
+      'Nursultan — properties'
+    ],
+    datasets: [{
+      label: 'Time saved %',
+      data: [80, 50, 50, 50, 40, 40, 35, 75, 90, 35],
+      backgroundColor: ctx => {
+        const v = ctx.parsed.x;
+        if (v >= 70) return '#1F4E79';
+        if (v >= 50) return '#2E75B6';
+        return '#B5D4F4';
+      },
+      borderRadius: 4
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.parsed.x + '% time saved' } }
+    },
+    scales: {
+      x: { max: 100, grid: { color: '#F1F5F9' }, ticks: { callback: v => v + '%' } },
+      y: { grid: { display: false }, ticks: { font: { size: 11 } } }
+    }
+  }
+});
+</script>
+</body>
+</html>
