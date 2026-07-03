@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FirstTech / EPAM — Weekly Status | June 27–July 3, 2026 (Week 27)</title>
+<style>
+:root{
+  --green:#1b7a3e;--gbg:#edf7f1;
+  --amber:#b45309;--abg:#fffbeb;
+  --red:#b91c1c;--rbg:#fef2f2;
+  --grey:#4b5563;--xbg:#f3f4f6;
+  --blue:#1d4ed8;--bbg:#eff6ff;
+  --brand:#1e3a5f;--text:#111827;--muted:#6b7280;--border:#e5e7eb;--bg:#f9fafb;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;}
+.hdr{background:var(--brand);color:white;padding:18px 40px 14px;}
+.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;}
+.hdr h1{font-size:19px;font-weight:700;margin-bottom:2px;}
+.hdr .sub{font-size:11px;color:#93c5fd;text-transform:uppercase;letter-spacing:.4px;}
+.hdr-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px;}
+.meta-tag{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:2px 9px;font-size:11px;color:#dbeafe;}
+.overall-badge{text-align:right;flex-shrink:0;}
+.overall-badge .lbl{font-size:10px;color:#93c5fd;text-transform:uppercase;letter-spacing:.4px;}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:6px;font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.3px;margin-top:2px;}
+.b-amber{background:#d97706;color:white;}.b-green{background:#16a34a;color:white;}.b-red{background:#dc2626;color:white;}
+.nav{background:#162d4e;display:flex;overflow-x:auto;padding:0 40px;border-bottom:2px solid #2563eb;position:sticky;top:0;z-index:100;}
+.nav a{color:#93c5fd;text-decoration:none;padding:8px 12px;font-size:12px;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;}
+.nav a:hover{color:white;border-bottom-color:#60a5fa;}
+.page{max-width:1100px;margin:0 auto;padding:22px 40px 60px;}
+.chapter{margin-bottom:44px;padding-bottom:8px;}
+.ch-title{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700;color:var(--brand);padding-bottom:7px;border-bottom:2px solid var(--brand);margin-bottom:12px;}
+.ch-num{background:var(--brand);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.chip{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;}
+.c-green{background:var(--gbg);color:var(--green);}
+.c-amber{background:var(--abg);color:var(--amber);}
+.c-red{background:var(--rbg);color:var(--red);}
+.c-grey{background:var(--xbg);color:var(--grey);}
+.c-blue{background:var(--bbg);color:var(--blue);}
+.note{font-size:12px;border-radius:6px;padding:7px 11px;margin-top:6px;}
+.note-warn{background:#fff3cd;color:#92400e;border:1px solid #fde68a;}
+.note-risk{background:var(--rbg);color:var(--red);border:1px solid #fca5a5;}
+.note-ok{background:var(--gbg);color:var(--green);border:1px solid #a7f3d0;}
+.note-info{background:var(--bbg);color:var(--blue);border:1px solid #bfdbfe;}
+.kpi-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+.kpi{background:white;border:1px solid var(--border);border-radius:8px;padding:11px 14px;flex:1;min-width:120px;}
+.kpi .val{font-size:24px;font-weight:800;line-height:1;color:var(--brand);}
+.kpi .delta{font-size:11px;font-weight:600;margin-top:2px;}
+.kpi .lbl{font-size:11px;color:var(--muted);margin-top:4px;}
+.d-up{color:var(--green);}.d-down{color:var(--red);}.d-flat{color:var(--grey);}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+.team-card{background:white;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.tc-hdr{display:flex;justify-content:space-between;align-items:center;padding:7px 11px;}
+.tc-name{color:white;font-weight:700;font-size:12px;}
+.tc-count{background:rgba(255,255,255,.25);color:white;border-radius:20px;padding:1px 8px;font-size:12px;font-weight:800;}
+.tc-body{padding:7px 11px;display:flex;flex-wrap:wrap;gap:2px 0;}
+.person{display:flex;align-items:center;gap:4px;font-size:11.5px;width:50%;padding:1.5px 0;}
+.person.exiting-soon{background:#fff7ed;border-radius:3px;}
+.rd{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.rd-be{background:#3b82f6;}.rd-fe{background:#22c55e;}.rd-qa{background:#f97316;}.rd-ds{background:#a855f7;}.rd-pm{background:#6b7280;}
+.team-legend{display:flex;gap:12px;margin-bottom:7px;flex-wrap:wrap;}
+.leg-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);}
+.stream-row{background:white;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:6px;}
+.stream-top{display:grid;grid-template-columns:2fr 90px 3fr auto;gap:10px;align-items:center;padding:10px 14px;cursor:pointer;}
+.stream-top:hover{background:#f8fafc;}
+.stream-name{font-weight:700;font-size:13px;}
+.stream-sub{font-size:11px;color:var(--muted);}
+.stream-hl{font-size:12.5px;}
+.toggle-icon{color:var(--muted);font-size:14px;transition:transform .2s;flex-shrink:0;}
+.stream-row.open .toggle-icon{transform:rotate(180deg);}
+.stream-detail{display:none;padding:0 14px 12px;border-top:1px solid var(--border);}
+.stream-row.open .stream-detail{display:block;}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding-top:10px;}
+.detail-block h5{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:3px;}
+.detail-block ul{padding-left:13px;}
+.detail-block li{font-size:12px;margin-bottom:2px;}
+.wins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;}
+.win-card{background:white;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.win-card.hl{border-color:#93c5fd;border-width:2px;}
+.win-top{padding:11px 13px 9px;cursor:pointer;}
+.win-top:hover{background:#f8fafc;}
+.win-top-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px;}
+.win-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:1px 6px;border-radius:3px;}
+.wl-new{background:#dbeafe;color:#1d4ed8;}
+.wl-ok{background:var(--gbg);color:var(--green);}
+.win-title{font-weight:700;font-size:12.5px;line-height:1.4;}
+.win-sub{font-size:11.5px;color:var(--muted);margin-top:2px;}
+.win-detail{display:none;padding:0 13px 11px;border-top:1px solid var(--border);font-size:12px;}
+.win-detail ul{padding-left:13px;margin-top:7px;}
+.win-detail li{margin-bottom:3px;}
+.win-card.open .win-detail{display:block;}
+.risks-list{display:flex;flex-direction:column;gap:6px;}
+.risk-row{background:white;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.risk-top{display:grid;grid-template-columns:2fr 85px 3fr auto;gap:10px;align-items:center;padding:10px 14px;cursor:pointer;}
+.risk-top:hover{background:#f8fafc;}
+.risk-row.r-high .risk-top{border-left:4px solid var(--red);}
+.risk-row.r-med  .risk-top{border-left:4px solid #d97706;}
+.risk-name{font-weight:700;font-size:12.5px;}
+.risk-area{font-size:11px;color:var(--muted);}
+.risk-impact{font-size:12px;}
+.risk-detail{display:none;padding:0 14px 12px;border-top:1px solid var(--border);}
+.risk-row.open .risk-detail{display:block;}
+.risk-inner{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding-top:9px;}
+.risk-block h5{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:3px;}
+.risk-block p,.risk-block li{font-size:12px;}
+.risk-block ul{padding-left:13px;}
+.ftag{display:inline-block;background:var(--bbg);color:var(--blue);border:1px solid #bfdbfe;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:600;margin-top:3px;}
+.mit-tabs{display:flex;gap:4px;margin-bottom:9px;flex-wrap:wrap;}
+.mit-tab{padding:5px 13px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:white;color:var(--grey);}
+.mit-tab.active{background:var(--brand);color:white;border-color:var(--brand);}
+.mit-panel{display:none;flex-direction:column;gap:6px;}
+.mit-panel.active{display:flex;}
+.mit-item{background:white;border:1px solid var(--border);border-radius:8px;padding:11px 13px;}
+.mit-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.mit-title{font-weight:700;font-size:12.5px;margin-bottom:1px;}
+.mit-desc{font-size:12px;color:var(--muted);}
+.pill{flex-shrink:0;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap;}
+.pill-ok{background:var(--gbg);color:var(--green);border:1px solid #a7f3d0;}
+.pill-pending{background:var(--abg);color:var(--amber);border:1px solid #fde68a;}
+.pill-blocked{background:var(--rbg);color:var(--red);border:1px solid #fca5a5;}
+.exits-toggle{cursor:pointer;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);padding:6px 11px;background:var(--xbg);border-radius:6px;margin-top:6px;border:1px solid var(--border);}
+.exits-body{display:none;margin-top:4px;background:white;border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+.exits-body.open{display:block;}
+.exits-table{width:100%;border-collapse:collapse;font-size:12px;}
+.exits-table th{background:#f3f4f6;padding:5px 9px;text-align:left;font-size:10.5px;font-weight:700;text-transform:uppercase;color:var(--muted);}
+.exits-table td{padding:6px 9px;border-top:1px solid #f0f0f0;}
+.exits-table tr.exited td{color:#9ca3af;}
+.exits-table tr.done-jul2 td{color:#9ca3af;background:#f9fafb;}
+.exits-table tr.upcoming-late td{background:#fef9c3;}
+.tldr-box{background:var(--brand);color:white;border-radius:10px;padding:20px 24px;}
+.tldr-box h3{font-size:12px;font-weight:700;color:#93c5fd;margin-bottom:11px;text-transform:uppercase;letter-spacing:.5px;}
+.tldr-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.tg-section h4{font-size:11px;font-weight:700;color:#bfdbfe;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px;}
+.tg-section ul{padding-left:13px;}
+.tg-section li{font-size:12px;margin-bottom:3px;color:#f0f9ff;}
+.tg-section li strong{color:white;}
+.discuss-box{background:#162d4e;border:1px solid #2563eb;border-radius:7px;padding:12px 16px;margin-top:12px;}
+.discuss-box h4{font-size:11px;font-weight:700;color:#93c5fd;margin-bottom:8px;text-transform:uppercase;letter-spacing:.4px;}
+.discuss-item{display:flex;gap:8px;margin-bottom:7px;align-items:flex-start;}
+.discuss-item:last-child{margin-bottom:0;}
+.dn{background:#2563eb;color:white;width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px;}
+.dt{font-size:12px;color:#f0f9ff;line-height:1.5;}
+.dt strong{color:white;}
+.closed-box{background:#f9fafb;border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-top:8px;}
+@media print{
+  @page{size:A4 landscape;margin:0;}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+  .nav,.exits-toggle,.exits-body,.stream-detail,.risk-detail,.win-detail,.toggle-icon,.mit-tabs,footer{display:none!important;}
+  body{background:white;margin:0;padding:0;font-size:11px;}
+  .hdr{padding:5px 16px 4px!important;}
+  .hdr h1{font-size:13px!important;}
+  .page{max-width:100%;padding:0;margin:0;}
+  .chapter{page-break-before:always;break-before:page;overflow:hidden;margin:0;padding:10px 18px;height:100vh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;}
+  .chapter:first-of-type{page-break-before:avoid;break-before:avoid;}
+  .kpi .val{font-size:18px;}
+  .mit-panel{display:flex!important;}
+}
+@media(max-width:700px){
+  .page{padding:14px 14px 40px;}.hdr{padding:14px 14px;}.nav{padding:0 14px;}
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .stream-top{grid-template-columns:1fr auto;}.stream-hl,.stream-top>:nth-child(2){display:none;}
+  .detail-grid,.risk-inner{grid-template-columns:1fr;}
+  .risk-top{grid-template-columns:1fr auto;}.risk-impact{display:none;}
+  .tldr-grid{grid-template-columns:1fr;}
+  .person{width:100%;}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-top">
+    <div>
+      <div class="sub">EPAM Delivery Management</div>
+      <h1>FirstTech / EPAM — Weekly Status</h1>
+      <div class="hdr-meta">
+        <span class="meta-tag">June 27–July 3, 2026 · Week 27</span>
+        <span class="meta-tag">Max Vlasov, DM</span>
+        <span class="meta-tag">Friday CSO Sync · Konstantin Voronin</span>
+        <span class="meta-tag" style="background:rgba(59,130,246,.25);border-color:rgba(59,130,246,.5);">Updated: Fri Jul 3 (incl. Jun 30–Jul 2 team catchups)</span>
+      </div>
+    </div>
+    <div class="overall-badge">
+      <div class="lbl">Account</div>
+      <div class="badge b-amber">Phase 2 — Core Teams</div>
+      <div class="lbl" style="margin-top:6px;">Delivery</div>
+      <div class="badge b-red">Tajeeri — 2→1 FTE · MVP T‑14</div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#map">Team</a>
+  <a href="#wins">Wins</a>
+  <a href="#streams">Streams</a>
+  <a href="#risks">Risks</a>
+  <a href="#focus">Delivery Focus</a>
+  <a href="#tldr">TL;DR</a>
+</nav>
+
+<main class="page">
+
+<!-- ══ TEAM MAP ══ -->
+<section class="chapter" id="map">
+  <div class="ch-title"><span class="ch-num">1</span>Team Status &amp; Map — July 3, 2026 · W27 · Post-Transition</div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="val">38</div><div class="delta d-down">↓ post Jul 2 transition (−15 this week)</div><div class="lbl">EPAM FTE Current</div></div>
+    <div class="kpi"><div class="val">36</div><div class="delta d-down">↓ after Jul 17 (−Irina) &amp; Jul 22 (−Davit M)</div><div class="lbl">EPAM FTE Projected</div></div>
+    <div class="kpi"><div class="val">3</div><div class="delta d-flat">Shary · Esterdad/Mulem · Dashboards</div><div class="lbl">Streams Closed Jul 2</div></div>
+    <div class="kpi"><div class="val">80%</div><div class="delta d-flat">→ stable</div><div class="lbl">Performance Meet+</div></div>
+    <div class="kpi"><div class="val">4</div><div class="delta d-flat">Health · Shory · SuperApp · AI/DS/Jira/Found</div><div class="lbl">Stable Core Streams</div></div>
+  </div>
+
+  <div class="note note-ok" style="margin-bottom:10px;">
+    ✅ <strong>Jul 2 transition completed on schedule.</strong> 3 streams closed, 15 exits executed. Stable core: <strong>Health 20 · Shory 8 · SuperApp 4 · AI/DS/Jira/Found 4 = 36 FTE</strong>. Critical watch: <strong>Tajeeri 2→1 FTE</strong> (Irina Kulaga exits Jul 17 · MVP mid-July risk remains).
+  </div>
+
+  <div class="team-legend">
+    <div class="leg-item"><span class="rd rd-be"></span>Backend</div>
+    <div class="leg-item"><span class="rd rd-fe"></span>Frontend</div>
+    <div class="leg-item"><span class="rd rd-qa"></span>QA</div>
+    <div class="leg-item"><span class="rd rd-ds"></span>Designer</div>
+    <div class="leg-item"><span class="rd rd-pm"></span>PM / BA / DM</div>
+    <div class="leg-item" style="margin-left:8px;font-size:10px;background:#fef9c3;border-radius:4px;padding:1px 6px;color:#92400e;font-weight:700;">⚑ Jul 17/22 · exiting</div>
+  </div>
+
+  <div class="team-grid">
+
+    <!-- HEALTH SME — 20 FTE -->
+    <div class="team-card">
+      <div class="tc-hdr" style="background:#16a34a;">
+        <span class="tc-name">Health SME <span style="font-size:10px;font-weight:400;opacity:.8;">· stable · production sprint</span></span>
+        <span class="tc-count">20</span>
+      </div>
+      <div class="tc-body">
+        <div class="person"><span class="rd rd-qa"></span>Yuliya Baranouskaya</div>
+        <div class="person"><span class="rd rd-qa"></span>Tatsiana Lahachova</div>
+        <div class="person"><span class="rd rd-qa"></span>Anhelina Bobr</div>
+        <div class="person"><span class="rd rd-be"></span>Ina Fedarenka</div>
+        <div class="person"><span class="rd rd-be"></span>Dzmitry Kavalchuk</div>
+        <div class="person"><span class="rd rd-be"></span>Artsiom Halavach</div>
+        <div class="person"><span class="rd rd-fe"></span>Khrystsina Fesko</div>
+        <div class="person"><span class="rd rd-be"></span>Oleksandr Skomoroha</div>
+        <div class="person"><span class="rd rd-be"></span>Alexander Tchertkov</div>
+        <div class="person"><span class="rd rd-be"></span>Roman Sapotko</div>
+        <div class="person"><span class="rd rd-be"></span>Aliaksandr Yanachkin</div>
+        <div class="person"><span class="rd rd-qa"></span>Samvel Belyan</div>
+        <div class="person"><span class="rd rd-qa"></span>Iryna Barodzich</div>
+        <div class="person"><span class="rd rd-be"></span>Vitaly Filatenko</div>
+        <div class="person"><span class="rd rd-fe"></span>Aleksandr Koliada</div>
+        <div class="person"><span class="rd rd-fe"></span>Armen Nazaretyan</div>
+        <div class="person"><span class="rd rd-fe"></span>Levan Beroshvili <span style="font-size:9px;color:var(--muted);margin-left:2px;">vac Jul 6–14</span></div>
+        <div class="person"><span class="rd rd-be"></span>Shukhrat Isakdjanov</div>
+        <div class="person"><span class="rd rd-be"></span>Alexander Kutaladze</div>
+        <div class="person"><span class="rd rd-qa"></span>Saikal Bakirova</div>
+      </div>
+    </div>
+
+    <!-- SHORY PLATFORM — 8 FTE -->
+    <div class="team-card">
+      <div class="tc-hdr" style="background:#2563eb;">
+        <span class="tc-name">Shory Platform <span style="font-size:10px;font-weight:400;opacity:.8;">· stable</span></span>
+        <span class="tc-count">8</span>
+      </div>
+      <div class="tc-body">
+        <div class="person" style="width:100%"><span class="rd rd-be"></span>Vladimir Klepikov <span style="font-size:9px;color:var(--muted);margin-left:2px;">vac Jul 6–8</span></div>
+        <div class="person" style="width:100%"><span class="rd rd-be"></span>Mikhail Gusev</div>
+        <div class="person" style="width:100%"><span class="rd rd-be"></span>Yauheni Dukhounik</div>
+        <div class="person" style="width:100%"><span class="rd rd-be"></span>Evgenii Kuznetsov</div>
+        <div class="person" style="width:100%"><span class="rd rd-be"></span>Aliaksandr Paukalas</div>
+        <div class="person" style="width:100%"><span class="rd rd-be"></span>Dmitrii Platonov</div>
+        <div class="person" style="width:100%"><span class="rd rd-qa"></span>Tatsiana Severyna</div>
+        <div class="person" style="width:100%"><span class="rd rd-qa"></span>Valiantsin Boltach</div>
+      </div>
+    </div>
+
+    <!-- TAJEERI — 2→1 FTE -->
+    <div class="team-card" style="border-color:var(--red);border-width:2px;">
+      <div class="tc-hdr" style="background:#dc2626;">
+        <span class="tc-name">Tajeeri <span style="font-size:10px;opacity:.8;">⚠ 2→1 FTE · MVP mid-July</span></span>
+        <span class="tc-count">2→1</span>
+      </div>
+      <div class="tc-body">
+        <div class="person" style="width:100%;background:#edf7f1;border-radius:3px;"><span class="rd rd-fe"></span>Asylhan Ukenov &nbsp;<span style="font-size:9px;color:var(--green);font-weight:700;">stays · FE lead</span></div>
+        <div class="person exiting-soon" style="width:100%"><span class="rd rd-pm"></span>Irina Kulaga &nbsp;<span style="font-size:9px;color:#92400e;font-weight:700;">⚑ Jul 17</span></div>
+      </div>
+    </div>
+
+    <!-- SUPERAPP — 4 FTE -->
+    <div class="team-card">
+      <div class="tc-hdr" style="background:#4d7c0f;">
+        <span class="tc-name">SuperApp <span style="font-size:10px;opacity:.8;">· stable</span></span>
+        <span class="tc-count">4</span>
+      </div>
+      <div class="tc-body">
+        <div class="person" style="width:100%"><span class="rd rd-fe"></span>Ashot Martirosyan</div>
+        <div class="person" style="width:100%"><span class="rd rd-fe"></span>Giorgi Bibilashvili</div>
+        <div class="person" style="width:100%"><span class="rd rd-fe"></span>Yuriy Kalugin</div>
+        <div class="person" style="width:100%"><span class="rd rd-qa"></span>Haykanush Abelyan</div>
+      </div>
+    </div>
+
+    <!-- AI / JIRA / DS / FOUNDATION — 4 FTE -->
+    <div class="team-card" style="grid-column:span 2;">
+      <div class="tc-hdr" style="background:#475569;">
+        <span class="tc-name">AI Stream · Jira/Gov · Design System · Foundation</span>
+        <span class="tc-count">4</span>
+      </div>
+      <div class="tc-body">
+        <div class="person"><span class="rd rd-be"></span>Suat Guzel <span style="font-size:9px;color:#0891b2;background:#e0f2fe;border-radius:3px;padding:0 3px;margin-left:3px;">AI / eBroker</span></div>
+        <div class="person"><span class="rd rd-pm"></span>Anton Pakhalchuk <span style="font-size:9px;color:var(--muted);margin-left:2px;">vac Jul 6–10</span></div>
+        <div class="person"><span class="rd rd-ds"></span>Iegor Kosten <span style="font-size:9px;color:#be185d;background:#fce7f3;border-radius:3px;padding:0 3px;margin-left:3px;">Design System</span></div>
+        <div class="person"><span class="rd rd-be"></span>Katsiaryna Vintsarevich <span style="font-size:9px;color:#0369a1;background:#e0f2fe;border-radius:3px;padding:0 3px;margin-left:3px;">Foundation</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FTE summary bar -->
+  <div style="margin-top:8px;padding:11px 16px;background:white;border:1px solid var(--border);border-radius:8px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+    <div style="display:flex;gap:16px;align-items:center;">
+      <div style="text-align:center;"><div style="font-size:22px;font-weight:800;color:var(--brand);">38</div><div style="font-size:10px;color:var(--muted);">Post Jul 2</div></div>
+      <div style="font-size:18px;color:var(--muted);">→</div>
+      <div style="text-align:center;"><div style="font-size:22px;font-weight:800;color:var(--amber);">37</div><div style="font-size:10px;color:var(--muted);">Post Jul 17 (−Irina)</div></div>
+      <div style="font-size:18px;color:var(--muted);">→</div>
+      <div style="text-align:center;"><div style="font-size:22px;font-weight:800;color:var(--amber);">36</div><div style="font-size:10px;color:var(--muted);">Post Jul 22 (−Davit M)</div></div>
+    </div>
+    <div style="border-left:1px solid var(--border);padding-left:16px;display:flex;gap:10px;flex-wrap:wrap;font-size:12px;">
+      <span>Health&nbsp;<b>20</b></span>
+      <span>Shory&nbsp;<b>8</b></span>
+      <span>SuperApp&nbsp;<b>4</b></span>
+      <span>AI/DS/Jira/Found&nbsp;<b>4</b></span>
+      <span style="color:var(--red);">Tajeeri&nbsp;<b>2→1</b></span>
+    </div>
+  </div>
+
+  <!-- Closed streams box -->
+  <div class="closed-box" style="margin-top:8px;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">✓ Closed Jul 2 — Completed on Schedule</div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:12px;">
+      <span style="color:var(--grey);">Shary <span style="color:#9ca3af;">· 3 FTE exited</span></span>
+      <span style="color:var(--grey);">Esterdad / Mulem <span style="color:#9ca3af;">· 4 FTE exited</span></span>
+      <span style="color:var(--grey);">Dashboards / CFE <span style="color:#9ca3af;">· 2 FTE exited</span></span>
+      <span style="color:#9ca3af;">Davit Mkheyan (Shary/Rhoon) — exits Jul 22</span>
+    </div>
+  </div>
+
+  <!-- Exits table -->
+  <div class="exits-toggle" onclick="toggleExits()">
+    Exits Tracker — May–July 2026 · Click to expand &nbsp;<span id="exits-arrow">▼</span>
+  </div>
+  <div class="exits-body" id="exits-body">
+    <table class="exits-table">
+      <thead><tr><th>Name</th><th>Role</th><th>Last Day</th><th>Stream</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr class="exited"><td>Nadzeya Parkhimovich</td><td>Sr. QA Auto</td><td>May 15</td><td>Tajeeri</td><td>✓ Done</td></tr>
+        <tr class="exited"><td>Ruslan Batkaev</td><td>Sr. BE</td><td>May 22</td><td>Tajeeri</td><td>✓ Done</td></tr>
+        <tr class="exited"><td>Andrii Litoshko</td><td>Sr. BE</td><td>May 31</td><td>Shary</td><td>✓ Done</td></tr>
+        <tr class="exited"><td>Mikhail Burnin</td><td>Sr. FE</td><td>Jun 2</td><td>Tajeeri</td><td>✓ Done</td></tr>
+        <tr class="exited"><td>Viktor Dolzhukov</td><td>Sr. BE</td><td>Jun 5</td><td>Shory</td><td>✓ Done</td></tr>
+        <tr class="exited"><td>Varduhi Mkrtchyan</td><td>QA</td><td>Jun 5</td><td>Tajeeri</td><td>✓ Done</td></tr>
+        <tr class="exited"><td>Kubatbek Mirzabekuulu</td><td>BE</td><td>Jun 12</td><td>Shory/Marine</td><td>✓ Done</td></tr>
+        <tr class="exited"><td>Aliaksandr Mikhin</td><td>BE</td><td>Jun 19</td><td>Shory/KSA Motor</td><td>✓ Done</td></tr>
+        <tr class="done-jul2"><td>Nursultan Ashenov</td><td>BE</td><td>Jul 2</td><td>Tajeeri</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Gokhan Ozdemir</td><td>FE</td><td>Jul 2</td><td>Tajeeri</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Nikoloz Gabisona</td><td>FE</td><td>Jul 2</td><td>Tajeeri</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Ivan Maslov</td><td>QA</td><td>Jul 2</td><td>Tajeeri</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Ilya Kukharenka</td><td>QA</td><td>Jul 2</td><td>Tajeeri</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Ana Ghvinjilia</td><td>QA</td><td>Jul 2</td><td>Shary — stream closed</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Davit Kuzanashvili</td><td>BE</td><td>Jul 2</td><td>Shary — stream closed</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Javohir Sadirov</td><td>BE</td><td>Jul 2</td><td>Shary — stream closed</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Assylken Taukenov</td><td>FE</td><td>Jul 2</td><td>Esterdad — stream closed</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Ashot Ohanyan</td><td>BE</td><td>Jul 2</td><td>Esterdad — stream closed</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Artsiom Ramanenia</td><td>BE</td><td>Jul 2</td><td>Esterdad — stream closed</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Mert Efe</td><td>FE</td><td>Jul 2</td><td>Mulem — stream closed</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Davut Kara</td><td>FE</td><td>Jul 2</td><td>Dashboards — stream closed</td><td>✓ Done Jul 2</td></tr>
+        <tr class="done-jul2"><td>Dziyana Yankouskaya</td><td>FE</td><td>Jul 2</td><td>Dashboards — stream closed</td><td>✓ Done Jul 2</td></tr>
+        <tr class="upcoming-late"><td><strong>Irina Kulaga</strong></td><td>PM/QA</td><td><strong>Jul 17</strong></td><td>Tajeeri</td><td>⚑ Planned · final QA oversight</td></tr>
+        <tr class="upcoming-late"><td><strong>Davit Mkheyan</strong></td><td>BE</td><td><strong>Jul 22</strong></td><td>Rhoon/Shary</td><td>⚑ Planned · project wrap</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ WINS ══ -->
+<section class="chapter" id="wins">
+  <div class="ch-title"><span class="ch-num">2</span>Wins &amp; Achievements — Week 27</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:10px;">
+    <div style="background:linear-gradient(135deg,#1b7a3e,#16a34a);color:white;border-radius:9px;padding:14px 16px;">
+      <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#a7f3d0;margin-bottom:4px;">Transition</div>
+      <div style="font-size:14px;font-weight:800;margin-bottom:4px;">Jul 2 — Executed on Plan ✓</div>
+      <div style="font-size:11.5px;color:#d1fae5;">3 streams closed, 15 exits coordinated cleanly. Account stabilised at 38 FTE core. No delivery disruption to active streams.</div>
+    </div>
+    <div style="background:linear-gradient(135deg,#1e3a5f,#2563eb);color:white;border-radius:9px;padding:14px 16px;">
+      <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#93c5fd;margin-bottom:4px;">Client Engagement</div>
+      <div style="font-size:14px;font-weight:800;margin-bottom:4px;">Q2 Performance Evaluation — Launched ✓</div>
+      <div style="font-size:11.5px;color:#bfdbfe;">Evaluation cycle sent Jun 29 to all key FirstTech managers: Devendra, Arun, Ramadan, Karthik, Karim, Zuber. Structured feedback loop established.</div>
+    </div>
+    <div style="background:linear-gradient(135deg,#16a34a,#0d9488);color:white;border-radius:9px;padding:14px 16px;">
+      <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#a7f3d0;margin-bottom:4px;">Health SME</div>
+      <div style="font-size:14px;font-weight:800;margin-bottom:4px;">Production Sprint — Active &amp; On Track ✓</div>
+      <div style="font-size:11.5px;color:#d1fae5;">20 FTE team fully stable. Production sprint running with no disruption from the transition week. Josoor + Visit Visa both progressing.</div>
+    </div>
+  </div>
+
+  <div class="wins-grid">
+
+    <div class="win-card hl" id="w_dashboards">
+      <div class="win-top" onclick="toggleWin('w_dashboards')">
+        <div class="win-top-row"><span class="win-label wl-ok">Completed ✓</span><span class="toggle-icon" style="font-size:13px;">▼</span></div>
+        <div class="win-title">Dashboards / CFE — 5 Dashboards on PROD · Final Deliverable Closed</div>
+        <div class="win-sub">All 5 Power BI dashboards delivered to production. Final handover deck completed. Stream closed Jul 2 on plan.</div>
+      </div>
+      <div class="win-detail"><ul>
+        <li>All 5 dashboards delivered to PROD before stream closure — full scope completed.</li>
+        <li>Final handover deck prepared and handed over to FirstTech as part of closure.</li>
+        <li>DSM sessions held with client team — knowledge transfer complete.</li>
+        <li>2 FTE (Davut Kara, Dziyana Yankouskaya) exited Jul 2 with clean handoff. No outstanding items.</li>
+        <li>Stream fully closed on plan — zero escalations, zero outstanding deliverables.</li>
+      </ul></div>
+    </div>
+
+    <div class="win-card hl" id="w_ds">
+      <div class="win-top" onclick="toggleWin('w_ds')">
+        <div class="win-top-row"><span class="win-label wl-new">New This Week</span><span class="toggle-icon" style="font-size:13px;">▼</span></div>
+        <div class="win-title">Design System — Government Portal Integration Approved</div>
+        <div class="win-sub">After ~3 years of attempts, client approved designs and greenlit the auto-insurance government portal integration. First of several similar integrations expected.</div>
+      </div>
+      <div class="win-detail"><ul>
+        <li>Client approval received this week (source: Iegor Kosten catchup, Jul 1) — long-pending government portal integration design finally signed off.</li>
+        <li>Client indicated this is the first of several similar government integrations expected — potential recurring workstream.</li>
+        <li>Commercial vehicle insurance-related design work also in progress on the same track.</li>
+        <li>EPAM Design System team (Iegor Kosten) positioned to lead follow-on integrations.</li>
+      </ul></div>
+    </div>
+
+    <div class="win-card" id="w_motor">
+      <div class="win-top" onclick="toggleWin('w_motor')">
+        <div class="win-top-row"><span class="win-label wl-ok">Shory</span><span class="toggle-icon" style="font-size:13px;">▼</span></div>
+        <div class="win-title">Shory Motor KT — Val Boltach On Track for QA Automation by August</div>
+        <div class="win-sub">KT progressing. At completion, Valiantsin Boltach gains 50% capacity for QA automation setup — early August target.</div>
+      </div>
+      <div class="win-detail"><ul>
+        <li>KT on Shory Motor progressing with Valiantsin Boltach.</li>
+        <li>At 100% KT completion: Val gains 50% capacity for QA automation setup on the project.</li>
+        <li>Target: automation framework ready by early August — quality improvement without additional headcount.</li>
+        <li>Tatsiana Severyna provides QA continuity during TL (Vladimir) leave Jul 6–8.</li>
+      </ul></div>
+    </div>
+
+    <div class="win-card" id="w_superapp">
+      <div class="win-top" onclick="toggleWin('w_superapp')">
+        <div class="win-top-row"><span class="win-label wl-ok">SuperApp</span><span class="toggle-icon" style="font-size:13px;">▼</span></div>
+        <div class="win-title">SuperApp — Delivery Cadence Maintained Through Transition Week</div>
+        <div class="win-sub">Bi-weekly release cadence on schedule. Team stable. No disruption from surrounding transition activity.</div>
+      </div>
+      <div class="win-detail"><ul>
+        <li>SuperApp team (Ashot, Giorgi, Yuriy, Haykanush) stable — no exits.</li>
+        <li>Bi-weekly release cadence maintained.</li>
+        <li>Q2 performance eval sent to Karim and Zuber Jun 29 — proactive client alignment.</li>
+        <li>QA: Haykanush Abelyan cross-aligned with Katsiaryna Vintsarevich (Foundation) — coordinated approach across platform.</li>
+        <li>⚠ Client feedback on individual delivery consistency raised this week (Jul 2) — see Risks section. Action plan already underway.</li>
+      </ul></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ STREAMS ══ -->
+<section class="chapter" id="streams">
+  <div class="ch-title"><span class="ch-num">3</span>Live Delivery Streams — W27</div>
+
+  <div class="stream-row">
+    <div class="stream-top" onclick="toggle(this)">
+      <div><div class="stream-name">Health Insurance — KSA SME</div><div class="stream-sub">20 FTE · Josoor · Visit Visa · Production sprint · 80% Meet+</div></div>
+      <span class="chip c-green">GREEN</span>
+      <div class="stream-hl">Strongest stream. Production sprint active. Visit Visa near UAT. Day-to-day ownership moved to Mustafa (Jul 1). Levan vacation Jul 6–14 — FE coverage to manage.</div>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="stream-detail"><div class="detail-grid">
+      <div class="detail-block"><h5>Progress This Week</h5><ul>
+        <li>Production sprint running — no disruption from transition.</li>
+        <li>Visit Visa: near UAT, dev pace improved this week; next-phase budget not yet confirmed — Requires confirmation.</li>
+        <li>80% Meet+ performance — highest on account.</li>
+        <li>Q2 performance evaluation sent to Devendra Jun 29 (pre-handover).</li>
+      </ul></div>
+      <div class="detail-block"><h5>Watch Items</h5><ul>
+        <li><strong>New (Jul 1):</strong> Devendra formally stepped back to an escalation-only role; Mustafa (FirstTech) now holds day-to-day approver responsibilities for Josoor/Visit Visa. EPAM keeping Devendra cc'd on approvals as a careful escalation lever.</li>
+        <li><strong>New (Jul 1):</strong> Most Minsk-based QA staff (incl. Yuliya Baranouskaya) lack Azure DevOps access — only Chertkov and Mustafa currently have it, which can delay fresh test-data deployment. See Risks.</li>
+        <li><strong>New (Jul 1):</strong> If Devendra/Mustafa staff Visit Visa/Josoor with only Ina Fedarenka plus a single client-side QA contractor, and pull Ina onto another product at the same time, QA coverage would be thin. See Risks.</li>
+        <li>Levan Beroshvili on vacation Jul 6–14 — plan FE coverage for production sprint period.</li>
+        <li>Q2 eval response pending from Devendra/Mustafa.</li>
+      </ul></div>
+    </div></div>
+  </div>
+
+  <div class="stream-row">
+    <div class="stream-top" onclick="toggle(this)">
+      <div><div class="stream-name">Tajeeri — Car Rental (Abu Dhabi Police MVP)</div><div class="stream-sub">2→1 FTE · MVP mid-July · Asylhan (stays) + Irina (Jul 17)</div></div>
+      <span class="chip c-red">CRITICAL</span>
+      <div class="stream-hl">5 engineers exited Jul 2. Asylhan Ukenov is lead FE. Irina Kulaga provides QA oversight until Jul 17. MVP mid-July requires FirstTech decision on path forward.</div>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="stream-detail"><div class="detail-grid">
+      <div class="detail-block"><h5>Current State</h5><ul>
+        <li>Jul 2: Nursultan, Gokhan, Nikoloz, Ivan, Ilya exited as planned.</li>
+        <li>Remaining: Asylhan Ukenov (FE lead, permanent) + Irina Kulaga (PM/QA, until Jul 17).</li>
+        <li>Asylhan is the sole technical resource for Tajeeri MVP continuation.</li>
+        <li>Irina provides QA and coordination oversight for 2 more weeks.</li>
+        <li>Sprint 16+17 demo was delivered Jun 22 — positive delivery signal.</li>
+      </ul></div>
+      <div class="detail-block"><h5>Critical Gaps</h5><ul>
+        <li>MVP mid-July: 1 FE alone cannot deliver full Abu Dhabi Police go-live scope.</li>
+        <li>KT documentation status: requires confirmation from client-side acceptance.</li>
+        <li>No replacement team decision received from FirstTech.</li>
+        <li>After Jul 17: Tajeeri is 1 FTE only — Asylhan — with no QA/PM coverage.</li>
+      </ul><span class="ftag">CSO: MVP path with 1-2 FTE — decision needed</span></div>
+    </div></div>
+  </div>
+
+  <div class="stream-row">
+    <div class="stream-top" onclick="toggle(this)">
+      <div><div class="stream-name">Shory Platform</div><div class="stream-sub">8 FTE · Marine · KSA Motor · Core · Vladimir Jul 6–8 status — requires confirmation</div></div>
+      <span class="chip c-amber">AMBER</span>
+      <div class="stream-hl">8 FTE stable. Motor KT progressing with Val Boltach. SDLC governance channel open but no formal commitments yet. Vladimir reassigned to cover client-side gap — Jul 6–8 vacation status needs reconfirming.</div>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="stream-detail"><div class="detail-grid">
+      <div class="detail-block"><h5>Progress</h5><ul>
+        <li>8 FTE stable — no exits in this stream.</li>
+        <li>Shory Motor KT: progressing with Val Boltach. QA automation setup targeted August.</li>
+        <li>SDLC governance channel open with Maruf — initial catchup completed Jun 24.</li>
+        <li>Q2 performance eval sent to Karthik Jun 29.</li>
+      </ul></div>
+      <div class="detail-block"><h5>Risks</h5><ul>
+        <li>SDLC governance: no formal commitments from Maruf / Basir / Imran yet. 10+ weeks without sign-off.</li>
+        <li>Maruf vacation risk — dates TBC. SDLC decisions stall if he's absent.</li>
+        <li><strong>New (Jul 1):</strong> Vladimir Klepikov reassigned to cover a client-side gap (Ajmal, ~1 month leave) with sprint-planning scope still being clarified. This reassignment appears to have overridden his own previously planned Jul 6–8 leave — current status requires confirmation before this week's coverage plan is finalized.</li>
+        <li><strong>New (Jun 30):</strong> KSA Motor — two native product sign-offs slipped to Friday due to client-side QA scheduling availability; Dmitrii Platonov checking whether EPAM QA involvement can help unblock.</li>
+        <li>No dedicated BA: requirements reconciliation remains a SPOF.</li>
+      </ul><span class="ftag">CSO: SDLC sign-off before Maruf's vacation; confirm Vladimir's coverage plan</span></div>
+    </div></div>
+  </div>
+
+  <div class="stream-row">
+    <div class="stream-top" onclick="toggle(this)">
+      <div><div class="stream-name">SuperApp</div><div class="stream-sub">4 FTE · Bi-weekly releases · Client feedback on consistency (new) · Q3 roadmap TBC</div></div>
+      <span class="chip c-amber">AMBER</span>
+      <div class="stream-hl">Team stable and delivering; release cadence maintained. Client raised delivery-consistency feedback on one team member this week — mitigation plan already in motion. Q3 roadmap not yet confirmed.</div>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="stream-detail"><div class="detail-grid">
+      <div class="detail-block"><h5>Status</h5><ul>
+        <li>4 FTE stable — no exits.</li>
+        <li>Bi-weekly release cadence maintained through transition week.</li>
+        <li>Karim: productive and engaged. Q2 eval sent Jun 29.</li>
+        <li>Haykanush: QA aligned with Katsiaryna (Foundation) for coordinated coverage.</li>
+      </ul></div>
+      <div class="detail-block"><h5>Watch</h5><ul>
+        <li><strong>New (Jul 2):</strong> Karim raised delivery-consistency feedback regarding Giorgi Bibilashvili (previously a strong performer) — first formal client comment of this kind. See Risks for full context and mitigation plan.</li>
+        <li>Q3 roadmap not confirmed — raise at next sprint review with Karim.</li>
+        <li>Zuber engagement: Q2 eval sent Jun 29. Awaiting response (prior catchup declined Jun 25).</li>
+      </ul></div>
+    </div></div>
+  </div>
+
+  <div class="stream-row">
+    <div class="stream-top" onclick="toggle(this)">
+      <div><div class="stream-name">AI Stream · Jira/Governance · Design System · Foundation</div><div class="stream-sub">4 FTE · Suat · Anton (vac Jul 6–10) · Iegor · Katsiaryna</div></div>
+      <span class="chip c-amber">AMBER</span>
+      <div class="stream-hl">Design System win: government portal integration approved this week. Anton on vacation Jul 6–10 — Jira/governance coverage gap. Hazem (AI direction) remains unreachable.</div>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="stream-detail"><div class="detail-grid">
+      <div class="detail-block"><h5>Status</h5><ul>
+        <li>Suat Guzel: AI/eBroker work continuing.</li>
+        <li><strong>New (Jul 1):</strong> Iegor Kosten — client approved the auto-insurance government portal integration design after ~3 years of attempts. Commercial vehicle insurance design work also in progress. First of several similar integrations expected — see Opportunities.</li>
+        <li>Katsiaryna Vintsarevich: Foundation platform stable.</li>
+        <li>Anton Pakhalchuk: Jira/governance on vacation Jul 6–10 — limited governance coverage this week.</li>
+      </ul></div>
+      <div class="detail-block"><h5>Risks</h5><ul>
+        <li>Hazem (AI Stream): still unreachable — AI programme direction remains unclear.</li>
+        <li>Anton absence Jul 6–10 — Jira governance and any process approvals on hold.</li>
+        <li>Follow-on government/commercial-vehicle integration scope and timeline not yet confirmed by client — Requires confirmation.</li>
+      </ul></div>
+    </div></div>
+  </div>
+
+  <!-- Closed streams -->
+  <div style="margin-top:8px;padding:10px 14px;background:#f8fafc;border:1px solid #d1d5db;border-radius:8px;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">✓ Closed Jul 2 — Scope Delivered, Streams Wrapped</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+      <div style="background:white;border:1px solid var(--border);border-radius:6px;padding:8px 10px;">
+        <div style="font-weight:700;font-size:12px;color:var(--grey);">Shary</div>
+        <div style="font-size:11px;color:var(--muted);">3 FTE exited Jul 2 · ADCB scope delivered</div>
+        <div style="font-size:11px;margin-top:3px;color:var(--grey);">Closed. Davit Mkheyan (Rhoon) exits Jul 22.</div>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:6px;padding:8px 10px;">
+        <div style="font-weight:700;font-size:12px;color:var(--grey);">Esterdad / Mulem</div>
+        <div style="font-size:11px;color:var(--muted);">4 FTE exited Jul 2 · pre-production scope delivered</div>
+        <div style="font-size:11px;margin-top:3px;color:var(--grey);">Closed. Team wrapped cleanly.</div>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:6px;padding:8px 10px;">
+        <div style="font-weight:700;font-size:12px;color:var(--grey);">Dashboards / CFE</div>
+        <div style="font-size:11px;color:var(--muted);">2 FTE exited Jul 2 · 5 dashboards on PROD</div>
+        <div style="font-size:11px;margin-top:3px;color:var(--grey);">Closed. All dashboards live.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RISKS ══ -->
+<section class="chapter" id="risks">
+  <div class="ch-title"><span class="ch-num">4</span>Key Risks — Active</div>
+  <div class="risks-list">
+
+    <div class="risk-row r-high">
+      <div class="risk-top" onclick="toggleRisk(this)">
+        <div><div class="risk-name">Tajeeri — 1–2 FTE · MVP Mid-July · No Replacement Decision</div><div class="risk-area">Tajeeri · Abu Dhabi Police MVP</div></div>
+        <span class="chip c-red">CRITICAL</span>
+        <div class="risk-impact">5 engineers exited Jul 2. Only Asylhan Ukenov (FE) remains permanently. Irina Kulaga (QA/PM) until Jul 17 only. MVP delivery with 1-2 FTE is not feasible without scope reduction or replacement. No decision received from FirstTech.</div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="risk-detail"><div class="risk-inner">
+        <div class="risk-block"><h5>Situation</h5><ul>
+          <li>Jul 2 exits completed: Nursultan (BE), Gokhan (FE), Nikoloz (FE), Ivan (QA), Ilya (QA).</li>
+          <li>Remaining: Asylhan Ukenov (FE, permanent) + Irina Kulaga (QA/PM, until Jul 17 only).</li>
+          <li>Abu Dhabi Police MVP: targeted mid-July — approximately 2 weeks from Jul 3.</li>
+          <li>Current team cannot deliver full MVP scope without additional support.</li>
+          <li>KT documentation delivered — client-side acceptance requires confirmation.</li>
+        </ul></div>
+        <div class="risk-block"><h5>Mitigation</h5><ul>
+          <li>EPAM is ready to provide replacement team on short notice if FirstTech decides to continue.</li>
+          <li>Alternative: MVP scope reduction to match 1-FTE capacity.</li>
+          <li>Irina Kulaga provides QA and coordination until Jul 17 — 2-week window for decision.</li>
+          <li>Raise at CSO sync today — decision window closing.</li>
+        </ul><span class="ftag">CSO: MVP plan with 1-2 FTE — decision needed this week</span></div>
+      </div></div>
+    </div>
+
+    <div class="risk-row r-high">
+      <div class="risk-top" onclick="toggleRisk(this)">
+        <div><div class="risk-name">Shory SDLC — 10+ Weeks Without Sign-Off · Maruf Vacation Risk</div><div class="risk-area">Shory Platform · Maruf Molla</div></div>
+        <span class="chip c-red">HIGH</span>
+        <div class="risk-impact">SDLC governance channel opened with Maruf (Jun 24) but no formal commitments received from Basir or Imran. Maruf vacation dates unconfirmed — risk of further delay. Vladimir TL absent Jul 6–8.</div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="risk-detail"><div class="risk-inner">
+        <div class="risk-block"><h5>Context</h5><ul>
+          <li>SDLC governance for Shory Platform: stalled 10+ weeks. No sprint cadence, no DoR/DoD in place.</li>
+          <li>Maruf catchup Jun 24 ✓ — first formal session. SDLC plan and Travel Insurance scope raised.</li>
+          <li>No response or commitments from Basir / Imran on SDLC structure.</li>
+          <li>Maruf vacation risk flagged — if absent before sign-off, SDLC delays further.</li>
+          <li>Vladimir Klepikov (TL) on vacation Jul 6–8 — Tatsiana Severyna covering.</li>
+        </ul></div>
+        <div class="risk-block"><h5>Mitigation</h5><ul>
+          <li>Confirm Maruf's vacation dates this week — before any SDLC commitments are expected.</li>
+          <li>If Maruf is unavailable, escalate Shory SDLC via Konstantin to Basir directly.</li>
+          <li>Tatsiana Severyna covers QA and team decisions during Vladimir's leave.</li>
+        </ul><span class="ftag">CSO: can Konstantin facilitate Shory SDLC sign-off?</span></div>
+      </div></div>
+    </div>
+
+    <div class="risk-row r-med">
+      <div class="risk-top" onclick="toggleRisk(this)">
+        <div><div class="risk-name">Health SME — FE Coverage Gap · Levan Vacation Jul 6–14</div><div class="risk-area">Health SME · Production Sprint</div></div>
+        <span class="chip c-amber">MEDIUM</span>
+        <div class="risk-impact">Levan Beroshvili (FE) on vacation Jul 6–14. Production sprint is active during this period. FE capacity reduced — plan coordination with Devendra needed.</div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="risk-detail"><div class="risk-inner">
+        <div class="risk-block"><h5>Context</h5><p style="font-size:12px;">Production sprint is the highest-priority delivery milestone for Health SME this month. Levan's vacation creates a temporary FE capacity gap during this critical period. 3 FE remain active (Khrystsina, Aleksandr, Armen) — coverage is manageable but tight.</p></div>
+        <div class="risk-block"><h5>Mitigation</h5><ul>
+          <li>Align with Devendra on production sprint scope vs. FE capacity for Jul 6–14.</li>
+          <li>Prioritise production sprint tasks before Levan's vacation starts.</li>
+          <li>3 FE active during coverage period — no escalation expected but monitor closely.</li>
+        </ul></div>
+      </div></div>
+    </div>
+
+    <div class="risk-row r-med">
+      <div class="risk-top" onclick="toggleRisk(this)">
+        <div><div class="risk-name">Stakeholder Access — Hazem Unreachable · Q2 Evals Awaited</div><div class="risk-area">AI Stream · All Streams</div></div>
+        <span class="chip c-amber">MEDIUM</span>
+        <div class="risk-impact">Hazem (AI Stream direction) remains unreachable — Suat Guzel's programme direction unclear. Q2 performance evaluations sent to all managers Jun 29 — responses pending from Devendra, Arun, Karthik, Karim, Zuber.</div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="risk-detail"><div class="risk-inner">
+        <div class="risk-block"><h5>Status</h5><ul>
+          <li>Hazem: AI Stream direction still unclear. No response to date. Monitoring only.</li>
+          <li>Q2 Eval: responses awaited — if not received within 1–2 weeks, follow-up needed.</li>
+          <li>Active &amp; responsive: Devendra ✓ · Arun &amp; Ramadan ✓ · Karim ✓ · Maruf ✓</li>
+        </ul></div>
+        <div class="risk-block"><h5>Approach</h5><p style="font-size:12px;">No active escalation planned. Monitoring stakeholder engagement. Q2 eval responses will surface any feedback or concerns organically. Hazem — flagged for CSO awareness only.</p></div>
+      </div></div>
+    </div>
+
+    <div class="risk-row r-med">
+      <div class="risk-top" onclick="toggleRisk(this)">
+        <div><div class="risk-name">SuperApp — Client Feedback on Delivery Consistency (New)</div><div class="risk-area">SuperApp · Giorgi Bibilashvili</div></div>
+        <span class="chip c-amber">MEDIUM</span>
+        <div class="risk-impact">Karim relayed direct feedback on Jul 2 regarding inconsistent pace on straightforward tickets. First formal comment of this kind for a previously strong-performing team member. Mitigation actions already assigned.</div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="risk-detail"><div class="risk-inner">
+        <div class="risk-block"><h5>Context</h5><ul>
+          <li>Client feedback (via Karim, Jul 2): delivery described as inconsistent, slower than expected on straightforward tickets.</li>
+          <li>This is the first formal comment of this nature — the individual was previously regarded as a top performer and informal team lead.</li>
+          <li>Root cause not yet established; requires further clarification before conclusions are drawn.</li>
+        </ul></div>
+        <div class="risk-block"><h5>Mitigation</h5><ul>
+          <li>Review Jira backlog and build a concrete speed-up plan — identify what's blocking and what can be accelerated (owner: Giorgi, started Jul 2).</li>
+          <li>Direct sync with Karim to capture specific, actionable feedback rather than general impressions.</li>
+          <li>Progress to be reviewed at next weekly catchup; escalate only if no improvement is visible.</li>
+        </ul><span class="ftag">Internal — monitor, no CSO action needed this week</span></div>
+      </div></div>
+    </div>
+
+    <div class="risk-row r-med">
+      <div class="risk-top" onclick="toggleRisk(this)">
+        <div><div class="risk-name">Health SME — QA Coverage Concentration Risk (New)</div><div class="risk-area">Health SME · Visit Visa / Josoor</div></div>
+        <span class="chip c-amber">MEDIUM</span>
+        <div class="risk-impact">If Visit Visa/Josoor QA is staffed with only Ina Fedarenka plus one client-side contractor, and Ina is pulled onto another product at the same time, QA throughput could slow during an active release period.</div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="risk-detail"><div class="risk-inner">
+        <div class="risk-block"><h5>Context</h5><ul>
+          <li>Raised by Ina Fedarenka (Jul 1 catchup) as a forward-looking capacity concern under the new Mustafa-led approval structure.</li>
+          <li>Visit Visa is near UAT — QA capacity during this window is delivery-critical.</li>
+          <li>Contractor performance/coverage level requires confirmation from client side.</li>
+        </ul></div>
+        <div class="risk-block"><h5>Mitigation</h5><ul>
+          <li>Ina has proposed Dima Kovalchuk as potential backup/lead-cover QA if a solo assignment scenario materializes.</li>
+          <li>Flag staffing plan with Mustafa before any reassignment is finalized.</li>
+          <li>Monitor UAT readiness weekly; escalate only if coverage gap becomes concrete.</li>
+        </ul><span class="ftag">Requires confirmation from FirstTech on planned QA staffing</span></div>
+      </div></div>
+    </div>
+
+    <div class="risk-row r-med">
+      <div class="risk-top" onclick="toggleRisk(this)">
+        <div><div class="risk-name">Health SME — Azure DevOps Access Gap for QA (New)</div><div class="risk-area">Health SME · QA / Test Data</div></div>
+        <span class="chip c-amber">MEDIUM</span>
+        <div class="risk-impact">Most Minsk-based QA staff, including Yuliya Baranouskaya, lack Azure DevOps access. Only Chertkov and Mustafa currently have it, which can delay fresh test-data deployment.</div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="risk-detail"><div class="risk-inner">
+        <div class="risk-block"><h5>Context</h5><p style="font-size:12px;">Raised in Jul 1 catchups (Yulia Baranouskaya, Aliaksandr Yanachkin). Access is provisioned client-side; EPAM cannot self-serve this.</p></div>
+        <div class="risk-block"><h5>Mitigation</h5><ul>
+          <li>Request Azure DevOps access provisioning for affected QA staff via Mustafa.</li>
+          <li>In the interim, route urgent test-data deployment requests through Chertkov or Mustafa.</li>
+        </ul><span class="ftag">CSO / FirstTech: provision Azure DevOps access for EPAM QA</span></div>
+      </div></div>
+    </div>
+
+    <div class="risk-row r-med">
+      <div class="risk-top" onclick="toggleRisk(this)">
+        <div><div class="risk-name">Shory — Vladimir Reassignment Overlaps Planned Leave (New)</div><div class="risk-area">Shory Platform</div></div>
+        <span class="chip c-amber">MEDIUM</span>
+        <div class="risk-impact">Vladimir Klepikov was reassigned (Jul 1) to cover a client-side gap (Ajmal, ~1 month leave) mid-way through his own vacation request, with scope still being clarified at sprint planning. His previously noted Jul 6–8 leave status needs reconfirming.</div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="risk-detail"><div class="risk-inner">
+        <div class="risk-block"><h5>Context</h5><ul>
+          <li>Reassignment communicated same-day as sprint planning — scope Vladimir inherits vs. what the team can absorb is still being clarified.</li>
+          <li>Unclear whether Vladimir's Jul 6–8 leave still stands, was deferred, or was replaced by the new assignment — Requires confirmation.</li>
+        </ul></div>
+        <div class="risk-block"><h5>Mitigation</h5><ul>
+          <li>Get clarity from sprint planning on inherited scope vs. team capacity (owner: Vladimir + team).</li>
+          <li>Zuber following up with client stakeholder for resolution on the overlap.</li>
+          <li>Confirm Vladimir's actual availability Jul 6–8 before finalizing this week's coverage plan (Tatsiana Severyna as fallback QA/TL continuity).</li>
+        </ul><span class="ftag">Requires confirmation: Vladimir's Jul 6–8 availability</span></div>
+      </div></div>
+    </div>
+
+    <div class="risk-row r-low">
+      <div class="risk-top" onclick="toggleRisk(this)">
+        <div><div class="risk-name">Shory KSA Motor — Release Slipped on Client-Side QA Scheduling (New)</div><div class="risk-area">Shory Platform · KSA Motor</div></div>
+        <span class="chip c-grey">LOW</span>
+        <div class="risk-impact">Two native product sign-offs moved to Friday due to client-side QA scheduling availability. Dmitrii Platonov is checking whether EPAM QA involvement can help unblock.</div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="risk-detail"><div class="risk-inner">
+        <div class="risk-block"><h5>Context</h5><p style="font-size:12px;">Raised Jun 30 (Dmitrii Platonov catchup). Root cause is client-side QA availability/scheduling, not EPAM delivery pace.</p></div>
+        <div class="risk-block"><h5>Mitigation</h5><ul>
+          <li>Dmitrii to confirm whether EPAM QA can be looped in to help move sign-offs earlier.</li>
+          <li>Monitor for recurrence — flag if this becomes a pattern affecting release cadence.</li>
+        </ul></div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ DELIVERY FOCUS ══ -->
+<section class="chapter" id="focus">
+  <div class="ch-title"><span class="ch-num">5</span>Delivery Focus — Week 27 / 28</div>
+  <div class="mit-tabs">
+    <button class="mit-tab active" onclick="switchTab(this,'doing')">EPAM Delivering</button>
+    <button class="mit-tab" onclick="switchTab(this,'client')">Awaiting Client Input</button>
+  </div>
+
+  <div id="doing" class="mit-panel active">
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">Health SME — Production Sprint Delivery</div><div class="mit-desc">Production sprint is active. Priority: manage FE coverage during Levan's vacation (Jul 6–14). Coordinate sprint scope with Devendra to avoid overcommitment against reduced FE capacity. Yuliya Baranouskaya leading sprint management.</div></div>
+      <span class="pill pill-ok">Active · On Track</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">Tajeeri — Asylhan Ukenov Leading Remaining MVP Deliverables</div><div class="mit-desc">Asylhan Ukenov is the sole FE resource on Tajeeri post-Jul 2. Irina Kulaga provides QA and project oversight until Jul 17. EPAM is managing handoff continuity — client-side MVP scope decision is the outstanding dependency.</div></div>
+      <span class="pill pill-pending">Active · Awaiting Client Decision</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">Shory Motor — KT Completion &amp; QA Automation Setup</div><div class="mit-desc">Val Boltach completing KT on Shory Motor. Target: 100% KT done → 50% Val capacity freed for QA automation setup by early August. Tatsiana Severyna covers QA continuity during Vladimir's leave Jul 6–8.</div></div>
+      <span class="pill pill-ok">In Progress · August Target</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">SuperApp — Bi-Weekly Release Cadence</div><div class="mit-desc">Team of 4 delivering on cadence. No disruption from transition week. Q3 scope to be raised with Karim at next sprint review. Haykanush QA cross-aligned with Foundation for consistent platform coverage.</div></div>
+      <span class="pill pill-ok">On Track</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">Q2 Performance Evaluation — Collecting Stakeholder Feedback</div><div class="mit-desc">Evaluation forms sent Jun 29 to all key FirstTech managers. Collecting responses over the next 1–2 weeks. Will use feedback to align on team performance and flag any concerns before Q3 planning.</div></div>
+      <span class="pill pill-pending">Sent · Awaiting Responses</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">Jira/Governance Coverage — Anton Returns Jul 10</div><div class="mit-desc">Anton Pakhalchuk on vacation Jul 6–10. Governance and Jira approvals will resume Jul 10. No critical process actions expected during this period. Plan accordingly.</div></div>
+      <span class="pill pill-ok">Managed · Returns Jul 10</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">SuperApp — Jira Backlog Review &amp; Speed-Up Plan for Giorgi</div><div class="mit-desc">Following Karim's Jul 2 feedback, reviewing the Jira backlog to identify blockers and build a concrete plan to improve ticket throughput. Direct sync with Karim planned to capture specific, actionable feedback.</div></div>
+      <span class="pill pill-pending">In Progress</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">Health SME — Adjust to New Approval Structure Under Mustafa</div><div class="mit-desc">Day-to-day approvals now route through Mustafa (effective Jul 1). Keeping Devendra cc'd on approvals as a careful escalation lever without undermining the new structure. Monitoring for process friction during the transition.</div></div>
+      <span class="pill pill-ok">Adapting</span>
+    </div></div>
+  </div>
+
+  <div id="client" class="mit-panel">
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">1. Tajeeri MVP — Scope or Continuation Decision</div><div class="mit-desc">Asylhan Ukenov (1 FE) + Irina Kulaga (until Jul 17) cannot deliver full Abu Dhabi Police MVP scope. FirstTech must decide: (a) bring in replacement team — EPAM ready; (b) reduce MVP scope to match 1-FTE capacity; (c) formally accept risk and delay. Window for decision is closing — Irina exits Jul 17.</div></div>
+      <span class="pill pill-blocked">Awaiting FirstTech · Urgent</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">2. Shory SDLC — Formal Commitments from Maruf / Basir / Imran</div><div class="mit-desc">SDLC governance channel is open. SDLC plan and Travel Insurance scope have been tabled. Formal commitments needed before Maruf's vacation (dates TBC). Without sign-off, sprint cadence and delivery structure improvements cannot proceed.</div></div>
+      <span class="pill pill-blocked">Awaiting Shory PMs</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">3. Q2 Performance Evaluations — Responses from All Managers</div><div class="mit-desc">Evaluation sent Jun 29 to Devendra, Arun, Ramadan, Karthik, Karim, Zuber. Responses needed to close the Q2 cycle and align on team performance ahead of Q3. If no response in 2 weeks, follow-up with Konstantin's support.</div></div>
+      <span class="pill pill-pending">Awaiting Responses</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">4. SuperApp — Q3 Feature Roadmap Confirmation</div><div class="mit-desc">Q3 scope not yet confirmed by Karim or Zuber. Team of 4 is stable and available. Raise at next sprint review — need at least 2–3 weeks' advance notice for any scope or team sizing changes.</div></div>
+      <span class="pill pill-pending">Raise at Next Sprint Review</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">5. Health SME — Azure DevOps Access &amp; QA Staffing Confirmation</div><div class="mit-desc">Requesting Azure DevOps access provisioning for Minsk-based QA staff, and confirmation of planned QA staffing for Visit Visa/Josoor under the new Mustafa-led structure to avoid a single-QA concentration risk during the near-UAT window.</div></div>
+      <span class="pill pill-blocked">Awaiting Mustafa / FirstTech</span>
+    </div></div>
+    <div class="mit-item"><div class="mit-top">
+      <div><div class="mit-title">6. Design System — Confirm Follow-On Government Integration Scope</div><div class="mit-desc">Government portal integration approved this week; client indicated more similar integrations are expected. Requesting scope, timeline, and prioritization for follow-on work to plan Design System team capacity.</div></div>
+      <span class="pill pill-pending">Awaiting Scope Confirmation</span>
+    </div></div>
+  </div>
+</section>
+
+<!-- ══ TL;DR ══ -->
+<section class="chapter" id="tldr">
+  <div class="ch-title"><span class="ch-num">6</span>TL;DR — Week 27 · Jul 3</div>
+  <div class="tldr-box">
+    <h3>June 27–July 3, 2026</h3>
+    <div class="tldr-grid">
+      <div class="tg-section">
+        <h4>This Week</h4>
+        <ul>
+          <li><strong>Transition:</strong> Jul 2 on plan — 3 streams closed, 15 exits, no disruption to active streams.</li>
+          <li><strong>Health:</strong> Production sprint active. 20 FTE stable. Visit Visa near UAT.</li>
+          <li><strong>Design System:</strong> Government portal integration approved after ~3 years.</li>
+          <li><strong>Q2 Eval:</strong> Sent Jun 29 to Devendra, Arun, Ramadan, Karthik, Karim, Zuber.</li>
+          <li><strong>SuperApp:</strong> Bi-weekly cadence maintained. Team of 4 stable.</li>
+        </ul>
+      </div>
+      <div class="tg-section">
+        <h4>Watch Items</h4>
+        <ul>
+          <li><strong>🔴 Tajeeri:</strong> Asylhan (FE, permanent) + Irina (PM/QA, until Jul 17). MVP mid-July. 1 FE post Jul 17.</li>
+          <li><strong>🟡 Shory SDLC:</strong> No sign-off from Basir/Imran. Channel open since June. Maruf vacation dates unconfirmed.</li>
+          <li><strong>🟡 Health:</strong> Ownership moved to Mustafa (Jul 1). Azure DevOps access gap for QA. Levan vacation Jul 6–14.</li>
+          <li><strong>🟡 SuperApp:</strong> Client consistency feedback on one engineer (Jul 2). Q3 roadmap unconfirmed.</li>
+          <li><strong>🟡 Anton:</strong> Vacation Jul 6–10. Jira/governance resumes Jul 10.</li>
+        </ul>
+      </div>
+      <div class="tg-section">
+        <h4>FTE</h4>
+        <ul>
+          <li><strong>Jul 3:</strong> 38 FTE</li>
+          <li><strong>Jul 17:</strong> 37 FTE (−Irina)</li>
+          <li><strong>Jul 22:</strong> 36 FTE (−Davit M)</li>
+          <li>Core: Health 20 · Shory 8 · SuperApp 4 · AI/DS/Jira/Found 4</li>
+          <li>Tajeeri: 2 → 1 after Jul 17</li>
+        </ul>
+      </div>
+      <div class="tg-section">
+        <h4>Stream Status</h4>
+        <ul>
+          <li>✅ Health SME — Green · production sprint</li>
+          <li>🔴 Tajeeri — Critical (1–2 FTE · MVP mid-July)</li>
+          <li>🟡 Shory Platform — Amber (SDLC open · Motor KT progressing)</li>
+          <li>🟡 SuperApp — Amber (stable · Q3 TBC)</li>
+          <li>🟡 AI / DS / Jira / Found — Amber (Hazem gap · Anton vac)</li>
+          <li>✓ Shary · Esterdad/Mulem · Dashboards — Closed Jul 2</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="discuss-box">
+      <h4>Topics for Friday · Jul 3</h4>
+      <div class="discuss-item">
+        <div class="dn">1</div>
+        <div class="dt"><strong>Tajeeri:</strong> Asylhan Ukenov (FE) and Irina Kulaga (QA/PM, until Jul 17) are the remaining EPAM engineers. Abu Dhabi Police MVP is targeted mid-July. EPAM can provide a replacement team if needed.</div>
+      </div>
+      <div class="discuss-item">
+        <div class="dn">2</div>
+        <div class="dt"><strong>Shory SDLC:</strong> Governance channel open with Maruf since June. SDLC plan and Travel Insurance scope tabled. No response from Basir / Imran to date. Maruf's vacation dates not yet confirmed.</div>
+      </div>
+      <div class="discuss-item">
+        <div class="dn">3</div>
+        <div class="dt"><strong>Health SME ownership:</strong> Day-to-day approvals moved to Mustafa as of Jul 1. Devendra on escalation-only basis. Azure DevOps access gap for Minsk-based QA staff flagged. QA staffing for near-UAT window being confirmed.</div>
+      </div>
+      <div class="discuss-item">
+        <div class="dn">4</div>
+        <div class="dt"><strong>Q2 Performance Evaluation:</strong> Sent Jun 29 to all stream managers. Responses pending.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer style="background:#1e3a5f;color:#93c5fd;text-align:center;padding:10px;font-size:11px;margin-top:28px;">
+  FirstTech / EPAM &nbsp;|&nbsp; Week 27 · June 27–July 3, 2026 &nbsp;|&nbsp; Max Vlasov, EPAM DM &nbsp;|&nbsp; Friday CSO Sync · Konstantin Voronin &nbsp;|&nbsp; <em>Confidential</em>
+</footer>
+
+<script>
+function toggle(h){h.parentElement.classList.toggle('open');}
+function toggleRisk(h){h.parentElement.classList.toggle('open');}
+function toggleWin(id){document.getElementById(id).classList.toggle('open');}
+function toggleExits(){
+  const b=document.getElementById('exits-body'),a=document.getElementById('exits-arrow');
+  b.classList.toggle('open');a.textContent=b.classList.contains('open')?'▲':'▼';
+}
+function switchTab(btn,panel){
+  document.querySelectorAll('.mit-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.mit-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');document.getElementById(panel).classList.add('active');
+}
+document.querySelectorAll('.nav a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
